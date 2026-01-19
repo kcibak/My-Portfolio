@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+---
+
+<Layout title="Skills | Kira Cibak" description="Technical skills, tools, and capabilities for Kira Cibak.">
+	<section class="section">
+		<p class="eyebrow">Skills</p>
+		<h1 class="section-title">Technical range</h1>
+		<p class="section-subtitle">Swap these lists with your own stack. Keep categories short and scannable for recruiters.</p>
+	</section>
+
+	<section class="section grid-three">
+		<article class="card" style="padding:1rem;">
+			<h2 style="margin:0 0 0.5rem;">Front-end</h2>
+			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
+				<li>Astro / React / Next.js</li>
+				<li>TypeScript, modern JS patterns</li>
+				<li>CSS tooling, motion, accessibility-first</li>
+			</ul>
+		</article>
+		<article class="card" style="padding:1rem;">
+			<h2 style="margin:0 0 0.5rem;">Systems</h2>
+			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
+				<li>Design tokens and theming</li>
+				<li>Component libraries, Storybook</li>
+				<li>Responsive grids and typography scales</li>
+			</ul>
+		</article>
+		<article class="card" style="padding:1rem;">
+			<h2 style="margin:0 0 0.5rem;">Delivery</h2>
+			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
+				<li>CI/CD basics, testing strategy</li>
+				<li>Performance monitoring and budgets</li>
+				<li>SEO fundamentals (metadata, sitemaps)</li>
+			</ul>
+		</article>
+	</section>
+</Layout>

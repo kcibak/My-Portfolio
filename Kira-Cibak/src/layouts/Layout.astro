@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+
+const {
+	title = 'Kira Cibak | Web Developer',
+	description = 'Front-end developer crafting fast, mobile-first experiences.',
+	ogImage = '/og-default.jpg'
+} = Astro.props;
+
+const canonical = Astro.site
+	? new URL(Astro.url.pathname, Astro.site).href
+	: Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+	</head>
+	<body data-theme="auto">
+		<a href="#main" class="skip-link">
+			Skip to content
+		</a>
+		<Nav />
+		<main id="main">
+			<slot />
+		</main>
+	</body>
+</html>

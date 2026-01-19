@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const posts = [
+	{
+		slug: 'example-post',
+		title: 'Example blog post',
+		summary: 'Swap with a real article summary. Keep it under 140 characters.'
+	},
+	{
+		slug: 'performance-tips',
+		title: 'Performance tips',
+		summary: 'Cover image optimization, code splitting, and accessibility wins.'
+	}
+];
+---
+
+<Layout title="Blog | Kira Cibak" description="Articles on front-end development, performance, and design systems by Kira Cibak.">
+	<section class="section">
+		<p class="eyebrow">Blog</p>
+		<h1 class="section-title">Notes on building for the web</h1>
+		<p class="section-subtitle">Replace these cards with your real posts. Each should map to /blog/[slug].</p>
+	</section>
+
+	<section class="section">
+		<div class="grid-two">
+			{posts.map((post) => (
+				<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
+					<div class="placeholder-image" style="height:140px;">Featured image placeholder</div>
+					<h2 style="margin:0;">{post.title}</h2>
+					<p style="margin:0; color:var(--color-muted);">{post.summary}</p>
+					<a class="button secondary" href={`/blog/${post.slug}`}>
+						Read post
+					</a>
+				</article>
+			))}
+		</div>
+	</section>
+</Layout>

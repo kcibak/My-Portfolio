@@ -1,0 +1,109 @@
+---
+const links = [
+	{ href: '/', label: 'Home' },
+	{ href: '/about', label: 'About' },
+	{ href: '/projects', label: 'Projects' },
+	{ href: '/skills', label: 'Skills' },
+	{ href: '/blog', label: 'Blog' },
+	{ href: '/resume', label: 'Resume' },
+	{ href: '/contact', label: 'Contact' }
+];
+---
+
+<header class="navbar">
+	<div class="nav-inner">
+		<a href="/" class="nav-brand">
+			<span class="logo-mark" aria-hidden="true">KC</span>
+			<span>Kira Cibak</span>
+		</a>
+		<button id="menu-toggle" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav">
+			<span class="sr-only">Toggle navigation</span>
+			<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+				<path d="M3 12h18" />
+				<path d="M3 6h18" />
+				<path d="M3 18h18" />
+			</svg>
+		</button>
+	</div>
+	<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+		{links.map((link) => (
+			<a href={link.href}>
+				<span>{link.label}</span>
+				<span aria-hidden="true">→</span>
+			</a>
+		))}
+		<a class="button secondary" href="/contact">Let’s talk</a>
+	</nav>
+</header>
+
+<style>
+	.nav-toggle {
+		display: inline-flex !important;
+	}
+</style>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const menu = document.getElementById('mobile-nav');
+
+	// Initialize menu
+	if (menu) {
+		menu.style.display = 'flex';
+		menu.style.position = 'fixed';
+		menu.style.top = '0';
+		menu.style.right = '0';
+		menu.style.width = '280px';
+		menu.style.height = '100vh';
+		menu.style.background = 'var(--color-card)';
+		menu.style.borderLeft = '1px solid var(--color-border)';
+		menu.style.boxShadow = '-4px 0 20px rgba(0, 0, 0, 0.1)';
+		menu.style.transform = 'translateX(100%)';
+		menu.style.transition = 'transform 0.3s ease';
+		menu.style.zIndex = '40';
+		menu.style.flexDirection = 'column';
+		menu.style.gap = '0.75rem';
+		menu.style.padding = '4rem 1rem 1rem';
+	}
+
+	const closeMenu = () => {
+		if (menu) menu.style.transform = 'translateX(100%)';
+		toggle?.setAttribute('aria-expanded', 'false');
+	};
+
+	const openMenu = () => {
+		if (menu) menu.style.transform = 'translateX(0)';
+		toggle?.setAttribute('aria-expanded', 'true');
+	};
+
+	// Hover to open
+	toggle?.addEventListener('mouseenter', () => {
+		openMenu();
+	});
+
+	// Leave menu to close
+	menu?.addEventListener('mouseleave', () => {
+		closeMenu();
+	});
+
+	// Click menu item to close
+	menu?.querySelectorAll('a').forEach(link => {
+		link.addEventListener('click', () => {
+			closeMenu();
+		});
+	});
+
+	// For mobile, also allow click on toggle
+	toggle?.addEventListener('click', () => {
+		if (!menu) return;
+		const isOpen = menu.style.transform === 'translateX(0px)';
+		if (isOpen) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	});
+
+	window.addEventListener('resize', () => {
+		if (window.innerWidth >= 900) closeMenu();
+	});
+</script>

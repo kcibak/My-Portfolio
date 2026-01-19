@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThemeToggle from '../components/islands/ThemeToggle.tsx';
+
+export const prerender = true;
+
+const projects = [
+	{
+		title: 'Interactive Dev Portfolio',
+		description: 'Motion-rich, accessible portfolio built with Astro and smooth islands.',
+		tags: ['Astro', 'Islands', 'A11y']
+	},
+	{
+		title: 'Design System Starter',
+		description: 'Token-first system with responsive components and documentation.',
+		tags: ['Design Tokens', 'Storybook', 'Figma']
+	},
+	{
+		title: 'API-driven Dashboard',
+		description: 'Real-time insights with charts, auth, and offline support.',
+		tags: ['React', 'Charts', 'Auth']
+	}
+];
+
+const posts = [
+	{
+		title: 'Improving Core Web Vitals',
+		summary: 'Quick wins for LCP, CLS, and TBT using image optimization and code-splitting.'
+	},
+	{
+		title: 'Building Design Systems Faster',
+		summary: 'Practical workflow for tokens, documentation, and component libraries.'
+	}
+];
+---
+
+<Layout title="Kira Cibak | Front-end Developer" description="Building fast, responsive web experiences with Astro and modern tooling.">
+	<section class="hero">
+		<div>
+			<p class="eyebrow">Available for new opportunities</p>
+			<h1 class="section-title">I craft mobile-first, performant websites that feel intentional and joyful.</h1>
+			<p class="section-subtitle">
+				Front-end developer focused on Astro, React, and design systems. I obsess over smooth interactions, accessible patterns, and delivering fast experiences on every device.
+			</p>
+			<div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
+				<a class="button" href="/projects">View projects</a>
+				<a class="button secondary" href="/contact">Book a call</a>
+				<ThemeToggle client:load />
+			</div>
+		</div>
+		<div>
+			<div class="placeholder-image hero-img">Hero image placeholder — swap with your photo/illustration</div>
+			<p class="placeholder-note">Use a 1600x900 image optimized for mobile and desktop.</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<h2 class="section-title">Selected projects</h2>
+		<p class="section-subtitle">Replace the placeholders with real work. Each card links to a detailed case study.</p>
+		<div class="grid-two">
+			{projects.map((project) => (
+				<article class="card" style="padding:1rem; display:grid; gap:0.65rem;">
+					<div class="placeholder-image" style="height:180px;">Project image placeholder</div>
+					<h3 style="margin:0;">{project.title}</h3>
+					<p style="margin:0; color:var(--color-muted);">{project.description}</p>
+					<div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+						{project.tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+					<a class="button secondary" href="/projects">Read case study</a>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section">
+		<h2 class="section-title">Services</h2>
+		<p class="section-subtitle">Mobile-first front-ends, design systems, and performance-focused builds.</p>
+		<div class="grid-three">
+			<div class="card" style="padding:1rem;">
+				<h3>Front-end builds</h3>
+				<p>Responsive sites with performance budgets, lighthouse-friendly patterns, and smooth interactions.</p>
+			</div>
+			<div class="card" style="padding:1rem;">
+				<h3>Design systems</h3>
+				<p>Tokens, documented components, and accessible UI kits aligned with product teams.</p>
+			</div>
+			<div class="card" style="padding:1rem;">
+				<h3>Content sites</h3>
+				<p>SEO-ready blogs and marketing pages with clean content pipelines and analytics.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" style="display:grid; gap:1rem; grid-template-columns:1fr;">
+		<h2 class="section-title">Latest posts</h2>
+		<div class="grid-two">
+			{posts.map((post) => (
+				<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
+					<div class="placeholder-image" style="height:140px;">Featured image placeholder</div>
+					<h3 style="margin:0;">{post.title}</h3>
+					<p style="margin:0; color:var(--color-muted);">{post.summary}</p>
+					<a class="button secondary" href="/blog">Read more</a>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section card" style="padding:1.25rem; display:grid; gap:0.75rem;">
+		<h2 class="section-title" style="margin:0;">Let’s build something great</h2>
+		<p class="section-subtitle" style="margin:0;">Ready for a project or need a quick consultation? Swap in your details and preferred contact method.</p>
+		<div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+			<a class="button" href="mailto:hello@kira.dev">Email me</a>
+			<a class="button secondary" href="/resume">View resume</a>
+		</div>
+	</section>
+</Layout>
