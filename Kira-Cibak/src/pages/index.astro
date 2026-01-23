@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ThemeToggle from '../components/islands/ThemeToggle.tsx';
 
 export const prerender = true;
 
@@ -45,7 +44,6 @@ const posts = [
 			<div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
 				<a class="button" href="/projects">View projects</a>
 				<a class="button secondary" href="/contact">Book a call</a>
-				<ThemeToggle client:load />
 			</div>
 		</div>
 		<div>

@@ -9,11 +9,28 @@
 	--color-accent: #2563eb;
 	--color-accent-2: #38bdf8;
 	--color-border: #d6e1ff;
+	--color-nav: rgba(255, 255, 255, 0.82);
 	--shadow-soft: 0 10px 30px rgba(37, 99, 235, 0.08);
 	--radius-sm: 10px;
 	--radius-md: 16px;
 	--radius-lg: 22px;
 	--content-max: 1100px;
+	color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+	--color-bg: #0b162b;
+	--color-bg-soft: #0f1e3a;
+	--color-card: #0f243f;
+	--color-ink: #e7edff;
+	--color-ink-soft: #cfd9f5;
+	--color-muted: #9fb4d9;
+	--color-accent: #5ba8ff;
+	--color-accent-2: #7edcff;
+	--color-border: #1f3a63;
+	--color-nav: rgba(12, 22, 42, 0.9);
+	--shadow-soft: 0 10px 30px rgba(94, 148, 255, 0.25);
+	color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,7 +44,9 @@
 		--color-accent: #5ba8ff;
 		--color-accent-2: #7edcff;
 		--color-border: #1f3a63;
+		--color-nav: rgba(12, 22, 42, 0.9);
 		--shadow-soft: 0 10px 30px rgba(94, 148, 255, 0.25);
+		color-scheme: dark;
 	}
 }
 
@@ -89,7 +108,7 @@ main {
 	position: absolute;
 	left: -999px;
 	top: auto;
-	background: #fff;
+	background: var(--color-card);
 	color: var(--color-ink);
 	padding: 0.6rem 0.9rem;
 	border-radius: 0.4rem;
@@ -139,7 +158,7 @@ main {
 }
 
 .button.secondary {
-	background: #fff;
+	background: var(--color-card);
 	color: var(--color-ink);
 	border-color: var(--color-border);
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
@@ -247,13 +266,8 @@ main {
 	top: 0;
 	z-index: 30;
 	backdrop-filter: blur(16px);
-	background: rgba(255, 255, 255, 0.82);
+	background: var(--color-nav);
 	border-bottom: 1px solid var(--color-border);
-}
-
-body[data-theme='dark'] .navbar,
-:root[data-theme='auto'][data-theme-mode='dark'] .navbar {
-	background: rgba(12, 22, 42, 0.9);
 }
 
 .nav-inner {
@@ -313,7 +327,7 @@ body[data-theme='dark'] .navbar,
 	height: 46px;
 	border-radius: 14px;
 	border: 1px solid var(--color-border);
-	background: rgba(255, 255, 255, 0.9);
+	background: var(--color-card);
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 	cursor: pointer;
 }
@@ -329,7 +343,7 @@ body[data-theme='dark'] .navbar,
 	flex-direction: column;
 	gap: 0.75rem;
 	padding: 0 1rem 1rem;
-	background: rgba(255, 255, 255, 0.94);
+	background: var(--color-bg-soft);
 	border-bottom: 1px solid var(--color-border);
 }
 
@@ -414,7 +428,7 @@ body[data-theme='dark'] .navbar,
 
 .carousel-actions button {
 	border: 1px solid var(--color-border);
-	background: #fff;
+	background: var(--color-card);
 	border-radius: 999px;
 	padding: 0.55rem 0.9rem;
 	font-weight: 600;
@@ -450,7 +464,7 @@ body[data-theme='dark'] .navbar,
 
 .gallery-thumb {
 	border: 1px dashed var(--color-border);
-	background: #fff;
+	background: var(--color-card);
 	border-radius: var(--radius-md);
 	padding: 0.35rem;
 	cursor: pointer;
@@ -512,7 +526,7 @@ body[data-theme='dark'] .navbar,
 
 .lightbox-toolbar button {
 	border: 1px solid var(--color-border);
-	background: #fff;
+	background: var(--color-card);
 	border-radius: 10px;
 	padding: 0.45rem 0.8rem;
 	font-weight: 700;
@@ -540,7 +554,8 @@ body[data-theme='dark'] .navbar,
 	padding: 0.75rem 0.9rem;
 	font-size: 1rem;
 	font-family: inherit;
-	background: #fff;
+	background: var(--color-card);
+	color: var(--color-ink);
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
@@ -575,7 +590,7 @@ body[data-theme='dark'] .navbar,
 	border: 1px solid rgba(34, 197, 94, 0.35);
 }
 .button.secondary {
-	background: #fff;
+	background: var(--color-card);
 	color: var(--color-ink);
 	border-color: var(--color-border);
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
@@ -683,13 +698,8 @@ body[data-theme='dark'] .navbar,
 	top: 0;
 	z-index: 30;
 	backdrop-filter: blur(16px);
-	background: rgba(255, 255, 255, 0.82);
+	background: var(--color-nav);
 	border-bottom: 1px solid var(--color-border);
-}
-
-body[data-theme='dark'] .navbar,
-:root[data-theme='auto'][data-theme-mode='dark'] .navbar {
-	background: rgba(12, 22, 42, 0.9);
 }
 
 .nav-inner {
@@ -749,7 +759,7 @@ body[data-theme='dark'] .navbar,
 	height: 46px;
 	border-radius: 14px;
 	border: 1px solid var(--color-border);
-	background: rgba(255, 255, 255, 0.9);
+	background: var(--color-card);
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 	cursor: pointer;
 }
@@ -765,7 +775,7 @@ body[data-theme='dark'] .navbar,
 	flex-direction: column;
 	gap: 0.75rem;
 	padding: 0 1rem 1rem;
-	background: rgba(255, 255, 255, 0.94);
+	background: var(--color-bg-soft);
 	border-bottom: 1px solid var(--color-border);
 }
 
