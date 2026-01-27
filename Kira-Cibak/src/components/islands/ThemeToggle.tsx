@@ -26,29 +26,33 @@ export default function ThemeToggle() {
 		applyMode(initial);
 	}, []);
 
-	const toggle = () => {
-		const next: Mode = mode === 'light' ? 'dark' : 'light';
+	const onChange = (e: Event) => {
+		const input = e.target as HTMLInputElement;
+		const next: Mode = input.checked ? 'dark' : 'light';
 		setMode(next);
 		applyMode(next);
 	};
 
 	return (
-		<button
-			type="button"
-			class="theme-toggle"
-			onClick={toggle}
-			aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}
-		>
-			{mode === 'light' ? (
-				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<circle cx="12" cy="12" r="5" />
-					<path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+		<label class="theme-toggle" data-mode={mode} aria-label="Toggle color theme">
+			<input
+				class="theme-toggle__input"
+				type="checkbox"
+				role="switch"
+				checked={mode === 'dark'}
+				onChange={onChange}
+				aria-checked={mode === 'dark'}
+			/>
+			<span class="theme-toggle__track" aria-hidden="true">
+				<svg class="theme-toggle__icon sun" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+					<circle cx="12" cy="12" r="4" />
+					<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
 				</svg>
-			) : (
-				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<span class="theme-toggle__knob"></span>
+				<svg class="theme-toggle__icon moon" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
 					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
 				</svg>
-			)}
-		</button>
+			</span>
+		</label>
 	);
 }
