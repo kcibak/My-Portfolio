@@ -6,7 +6,6 @@ const routes = [
 	'/projects',
 	'/skills',
 	'/blog',
-	'/resume',
 	'/contact'
 ];
 
