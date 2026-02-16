@@ -2,11 +2,13 @@
 import ThemeToggle from './islands/ThemeToggle.tsx';
 
 const links = [
-	{ href: '/about', label: 'About Me' },
-	{ href: '/skills', label: 'Skills & Experience' },
+	{ href: '/about', label: 'About' },
+	{ href: '/skills', label: 'Experience' },
 	{ href: '/projects', label: 'Projects' },
 	{ href: '/contact', label: 'Contact' }
 ];
+
+const resumeHref = '/Kira%20Cibak_2025.pdf';
 
 const socials = [
 	{ href: 'https://www.linkedin.com/in/kira-cibak/', label: 'LinkedIn', icon: 'linkedin' },
@@ -35,6 +37,20 @@ const emailAddress = 'cibakkn@gmail.com';
 					)}
 				</a>
 			))}
+			<a
+				class="social-icon resume-link"
+				href={resumeHref}
+				aria-label="View Resume"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+					<path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z" />
+					<path d="M14 2v5h5" />
+					<path d="M9 13h6" />
+					<path d="M9 17h6" />
+				</svg>
+			</a>
 			<button
 				class="social-icon copy"
 				id="email-copy"
@@ -81,7 +97,7 @@ const emailAddress = 'cibakkn@gmail.com';
 	</div>
 	<nav id="parabola-menu" class="parabola-menu" aria-label="Primary navigation" aria-hidden="true">
 		{links.map((link, index) => (
-			<a href={link.href} style={`--arc-offset:${Math.abs(3 - index)};`}>{link.label}</a>
+			<a href={link.href} style={`--arc-offset:${Math.abs((links.length - 1) / 2 - index)};`}>{link.label}</a>
 		))}
 	</nav>
 </header>
