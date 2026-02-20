@@ -7,30 +7,27 @@ const storageKey = 'kira-theme-mode';
 function getInitialMode(): Mode {
 	if (typeof window === 'undefined') return 'light';
 	const saved = window.localStorage.getItem(storageKey) as Mode | null;
-	return saved || 'light';
+	if (saved === 'light' || saved === 'dark') return saved;
+	return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 }
 
 function applyMode(mode: Mode) {
 	const root = document.documentElement;
-	root.setAttribute('data-theme', mode);
-	root.setAttribute('data-theme-mode', mode);
+	root.classList.toggle('dark', mode === 'dark');
 	window.localStorage.setItem(storageKey, mode);
 }
 
 export default function ThemeToggle() {
-	const [mode, setMode] = useState<Mode>('light');
+	const [mode, setMode] = useState<Mode>(getInitialMode);
 
 	useEffect(() => {
-		const initial = getInitialMode();
-		setMode(initial);
-		applyMode(initial);
-	}, []);
+		applyMode(mode);
+	}, [mode]);
 
 	const onChange = (e: Event) => {
 		const input = e.target as HTMLInputElement;
 		const next: Mode = input.checked ? 'dark' : 'light';
 		setMode(next);
-		applyMode(next);
 	};
 
 	return (

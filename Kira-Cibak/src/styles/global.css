@@ -38,7 +38,7 @@
 	color-scheme: light;
 }
 
-:root[data-theme='dark'] {
+html.dark {
 	--color-bg: rgb(11 22 43);
 	--color-card: rgb(11 22 43);
 	--color-ink: rgb(223 228 239);
@@ -74,46 +74,6 @@
 	--radius: 12px;
 	--shadow: 0 10px 30px rgb(91 192 235 / 28%);
 	color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root[data-theme='auto'] {
-		--color-bg: rgb(11 22 43);
-		--color-card: rgb(11 22 43);
-		--color-ink: rgb(223 228 239);
-		--color-muted: rgb(223 228 239 / 70%);
-		--color-accent: rgb(91 192 235);
-		--color-accent-2: rgb(91 192 235);
-		--color-border: rgb(255 255 255 / 16%);
-		--color-nav: rgb(11 22 43 / 90%);
-		--color-on-accent: rgb(255 255 255);
-		--color-tag-bg: rgb(91 192 235 / 12%);
-		--color-hover-bg: rgb(91 192 235 / 8%);
-		--color-surface-tint: rgb(91 192 235 / 12%);
-		--color-overlay: rgb(15 23 42 / 55%);
-		--color-alert-error-bg: rgb(239 68 68 / 10%);
-		--color-alert-error-text: rgb(248 113 113);
-		--color-alert-error-border: rgb(239 68 68 / 35%);
-		--color-alert-success-bg: rgb(34 197 94 / 10%);
-		--color-alert-success-text: rgb(74 222 128);
-		--color-alert-success-border: rgb(34 197 94 / 35%);
-		--color-theme-toggle-active-bg: rgb(91 192 235 / 16%);
-		--color-theme-toggle-active-icon: rgb(255 255 255 / 90%);
-		--color-focus-ring: rgb(91 192 235 / 45%);
-		--color-nav-shimmer-0: rgb(91 192 235 / 0%);
-		--color-nav-shimmer-1: rgb(91 192 235 / 5%);
-		--color-nav-shimmer-2: rgb(255 255 255 / 14%);
-		--color-nav-shimmer-3: rgb(91 192 235 / 12%);
-		--color-nav-shimmer-4: rgb(255 255 255 / 12%);
-		--color-nav-shimmer-5: rgb(91 192 235 / 4%);
-		--color-body-glow-1: rgb(91 192 235 / 16%);
-		--color-body-glow-2: rgb(91 192 235 / 12%);
-		--color-body-glow-3: rgb(223 228 239 / 10%);
-		--color-transparent: transparent;
-		--radius: 12px;
-		--shadow: 0 10px 30px rgb(91 192 235 / 28%);
-		color-scheme: dark;
-	}
 }
 
 * {

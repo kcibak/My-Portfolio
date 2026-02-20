@@ -15,10 +15,16 @@ const canonical = Astro.site
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth" data-theme="light">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script is:inline>
+			try {
+				const savedTheme = localStorage.getItem('kira-theme-mode');
+				document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+			} catch {}
+		</script>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />

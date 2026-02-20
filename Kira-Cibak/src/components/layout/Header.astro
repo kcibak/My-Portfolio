@@ -119,14 +119,8 @@ const emailAddress = 'cibakkn@gmail.com';
 		box-shadow: var(--shadow);
 	}
 
-	:global(:root[data-theme='dark'] .dome-header) {
+	:global(html.dark .dome-header) {
 		box-shadow: var(--shadow);
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:global(:root[data-theme='auto'] .dome-header) {
-			box-shadow: var(--shadow);
-		}
 	}
 
 	:global(.theme-toggle) {
