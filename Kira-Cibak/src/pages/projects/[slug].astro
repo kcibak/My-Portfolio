@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import LightboxGallery from '../../components/islands/LightboxGallery.tsx';
 
 export const prerender = true;
@@ -8,7 +8,7 @@ const slug = Astro.params.slug || 'project';
 const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 ---
 
-<Layout title={`${title} | Project | Kira Cibak`} description={`Case study for ${title} by Kira Cibak.`}>
+<MainLayout title={`${title} | Project | Kira Cibak`} description={`Case study for ${title} by Kira Cibak.`}>
 	<section class="section">
 		<p class="eyebrow">Case study</p>
 		<h1 class="section-title">{title}</h1>
@@ -71,4 +71,4 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 		<a class="button" href="/projects">Back to projects</a>
 		<a class="button secondary" href="/contact">Discuss this work</a>
 	</section>
-</Layout>
+</MainLayout>

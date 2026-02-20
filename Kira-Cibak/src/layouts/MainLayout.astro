@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import Nav from '../components/Nav.astro';
+import Header from '../components/Header.astro';
 
 const {
 	title = 'Kira Cibak | Web Developer',
@@ -43,7 +43,7 @@ const canonical = Astro.site
 		<a href="#main" class="skip-link">
 			Skip to content
 		</a>
-		<Nav />
+		<Header />
 		<main id="main">
 			<slot />
 		</main>

@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
 export const prerender = true;
 
@@ -33,7 +33,7 @@ const posts = [
 ];
 ---
 
-<Layout title="Kira Cibak | Front-end Developer" description="Building fast, responsive web experiences with Astro and modern tooling.">
+<MainLayout title="Kira Cibak | Front-end Developer" description="Building fast, responsive web experiences with Astro and modern tooling.">
 	<section class="hero">
 		<div>
 			<p class="eyebrow">Available for new opportunities</p>
@@ -113,4 +113,4 @@ const posts = [
 			<a class="button secondary" href="/skills">View skills</a>
 		</div>
 	</section>
-</Layout>
+</MainLayout>

@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import ProjectCarousel from '../../components/islands/ProjectCarousel.tsx';
 
 export const prerender = true;
@@ -20,7 +20,7 @@ const projects = [
 ];
 ---
 
-<Layout title="Projects | Kira Cibak" description="A collection of Kira Cibak’s web projects with case study links.">
+<MainLayout title="Projects | Kira Cibak" description="A collection of Kira Cibak’s web projects with case study links.">
 	<section class="section">
 		<p class="eyebrow">Projects</p>
 		<h1 class="section-title">Case studies and builds</h1>
@@ -60,4 +60,4 @@ const projects = [
 			))}
 		</div>
 	</section>
-</Layout>
+</MainLayout>

@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 
 export const prerender = true;
 
@@ -7,7 +7,7 @@ const slug = Astro.params.slug || 'post';
 const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 ---
 
-<Layout title={`${title} | Blog | Kira Cibak`} description={`Read ${title} by Kira Cibak.`}>
+<MainLayout title={`${title} | Blog | Kira Cibak`} description={`Read ${title} by Kira Cibak.`}>
 	<article class="section card" style="padding:1.2rem; display:grid; gap:0.9rem;">
 		<p class="eyebrow">Blog</p>
 		<h1 class="section-title">{title}</h1>
@@ -29,4 +29,4 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 			<a class="button secondary" href="/contact">Discuss this topic</a>
 		</footer>
 	</article>
-</Layout>
+</MainLayout>

@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
 const socials = [
 	{ href: 'https://www.linkedin.com/in/kira-cibak/', label: 'LinkedIn', icon: 'linkedin' },
@@ -12,7 +12,7 @@ const resumeHref = '/Kira%20Cibak_2025.pdf';
 export const prerender = true;
 ---
 
-<Layout title="Contact | Kira Cibak" description="Get in touch with Kira Cibak for web projects and collaborations.">
+<MainLayout title="Contact | Kira Cibak" description="Get in touch with Kira Cibak for web projects and collaborations.">
 	<section class="contact-shell">
 		<div class="contact-hero">
 			<h1>Get In Touch</h1>
@@ -195,4 +195,4 @@ export const prerender = true;
 			overflow: hidden;
 		}
 	</style>
-</Layout>
+</MainLayout>
