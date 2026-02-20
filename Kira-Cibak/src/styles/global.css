@@ -150,6 +150,27 @@ main {
 	}
 }
 
+.main-centered {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 96px);
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+
+@media (min-width: 640px) {
+	.main-centered {
+		padding: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.main-centered {
+		padding: 0;
+	}
+}
+
 .skip-link {
 	position: absolute;
 	left: -999px;
@@ -832,9 +853,8 @@ main {
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	gap: 3rem;
+	gap: 2rem;
 	text-align: center;
-	min-height: 100vh;
 	justify-content: center;
 }
 

@@ -15,10 +15,8 @@ const resumeHref = '/Kira%20Cibak_2025.pdf';
 export const prerender = true;
 ---
 
-<MainLayout title="Contact | Kira Cibak" description="Get in touch with Kira Cibak for web projects and collaborations.">
-	<Section class="section">
-		<Container>
-			<ContactLinksPanel socials={[...socials]} emailAddress={emailAddress} resumeHref={resumeHref} />
-		</Container>
-	</Section>
+<MainLayout title="Contact | Kira Cibak" description="Get in touch with Kira Cibak for web projects and collaborations." centered={true}>
+	<Container>
+		<ContactLinksPanel socials={[...socials]} emailAddress={emailAddress} resumeHref={resumeHref} />
+	</Container>
 </MainLayout>
