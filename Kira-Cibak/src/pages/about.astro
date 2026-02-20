@@ -1,43 +1,30 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import AboutIntro from '../components/pages/AboutIntro.astro';
+import AboutHighlights from '../components/pages/AboutHighlights.astro';
+import AboutValues from '../components/pages/AboutValues.astro';
 
 export const prerender = true;
 ---
 
 <MainLayout title="About | Kira Cibak" description="Learn about Kira Cibak’s background, process, and approach to building for the web.">
 	<Section class="section">
-		<p class="eyebrow">About</p>
-		<h1 class="section-title">I design and build digital experiences that balance clarity, speed, and delight.</h1>
-		<p class="section-subtitle">Replace this paragraph with your story—what you value, how you collaborate, and the impact you aim for. Keep it concise and human.</p>
-		<div class="placeholder-image" style="height:220px;">Portrait/illustration placeholder</div>
+		<Container>
+			<AboutIntro />
+		</Container>
 	</Section>
 
-	<Section class="section grid-two">
-		<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
-			<h2 class="section-title" style="margin:0; font-size:1.4rem;">Experience snapshot</h2>
-			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
-				<li><strong>Role/company</strong> — Add your most recent position, product type, and standout achievement.</li>
-				<li><strong>Specialties</strong> — Mobile-first UI, design systems, performance tuning, accessibility.</li>
-				<li><strong>Tooling</strong> — Astro, React, TypeScript, Storybook, modern CI.</li>
-			</ul>
-		</article>
-		<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
-			<h2 class="section-title" style="margin:0; font-size:1.4rem;">Working style</h2>
-			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
-				<li>Start with goals and constraints, then propose a lean plan.</li>
-				<li>Prototype quickly with responsive layouts and accessibility baked in.</li>
-				<li>Measure with analytics and performance budgets; iterate fast.</li>
-			</ul>
-		</article>
+	<Section class="section">
+		<Container>
+			<AboutHighlights />
+		</Container>
 	</Section>
 
-	<Section class="section card" style="padding:1rem;">
-		<h2 class="section-title" style="margin:0 0 0.75rem; font-size:1.4rem;">Values</h2>
-		<div class="grid-three">
-			<div class="card" style="padding:0.8rem;">Respecting users with fast, accessible experiences.</div>
-			<div class="card" style="padding:0.8rem;">Clear communication and frequent checkpoints.</div>
-			<div class="card" style="padding:0.8rem;">Shipping reliably, then refining with data and feedback.</div>
-		</div>
+	<Section class="section">
+		<Container>
+			<AboutValues />
+		</Container>
 	</Section>
 </MainLayout>

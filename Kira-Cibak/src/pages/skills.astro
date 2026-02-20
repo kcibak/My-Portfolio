@@ -1,76 +1,39 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import SkillsCategories from '../components/pages/SkillsCategories.astro';
+import SkillsTimeline from '../components/pages/SkillsTimeline.astro';
 
 export const prerender = true;
 ---
 
 <MainLayout title="Skills | Kira Cibak" description="Technical skills, tools, and capabilities for Kira Cibak.">
 	<Section class="section">
-		<p class="eyebrow">Skills</p>
-		<h1 class="section-title">Technical range</h1>
-		<p class="section-subtitle">Swap these lists with your own stack. Keep categories short and scannable for recruiters.</p>
-	</Section>
-
-	<Section class="section grid-three">
-		<article class="card" style="padding:1rem;">
-			<h2 style="margin:0 0 0.5rem;">Front-end</h2>
-			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
-				<li>Astro / React / Next.js</li>
-				<li>TypeScript, modern JS patterns</li>
-				<li>CSS tooling, motion, accessibility-first</li>
-			</ul>
-		</article>
-		<article class="card" style="padding:1rem;">
-			<h2 style="margin:0 0 0.5rem;">Systems</h2>
-			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
-				<li>Design tokens and theming</li>
-				<li>Component libraries, Storybook</li>
-				<li>Responsive grids and typography scales</li>
-			</ul>
-		</article>
-		<article class="card" style="padding:1rem;">
-			<h2 style="margin:0 0 0.5rem;">Delivery</h2>
-			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
-				<li>CI/CD basics, testing strategy</li>
-				<li>Performance monitoring and budgets</li>
-				<li>SEO fundamentals (metadata, sitemaps)</li>
-			</ul>
-		</article>
+		<Container>
+			<p class="eyebrow">Skills</p>
+			<h1 class="section-title">Technical range</h1>
+			<p class="section-subtitle">Swap these lists with your own stack. Keep categories short and scannable for recruiters.</p>
+		</Container>
 	</Section>
 
 	<Section class="section">
-		<p class="eyebrow">Experience</p>
-		<h2 class="section-title">Experience and education</h2>
-		<p class="section-subtitle">Replace the placeholders with your real roles, dates, and achievements.</p>
+		<Container>
+			<SkillsCategories />
+		</Container>
 	</Section>
 
-	<Section class="section" style="display:grid; gap:1rem;">
-		<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
-			<div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
-				<h3 style="margin:0;">Role @ Company</h3>
-				<span class="tag">2024 — Present</span>
-			</div>
-			<p style="margin:0; color:var(--color-muted);">Describe your impact, ownership areas, and measurable outcomes.</p>
-			<ul style="margin:0; padding-left:1.1rem; color:var(--color-muted); line-height:1.6;">
-				<li>Key achievement or metric</li>
-				<li>Collaboration highlight</li>
-				<li>Technical accomplishment</li>
-			</ul>
-		</article>
-		<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
-			<div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
-				<h3 style="margin:0;">Previous Role @ Company</h3>
-				<span class="tag">2022 — 2024</span>
-			</div>
-			<p style="margin:0; color:var(--color-muted);">Add more context on projects or systems you led.</p>
-		</article>
-		<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
-			<div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
-				<h3 style="margin:0;">Education</h3>
-				<span class="tag">Year</span>
-			</div>
-			<p style="margin:0; color:var(--color-muted);">Include degree, certifications, or relevant coursework.</p>
-		</article>
+	<Section class="section">
+		<Container>
+			<p class="eyebrow">Experience</p>
+			<h2 class="section-title">Experience and education</h2>
+			<p class="section-subtitle">Replace the placeholders with your real roles, dates, and achievements.</p>
+		</Container>
+	</Section>
+
+	<Section class="section">
+		<Container>
+			<SkillsTimeline />
+		</Container>
 	</Section>
 </MainLayout>

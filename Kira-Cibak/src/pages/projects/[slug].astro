@@ -1,10 +1,20 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
 import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astro';
 import LightboxGallery from '../../components/project/LightboxGallery.tsx';
+import ProjectMeta from '../../components/pages/ProjectMeta.astro';
+import ProjectCaseSection from '../../components/pages/ProjectCaseSection.astro';
 
 export const prerender = true;
+
+export function getStaticPaths() {
+	return [
+		{ params: { slug: 'sample-project' } },
+		{ params: { slug: 'second-project' } }
+	];
+}
 
 const slug = Astro.params.slug || 'project';
 const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
@@ -12,53 +22,70 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 <MainLayout title={`${title} | Project | Kira Cibak`} description={`Case study for ${title} by Kira Cibak.`}>
 	<Section class="section">
-		<p class="eyebrow">Case study</p>
-		<h1 class="section-title">{title}</h1>
-		<p class="section-subtitle">Replace this with a concise summary of the project goals, audience, and success metrics.</p>
-		<div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-			<span class="tag">Role: Front-end</span>
-			<span class="tag">Stack: Astro, Preact</span>
-			<span class="tag">Year: 2026</span>
-		</div>
-		<div class="placeholder-image hero-img" style="margin-top:1rem;">Hero/cover image placeholder</div>
-	</Section>
-
-	<Section class="section card" style="padding:1.25rem; display:grid; gap:0.6rem;">
-		<h2 class="section-title" style="margin:0; font-size:1.5rem;">Problem</h2>
-		<p class="section-subtitle" style="margin:0;">Describe the challenge and constraints. Add metrics or user pain points.</p>
-	</Section>
-
-	<Section class="section card" style="padding:1.25rem; display:grid; gap:0.8rem;">
-		<h2 class="section-title" style="margin:0; font-size:1.5rem;">Solution</h2>
-		<p class="section-subtitle" style="margin:0;">Explain your approach, architecture, and design decisions. Mention accessibility, performance, and responsive strategies.</p>
-		<div class="grid-two">
-			<ProjectFeatureCard title="Key UX improvement" description="List the user-facing improvement or flow change." />
-			<ProjectFeatureCard title="Technical implementation" description="Note frameworks, data fetching, or performance tactics." />
-			<ProjectFeatureCard title="Collaboration" description="Document design/engineering handoff and stakeholders." />
-			<ProjectFeatureCard title="Testing" description="Explain QA, usability tests, or analytics validation." />
-		</div>
-	</Section>
-
-	<Section class="section card" style="padding:1.25rem; display:grid; gap:0.6rem;">
-		<h2 class="section-title" style="margin:0; font-size:1.5rem;">Results</h2>
-		<p class="section-subtitle" style="margin:0;">Share outcomes: performance gains, conversion lifts, or test quotes.</p>
+		<Container>
+			<p class="eyebrow">Case study</p>
+			<h1 class="section-title">{title}</h1>
+			<p class="section-subtitle">Replace this with a concise summary of the project goals, audience, and success metrics.</p>
+			<ProjectMeta />
+			<div class="placeholder-image hero-img placeholder-image-top-gap">Hero/cover image placeholder</div>
+		</Container>
 	</Section>
 
 	<Section class="section">
-		<h2 class="section-title">Lightbox gallery (Astro Island)</h2>
-		<p class="section-subtitle">Hydrated client:visible. Replace placeholders with real screenshots.</p>
-		<LightboxGallery
-			client:visible
-			items={[
-				{ src: '/placeholder-gallery.jpg', alt: `${title} mock 1` },
-				{ src: '/placeholder-gallery.jpg', alt: `${title} mock 2` },
-				{ src: '/placeholder-gallery.jpg', alt: `${title} mock 3` }
-			]}
-		/>
+		<Container>
+			<ProjectCaseSection
+				title="Problem"
+				description="Describe the challenge and constraints. Add metrics or user pain points."
+			/>
+		</Container>
 	</Section>
 
-	<Section class="section" style="display:flex; flex-wrap:wrap; gap:0.75rem;">
-		<a class="button" href="/projects">Back to projects</a>
-		<a class="button secondary" href="/contact">Discuss this work</a>
+	<Section class="section">
+		<Container>
+			<ProjectCaseSection
+				title="Solution"
+				description="Explain your approach, architecture, and design decisions. Mention accessibility, performance, and responsive strategies."
+			>
+				<div class="grid-two">
+					<ProjectFeatureCard title="Key UX improvement" description="List the user-facing improvement or flow change." />
+					<ProjectFeatureCard title="Technical implementation" description="Note frameworks, data fetching, or performance tactics." />
+					<ProjectFeatureCard title="Collaboration" description="Document design/engineering handoff and stakeholders." />
+					<ProjectFeatureCard title="Testing" description="Explain QA, usability tests, or analytics validation." />
+				</div>
+			</ProjectCaseSection>
+		</Container>
+	</Section>
+
+	<Section class="section">
+		<Container>
+			<ProjectCaseSection
+				title="Results"
+				description="Share outcomes: performance gains, conversion lifts, or test quotes."
+			/>
+		</Container>
+	</Section>
+
+	<Section class="section">
+		<Container>
+			<h2 class="section-title">Lightbox gallery (Astro Island)</h2>
+			<p class="section-subtitle">Hydrated client:visible. Replace placeholders with real screenshots.</p>
+			<LightboxGallery
+				client:visible
+				items={[
+					{ src: '/placeholder-gallery.jpg', alt: `${title} mock 1` },
+					{ src: '/placeholder-gallery.jpg', alt: `${title} mock 2` },
+					{ src: '/placeholder-gallery.jpg', alt: `${title} mock 3` }
+				]}
+			/>
+		</Container>
+	</Section>
+
+	<Section class="section">
+		<Container>
+			<div class="action-row">
+				<a class="button" href="/projects">Back to projects</a>
+				<a class="button secondary" href="/contact">Discuss this work</a>
+			</div>
+		</Container>
 	</Section>
 </MainLayout>

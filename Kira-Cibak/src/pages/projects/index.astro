@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import Section from '../../components/layout/Section.astro';
+import Container from '../../components/layout/Container.astro';
 import ProjectCard from '../../components/project/ProjectCard.astro';
 import ProjectCarousel from '../../components/project/ProjectCarousel.tsx';
 
@@ -24,39 +25,45 @@ const projects = [
 
 <MainLayout title="Projects | Kira Cibak" description="A collection of Kira Cibak’s web projects with case study links.">
 	<Section class="section">
-		<p class="eyebrow">Projects</p>
-		<h1 class="section-title">Case studies and builds</h1>
-		<p class="section-subtitle">Swap the placeholder cards with your real projects. Each links to /projects/[slug].</p>
+		<Container>
+			<p class="eyebrow">Projects</p>
+			<h1 class="section-title">Case studies and builds</h1>
+			<p class="section-subtitle">Swap the placeholder cards with your real projects. Each links to /projects/[slug].</p>
+		</Container>
 	</Section>
 
 	<Section class="section">
-		<h2 class="section-title">Interactive carousel (Astro Island)</h2>
-		<p class="section-subtitle">Hydrated client:visible. Replace slides with real thumbnails and summaries.</p>
-		<ProjectCarousel
-			client:visible
-			slides={projects.map((p) => ({
-				title: p.title,
-				summary: p.description,
-				image: '/placeholder-project.jpg' // TODO: replace with real image path or Astro <Image />
-			}))}
-		/>
+		<Container>
+			<h2 class="section-title">Interactive carousel (Astro Island)</h2>
+			<p class="section-subtitle">Hydrated client:visible. Replace slides with real thumbnails and summaries.</p>
+			<ProjectCarousel
+				client:visible
+				slides={projects.map((p) => ({
+					title: p.title,
+					summary: p.description,
+					image: '/placeholder-project.jpg'
+				}))}
+			/>
+		</Container>
 	</Section>
 
 	<Section class="section">
-		<h2 class="section-title">All projects</h2>
-		<div class="grid-two">
-			{projects.map((project) => (
-				<ProjectCard
-					title={project.title}
-					description={project.description}
-					tags={project.tags}
-					href={`/projects/${project.slug}`}
-					imageLabel="Thumbnail placeholder"
-					imageHeightStyle="height:150px;"
-					ctaLabel="Read the case study"
-					style="padding:1rem; display:grid; gap:0.6rem;"
-				/>
-			))}
-		</div>
+		<Container>
+			<h2 class="section-title">All projects</h2>
+			<div class="grid-two">
+				{projects.map((project) => (
+					<ProjectCard
+						title={project.title}
+						description={project.description}
+						tags={project.tags}
+						href={`/projects/${project.slug}`}
+						imageLabel="Thumbnail placeholder"
+						imageSize="small"
+						ctaLabel="Read the case study"
+						density="default"
+					/>
+				))}
+			</div>
+		</Container>
 	</Section>
 </MainLayout>

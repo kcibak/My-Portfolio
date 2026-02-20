@@ -1,0 +1,24 @@
+---
+type Props = {
+	title: string;
+	summary: string;
+	href: string;
+	height?: 'small' | 'medium';
+};
+
+const {
+	title,
+	summary,
+	href,
+	height = 'small'
+} = Astro.props as Props;
+---
+
+<article class="card blog-preview-card">
+	<div class:list={["placeholder-image", height === 'medium' ? 'placeholder-image-medium' : 'placeholder-image-small']}>
+		Featured image placeholder
+	</div>
+	<h3 class="heading-reset">{title}</h3>
+	<p class="muted-copy">{summary}</p>
+	<a class="button secondary" href={href}>Read more</a>
+</article>

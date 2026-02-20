@@ -1,0 +1,17 @@
+---
+type Props = {
+	title: string;
+	description: string;
+};
+
+const {
+	title,
+	description
+} = Astro.props as Props;
+---
+
+<div class="card case-section-card">
+	<h2 class="section-title case-section-title">{title}</h2>
+	<p class="section-subtitle section-subtitle-compact">{description}</p>
+	<slot />
+</div>

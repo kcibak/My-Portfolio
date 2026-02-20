@@ -1,24 +1,16 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Section from '../components/layout/Section.astro';
+import Container from '../components/layout/Container.astro';
+import NotFoundContent from '../components/pages/NotFoundContent.astro';
 
 export const prerender = true;
 ---
 
 <MainLayout title="Page not found | Kira Cibak" description="This page could not be found.">
-	<Section class="min-h-[60vh] grid place-items-center text-center space-y-4">
-		<p class="text-sm font-semibold uppercase tracking-[0.18em] text-sand/60">404</p>
-		<h1 class="text-4xl sm:text-5xl font-semibold">Lost in the layout.</h1>
-		<p class="text-base text-sand/80 max-w-xl">
-			The page you are looking for doesn’t exist. Head back to the homepage or explore the projects.
-		</p>
-		<div class="flex flex-wrap justify-center gap-3">
-			<a class="inline-flex items-center gap-2 rounded-full bg-accent text-ink px-5 py-3 text-sm font-semibold shadow-lg shadow-accent/30 transition hover:-translate-y-0.5" href="/">
-				Go home
-			</a>
-			<a class="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-sand transition hover:border-white/40" href="/projects">
-				See projects
-			</a>
-		</div>
+	<Section class="section">
+		<Container>
+			<NotFoundContent />
+		</Container>
 	</Section>
 </MainLayout>

@@ -1,0 +1,31 @@
+---
+type Props = {
+	title: string;
+};
+
+const {
+	title
+} = Astro.props as Props;
+---
+
+<article class="card blog-article-card">
+	<p class="eyebrow">Blog</p>
+	<h1 class="section-title">{title}</h1>
+	<div class="placeholder-image placeholder-image-article">Featured image placeholder</div>
+	<p class="section-subtitle section-subtitle-compact">Replace this with your article introduction. Keep paragraphs short for mobile readability.</p>
+
+	<div class="blog-article-body">
+		<p><!-- Add your first section here. --></p>
+		<p><!-- Add more content blocks as needed. --></p>
+		<ul class="content-list content-list-disc">
+			<li>Key takeaway one</li>
+			<li>Key takeaway two</li>
+			<li>Key takeaway three</li>
+		</ul>
+	</div>
+
+	<footer class="action-row">
+		<a class="button" href="/blog">Back to blog</a>
+		<a class="button secondary" href="/contact">Discuss this topic</a>
+	</footer>
+</article>

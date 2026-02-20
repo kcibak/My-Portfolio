@@ -5,9 +5,9 @@ type Props = {
 	tags: string[];
 	href: string;
 	imageLabel?: string;
-	imageHeightStyle?: string;
+	imageSize?: 'small' | 'medium' | 'large';
 	ctaLabel?: string;
-	style?: string;
+	density?: 'default' | 'cozy';
 };
 
 const {
@@ -16,17 +16,22 @@ const {
 	tags,
 	href,
 	imageLabel = 'Project image placeholder',
-	imageHeightStyle = 'height:150px;',
+	imageSize = 'small',
 	ctaLabel = 'Read case study',
-	style = 'padding:1rem; display:grid; gap:0.6rem;'
+	density = 'default'
 } = Astro.props as Props;
 ---
 
-<article class="card" style={style}>
-	<div class="placeholder-image" style={imageHeightStyle}>{imageLabel}</div>
-	<h3 style="margin:0;">{title}</h3>
-	<p style="margin:0; color:var(--color-muted);">{description}</p>
-	<div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+<article class:list={['card', 'project-card', density === 'cozy' && 'project-card-cozy']}>
+	<div class:list={[
+		'placeholder-image',
+		imageSize === 'small' && 'placeholder-image-small',
+		imageSize === 'medium' && 'placeholder-image-medium',
+		imageSize === 'large' && 'placeholder-image-large'
+	]}>{imageLabel}</div>
+	<h3 class="heading-reset">{title}</h3>
+	<p class="muted-copy">{description}</p>
+	<div class="tag-row-tight">
 		{tags.map((tag) => (
 			<span class="tag">{tag}</span>
 		))}
