@@ -1,0 +1,14 @@
+---
+const {
+	as = 'div',
+	id,
+	class: className,
+	style
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag id={id} class={className} style={style}>
+	<slot />
+</Tag>

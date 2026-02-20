@@ -1,0 +1,13 @@
+---
+const {
+	as = 'section',
+	class: className,
+	style
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag class={className} style={style}>
+	<slot />
+</Tag>

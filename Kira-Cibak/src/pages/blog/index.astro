@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/layout/Section.astro';
 
 export const prerender = true;
 
@@ -18,13 +19,13 @@ const posts = [
 ---
 
 <MainLayout title="Blog | Kira Cibak" description="Articles on front-end development, performance, and design systems by Kira Cibak.">
-	<section class="section">
+	<Section class="section">
 		<p class="eyebrow">Blog</p>
 		<h1 class="section-title">Notes on building for the web</h1>
 		<p class="section-subtitle">Replace these cards with your real posts. Each should map to /blog/[slug].</p>
-	</section>
+	</Section>
 
-	<section class="section">
+	<Section class="section">
 		<div class="grid-two">
 			{posts.map((post) => (
 				<article class="card" style="padding:1rem; display:grid; gap:0.5rem;">
@@ -37,5 +38,5 @@ const posts = [
 				</article>
 			))}
 		</div>
-	</section>
+	</Section>
 </MainLayout>

@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import Section from '../components/layout/Section.astro';
 
 const socials = [
 	{ href: 'https://www.linkedin.com/in/kira-cibak/', label: 'LinkedIn', icon: 'linkedin' },
@@ -13,7 +14,7 @@ export const prerender = true;
 ---
 
 <MainLayout title="Contact | Kira Cibak" description="Get in touch with Kira Cibak for web projects and collaborations.">
-	<section class="contact-shell">
+	<Section class="contact-shell">
 		<div class="contact-hero">
 			<h1>Get In Touch</h1>
 		</div>
@@ -59,7 +60,7 @@ export const prerender = true;
 				<span class="action-label">Copy Email</span>
 			</button>
 		</div>
-	</section>
+	</Section>
 
 	<script>
 		(() => {

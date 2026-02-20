@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/layout/Section.astro';
 
 export const prerender = true;
 
@@ -14,7 +15,7 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 		<div class="placeholder-image" style="height:200px;">Featured image placeholder</div>
 		<p class="section-subtitle" style="margin:0;">Replace this with your article introduction. Keep paragraphs short for mobile readability.</p>
 
-		<section style="display:grid; gap:0.65rem; color:var(--color-muted); line-height:1.7;">
+		<Section style="display:grid; gap:0.65rem; color:var(--color-muted); line-height:1.7;">
 			<p><!-- Add your first section here. --></p>
 			<p><!-- Add more content blocks as needed. --></p>
 			<ul style="margin:0; padding-left:1.25rem; list-style:disc;">
@@ -22,7 +23,7 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 				<li>Key takeaway two</li>
 				<li>Key takeaway three</li>
 			</ul>
-		</section>
+		</Section>
 
 		<footer style="display:flex; flex-wrap:wrap; gap:0.75rem;">
 			<a class="button" href="/blog">Back to blog</a>

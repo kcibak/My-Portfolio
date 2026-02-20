@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import ProjectCarousel from '../../components/islands/ProjectCarousel.tsx';
+import Section from '../../components/layout/Section.astro';
+import ProjectCard from '../../components/project/ProjectCard.astro';
+import ProjectCarousel from '../../components/project/ProjectCarousel.tsx';
 
 export const prerender = true;
 
@@ -21,13 +23,13 @@ const projects = [
 ---
 
 <MainLayout title="Projects | Kira Cibak" description="A collection of Kira Cibak’s web projects with case study links.">
-	<section class="section">
+	<Section class="section">
 		<p class="eyebrow">Projects</p>
 		<h1 class="section-title">Case studies and builds</h1>
 		<p class="section-subtitle">Swap the placeholder cards with your real projects. Each links to /projects/[slug].</p>
-	</section>
+	</Section>
 
-	<section class="section">
+	<Section class="section">
 		<h2 class="section-title">Interactive carousel (Astro Island)</h2>
 		<p class="section-subtitle">Hydrated client:visible. Replace slides with real thumbnails and summaries.</p>
 		<ProjectCarousel
@@ -38,26 +40,23 @@ const projects = [
 				image: '/placeholder-project.jpg' // TODO: replace with real image path or Astro <Image />
 			}))}
 		/>
-	</section>
+	</Section>
 
-	<section class="section">
+	<Section class="section">
 		<h2 class="section-title">All projects</h2>
 		<div class="grid-two">
 			{projects.map((project) => (
-				<article class="card" style="padding:1rem; display:grid; gap:0.6rem;">
-					<div class="placeholder-image" style="height:150px;">Thumbnail placeholder</div>
-					<h3 style="margin:0;">{project.title}</h3>
-					<p style="margin:0; color:var(--color-muted);">{project.description}</p>
-					<div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-						{project.tags.map((tag) => (
-							<span class="tag">{tag}</span>
-						))}
-					</div>
-					<a class="button secondary" href={`/projects/${project.slug}`}>
-						Read the case study
-					</a>
-				</article>
+				<ProjectCard
+					title={project.title}
+					description={project.description}
+					tags={project.tags}
+					href={`/projects/${project.slug}`}
+					imageLabel="Thumbnail placeholder"
+					imageHeightStyle="height:150px;"
+					ctaLabel="Read the case study"
+					style="padding:1rem; display:grid; gap:0.6rem;"
+				/>
 			))}
 		</div>
-	</section>
+	</Section>
 </MainLayout>

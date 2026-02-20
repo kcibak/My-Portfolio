@@ -1,0 +1,37 @@
+---
+type Props = {
+	title: string;
+	description: string;
+	tags: string[];
+	href: string;
+	imageLabel?: string;
+	imageHeightStyle?: string;
+	ctaLabel?: string;
+	style?: string;
+};
+
+const {
+	title,
+	description,
+	tags,
+	href,
+	imageLabel = 'Project image placeholder',
+	imageHeightStyle = 'height:150px;',
+	ctaLabel = 'Read case study',
+	style = 'padding:1rem; display:grid; gap:0.6rem;'
+} = Astro.props as Props;
+---
+
+<article class="card" style={style}>
+	<div class="placeholder-image" style={imageHeightStyle}>{imageLabel}</div>
+	<h3 style="margin:0;">{title}</h3>
+	<p style="margin:0; color:var(--color-muted);">{description}</p>
+	<div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+		{tags.map((tag) => (
+			<span class="tag">{tag}</span>
+		))}
+	</div>
+	<a class="button secondary" href={href}>
+		{ctaLabel}
+	</a>
+</article>
