@@ -111,16 +111,16 @@ const emailAddress = 'cibakkn@gmail.com';
 		background: var(--color-nav);
 		border-bottom: 1px solid var(--color-border);
 		height: 96px;
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		transition: height 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 	}
 
 	:global(.dome-header.is-open) {
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 	}
 
 	:global(html.dark .dome-header) {
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 	}
 
 	:global(.theme-toggle) {
@@ -155,7 +155,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		border-radius: calc(var(--radius) * 999);
 		background: var(--color-card);
 		border: 1px solid var(--color-border);
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 		display: inline-flex;
 		align-items: center;
@@ -173,7 +173,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		height: 30px;
 		border-radius: 50%;
 		background: var(--color-bg);
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		transition: transform 0.2s ease, background 0.18s ease, box-shadow 0.18s ease;
 	}
 
@@ -191,7 +191,7 @@ const emailAddress = 'cibakkn@gmail.com';
 	:global(.theme-toggle[data-mode='dark'] .theme-toggle__track) {
 		border-color: var(--color-accent);
 		background: var(--color-theme-toggle-active-bg);
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 	}
 
 	:global(.theme-toggle[data-mode='dark'] .theme-toggle__knob) {
@@ -238,7 +238,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		border: 1px solid var(--color-border);
 		background: var(--color-card);
 		color: var(--color-ink);
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 		cursor: pointer;
 	}
@@ -246,7 +246,7 @@ const emailAddress = 'cibakkn@gmail.com';
 	.social-icon:hover,
 	.social-icon:focus-visible {
 		transform: translateY(-1px);
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		border-color: var(--color-accent);
 		outline: none;
 	}
@@ -270,7 +270,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		pointer-events: none;
 		transition: opacity 0.2s ease, transform 0.2s ease;
 		white-space: nowrap;
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 	}
 
 	.copy-tooltip.show {
@@ -337,7 +337,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		font-weight: 700;
 		color: var(--color-ink);
 		cursor: pointer;
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		transition: none;
 	}
 
@@ -355,7 +355,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		height: 42px;
 		display: grid;
 		place-items: center;
-		filter: drop-shadow(var(--shadow));
+		filter: drop-shadow(var(--shadow-soft));
 		transition: transform 0.28s ease;
 	}
 
@@ -392,7 +392,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		border-radius: 0 0 var(--radius) var(--radius);
 		background: var(--color-nav);
 		border: none;
-		box-shadow: var(--shadow);
+		box-shadow: var(--shadow-soft);
 		backdrop-filter: blur(14px);
 		display: flex;
 		align-items: center;
