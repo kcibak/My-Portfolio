@@ -7,6 +7,7 @@ import HomeHero from '../components/pages/HomeHero.astro';
 import ServiceCards from '../components/pages/ServiceCards.astro';
 import BlogPreviewCard from '../components/pages/BlogPreviewCard.astro';
 import HomeCta from '../components/pages/HomeCta.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
 
 export const prerender = true;
 
@@ -49,8 +50,10 @@ const posts = [
 
 	<Section class="section">
 		<Container>
-			<h2 class="section-title">Selected projects</h2>
-			<p class="section-subtitle">Replace the placeholders with real work. Each card links to a detailed case study.</p>
+			<SectionHeading
+				title="Selected projects"
+				subtitle="Replace the placeholders with real work. Each card links to a detailed case study."
+			/>
 			<div class="grid-two">
 				{projects.map((project) => (
 					<ProjectCard
@@ -69,15 +72,14 @@ const posts = [
 
 	<Section class="section">
 		<Container>
-			<h2 class="section-title">Services</h2>
-			<p class="section-subtitle">Mobile-first front-ends, design systems, and performance-focused builds.</p>
+			<SectionHeading title="Services" subtitle="Mobile-first front-ends, design systems, and performance-focused builds." />
 			<ServiceCards />
 		</Container>
 	</Section>
 
 	<Section class="section">
 		<Container>
-			<h2 class="section-title">Latest posts</h2>
+			<SectionHeading title="Latest posts" />
 			<div class="grid-two">
 				{posts.map((post) => (
 					<BlogPreviewCard title={post.title} summary={post.summary} href="/blog" height="small" />

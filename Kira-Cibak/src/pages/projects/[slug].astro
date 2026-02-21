@@ -7,6 +7,7 @@ import LightboxGallery from '../../components/project/LightboxGallery.tsx';
 import ProjectMeta from '../../components/pages/ProjectMeta.astro';
 import ProjectCaseSection from '../../components/pages/ProjectCaseSection.astro';
 import Button from '../../components/ui/Button.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
 
 export const prerender = true;
 
@@ -68,8 +69,7 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 	<Section class="section">
 		<Container>
-			<h2 class="section-title">Lightbox gallery (Astro Island)</h2>
-			<p class="section-subtitle">Hydrated client:visible. Replace placeholders with real screenshots.</p>
+			<SectionHeading title="Lightbox gallery (Astro Island)" subtitle="Hydrated client:visible. Replace placeholders with real screenshots." />
 			<LightboxGallery
 				client:visible
 				items={[

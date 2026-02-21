@@ -4,6 +4,7 @@ import Section from '../../components/layout/Section.astro';
 import Container from '../../components/layout/Container.astro';
 import ProjectCard from '../../components/project/ProjectCard.astro';
 import ProjectCarousel from '../../components/project/ProjectCarousel.tsx';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
 
 export const prerender = true;
 
@@ -34,8 +35,10 @@ const projects = [
 
 	<Section class="section">
 		<Container>
-			<h2 class="section-title">Interactive carousel (Astro Island)</h2>
-			<p class="section-subtitle">Hydrated client:visible. Replace slides with real thumbnails and summaries.</p>
+			<SectionHeading
+				title="Interactive carousel (Astro Island)"
+				subtitle="Hydrated client:visible. Replace slides with real thumbnails and summaries."
+			/>
 			<ProjectCarousel
 				client:visible
 				slides={projects.map((p) => ({
@@ -49,7 +52,7 @@ const projects = [
 
 	<Section class="section">
 		<Container>
-			<h2 class="section-title">All projects</h2>
+			<SectionHeading title="All projects" />
 			<div class="grid-two">
 				{projects.map((project) => (
 					<ProjectCard

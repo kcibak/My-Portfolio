@@ -4,6 +4,7 @@ import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import SkillsCategories from '../components/pages/SkillsCategories.astro';
 import SkillsTimeline from '../components/pages/SkillsTimeline.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
 
 export const prerender = true;
 ---
@@ -26,8 +27,7 @@ export const prerender = true;
 	<Section class="section">
 		<Container>
 			<p class="eyebrow">Experience</p>
-			<h2 class="section-title">Experience and education</h2>
-			<p class="section-subtitle">Replace the placeholders with your real roles, dates, and achievements.</p>
+			<SectionHeading title="Experience and education" subtitle="Replace the placeholders with your real roles, dates, and achievements." />
 		</Container>
 	</Section>
 

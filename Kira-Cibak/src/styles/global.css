@@ -251,6 +251,17 @@ main {
 	line-height: 1.6;
 }
 
+.section-heading {
+	display: grid;
+	row-gap: 0.4rem;
+	margin: 0 0 1.4rem;
+}
+
+.section-heading .section-title,
+.section-heading .section-subtitle {
+	margin: 0;
+}
+
 .grid-two {
 	display: grid;
 	gap: 1rem;
