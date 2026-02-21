@@ -1,12 +1,13 @@
 ---
 import Card from '../ui/Card.astro';
+import Tag from '../ui/Tag.astro';
 ---
 
 <div class="stack-grid">
 	<Card as="article" class="stack-card" padding="compact">
 		<div class="row-between-wrap">
 			<h3 class="heading-reset">Role @ Company</h3>
-			<span class="tag">2024 — Present</span>
+			<Tag>2024 — Present</Tag>
 		</div>
 		<p class="muted-copy">Describe your impact, ownership areas, and measurable outcomes.</p>
 		<ul class="content-list">
@@ -18,14 +19,14 @@ import Card from '../ui/Card.astro';
 	<Card as="article" class="stack-card" padding="compact">
 		<div class="row-between-wrap">
 			<h3 class="heading-reset">Previous Role @ Company</h3>
-			<span class="tag">2022 — 2024</span>
+			<Tag>2022 — 2024</Tag>
 		</div>
 		<p class="muted-copy">Add more context on projects or systems you led.</p>
 	</Card>
 	<Card as="article" class="stack-card" padding="compact">
 		<div class="row-between-wrap">
 			<h3 class="heading-reset">Education</h3>
-			<span class="tag">Year</span>
+			<Tag>Year</Tag>
 		</div>
 		<p class="muted-copy">Include degree, certifications, or relevant coursework.</p>
 	</Card>

@@ -1,0 +1,17 @@
+<span class="ui-tag">
+	<slot />
+</span>
+
+<style>
+	.ui-tag {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.2rem 0.6rem;
+		border-radius: calc(var(--radius) * 999);
+		font-size: 0.75rem;
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--color-ink);
+		background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+	}
+</style>

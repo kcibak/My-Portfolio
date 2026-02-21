@@ -1,6 +1,7 @@
 ---
 import Button from '../ui/Button.astro';
 import Card from '../ui/Card.astro';
+import Tag from '../ui/Tag.astro';
 
 type Props = {
 	title: string;
@@ -40,7 +41,7 @@ const {
 	<p class="muted-copy">{description}</p>
 	<div class="tag-row-tight">
 		{tags.map((tag) => (
-			<span class="tag">{tag}</span>
+			<Tag>{tag}</Tag>
 		))}
 	</div>
 	<Button variant="secondary" href={href}>
