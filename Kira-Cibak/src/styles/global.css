@@ -64,13 +64,13 @@
 
 html.dark {
 	--color-bg: rgb(11 22 43);
-	--color-card: rgb(11 22 43);
+	--color-card: rgb(31 54 90);
 	--color-ink: rgb(223 228 239);
 	--color-muted: rgb(223 228 239 / 70%);
-	--color-accent: rgb(91 192 235);
-	--color-accent-2: rgb(91 192 235);
-	--color-border: rgb(255 255 255 / 16%);
-	--color-nav: rgb(11 22 43 / 90%);
+	--color-accent: rgb(42 96 152);
+	--color-accent-2: rgb(42 96 152);
+	--color-border: rgb(120 130 145);
+	--color-nav: rgb(24 42 72 / 92%);
 	--color-on-accent: rgb(255 255 255);
 	--color-tag-bg: rgb(91 192 235 / 12%);
 	--color-hover-bg: rgb(91 192 235 / 8%);
