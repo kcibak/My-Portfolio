@@ -7,44 +7,44 @@ type Props = {
 	title: string;
 	description: string;
 	tags: string[];
-	href: string;
-	imageLabel?: string;
-	imageSize?: 'small' | 'medium' | 'large';
-	ctaLabel?: string;
-	density?: 'default' | 'cozy';
+	image?: string;
+	link: string;
+	linkLabel: string;
 };
 
 const {
 	title,
 	description,
 	tags,
-	href,
-	imageLabel = 'Project image placeholder',
-	imageSize = 'small',
-	ctaLabel = 'Read case study',
-	density = 'default'
+	image,
+	link,
+	linkLabel
 } = Astro.props as Props;
+
+const isExternalLink = link.startsWith('https://') || link.startsWith('http://');
 ---
 
-<Card
-	as="article"
-	class={['project-card', density === 'cozy' ? 'project-card-cozy' : ''].filter(Boolean).join(' ')}
-	padding="compact"
->
-	<div class:list={[
-		'placeholder-image',
-		imageSize === 'small' && 'placeholder-image-small',
-		imageSize === 'medium' && 'placeholder-image-medium',
-		imageSize === 'large' && 'placeholder-image-large'
-	]}>{imageLabel}</div>
+<Card as="article" class="project-card" padding="compact">
+	{
+		image ? (
+			<div class="project-card-media">
+				<img class="project-card-image" src={image} alt={title} loading="lazy" />
+			</div>
+		) : null
+	}
 	<h3 class="heading-reset">{title}</h3>
 	<p class="muted-copy">{description}</p>
-	<div class="tag-row-tight">
+	<div class="tag-row">
 		{tags.map((tag) => (
 			<Tag>{tag}</Tag>
 		))}
 	</div>
-	<Button variant="secondary" href={href}>
-		{ctaLabel}
+	<Button
+		variant="secondary"
+		href={link}
+		target={isExternalLink ? '_blank' : undefined}
+		rel={isExternalLink ? 'noreferrer' : undefined}
+	>
+		{linkLabel}
 	</Button>
 </Card>

@@ -13,13 +13,18 @@ const projects = [
 		slug: 'sample-project',
 		title: 'Sample project name',
 		description: 'Brief description of the project focus and outcomes.',
-		tags: ['Astro', 'Tailwind', 'A11y']
+		tags: ['Astro', 'Tailwind', 'A11y'],
+		image: '/favicon.svg',
+		link: '/projects/sample-project',
+		linkLabel: 'Read case study'
 	},
 	{
 		slug: 'second-project',
 		title: 'Second project',
 		description: 'Highlight performance, UX, or business impact here.',
-		tags: ['React', 'Design System']
+		tags: ['React', 'Design System'],
+		link: 'https://github.com',
+		linkLabel: 'View GitHub'
 	}
 ];
 ---
@@ -59,11 +64,9 @@ const projects = [
 						title={project.title}
 						description={project.description}
 						tags={project.tags}
-						href={`/projects/${project.slug}`}
-						imageLabel="Thumbnail placeholder"
-						imageSize="small"
-						ctaLabel="Read the case study"
-						density="default"
+						image={project.image}
+						link={project.link}
+						linkLabel={project.linkLabel}
 					/>
 				))}
 			</div>

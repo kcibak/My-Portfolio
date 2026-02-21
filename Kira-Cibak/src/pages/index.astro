@@ -15,17 +15,25 @@ const projects = [
 	{
 		title: 'Interactive Dev Portfolio',
 		description: 'Motion-rich, accessible portfolio built with Astro and smooth islands.',
-		tags: ['Astro', 'Islands', 'A11y']
+		tags: ['Astro', 'Islands', 'A11y'],
+		image: '/favicon.svg',
+		link: '/projects/sample-project',
+		linkLabel: 'Read case study'
 	},
 	{
 		title: 'Design System Starter',
 		description: 'Token-first system with responsive components and documentation.',
-		tags: ['Design Tokens', 'Storybook', 'Figma']
+		tags: ['Design Tokens', 'Storybook', 'Figma'],
+		link: 'https://github.com',
+		linkLabel: 'View GitHub'
 	},
 	{
 		title: 'API-driven Dashboard',
 		description: 'Real-time insights with charts, auth, and offline support.',
-		tags: ['React', 'Charts', 'Auth']
+		tags: ['React', 'Charts', 'Auth'],
+		image: '/favicon.svg',
+		link: 'https://example.com',
+		linkLabel: 'View Live'
 	}
 ];
 
@@ -60,10 +68,9 @@ const posts = [
 						title={project.title}
 						description={project.description}
 						tags={project.tags}
-						href="/projects"
-						imageLabel="Project image placeholder"
-						imageSize="large"
-						density="cozy"
+						image={project.image}
+						link={project.link}
+						linkLabel={project.linkLabel}
 					/>
 				))}
 			</div>
