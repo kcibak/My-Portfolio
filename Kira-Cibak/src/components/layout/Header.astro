@@ -183,7 +183,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		justify-content: center;
 		color: var(--color-ink);
 		opacity: 0.8;
-		transition: opacity 0.18s ease;
+		transition: opacity 0.18s ease, color 0.18s ease;
 		pointer-events: none;
 		z-index: 1;
 	}
@@ -199,8 +199,17 @@ const emailAddress = 'cibakkn@gmail.com';
 		background: var(--color-ink);
 	}
 
+	:global(.theme-toggle[data-mode='light'] .theme-toggle__icon.sun) {
+		opacity: 0;
+	}
+
 	:global(.theme-toggle[data-mode='light'] .theme-toggle__icon.moon) {
-		opacity: 0.25;
+		opacity: 1;
+		color: var(--color-ink);
+	}
+
+	:global(.theme-toggle[data-mode='dark'] .theme-toggle__icon.moon) {
+		opacity: 0;
 	}
 
 	:global(.theme-toggle[data-mode='dark'] .theme-toggle__icon.sun) {

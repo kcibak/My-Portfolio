@@ -1,0 +1,24 @@
+---
+type CardTag = 'div' | 'article' | 'section' | 'aside';
+type CardPadding = 'tight' | 'dense' | 'compact' | 'default' | 'comfortable';
+
+type Props = {
+	as?: CardTag;
+	padding?: CardPadding;
+	class?: string;
+	hover?: boolean;
+};
+
+const {
+	as = 'div',
+	padding = 'default',
+	class: className,
+	hover = true
+} = Astro.props as Props;
+
+const Tag = as;
+---
+
+<Tag class:list={['ui-card', className]} data-padding={padding} data-hover={hover ? 'true' : undefined}>
+	<slot />
+</Tag>

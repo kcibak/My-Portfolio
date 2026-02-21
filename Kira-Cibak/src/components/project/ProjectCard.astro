@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
 
 type Props = {
 	title: string;
@@ -24,7 +25,11 @@ const {
 } = Astro.props as Props;
 ---
 
-<article class:list={['card', 'project-card', density === 'cozy' && 'project-card-cozy']}>
+<Card
+	as="article"
+	class={['project-card', density === 'cozy' ? 'project-card-cozy' : ''].filter(Boolean).join(' ')}
+	padding="compact"
+>
 	<div class:list={[
 		'placeholder-image',
 		imageSize === 'small' && 'placeholder-image-small',
@@ -41,4 +46,4 @@ const {
 	<Button variant="secondary" href={href}>
 		{ctaLabel}
 	</Button>
-</article>
+</Card>

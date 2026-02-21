@@ -1,4 +1,6 @@
 ---
+import Card from '../ui/Card.astro';
+
 type Props = {
 	title: string;
 	description: string;
@@ -10,7 +12,7 @@ const {
 } = Astro.props as Props;
 ---
 
-<div class="card project-feature-card">
+<Card class="project-feature-card" padding="dense">
 	<h3 class="heading-tight">{title}</h3>
 	<p class="muted-copy">{description}</p>
-</div>
+</Card>

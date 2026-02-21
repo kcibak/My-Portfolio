@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+import Card from '../ui/Card';
 
 type Item = {
 	src: string;
@@ -43,7 +44,7 @@ export default function LightboxGallery({ items }: Props) {
 			{open && (
 				<div class="lightbox" role="dialog" aria-modal="true">
 					<div class="lightbox-backdrop" onClick={close} />
-					<div class="lightbox-body card">
+					<Card class="lightbox-body" padding="compact">
 						<div class="lightbox-toolbar">
 							<button type="button" onClick={prev} aria-label="Previous image">←</button>
 							<span>
@@ -54,7 +55,7 @@ export default function LightboxGallery({ items }: Props) {
 						</div>
 						<img src={list[current].src} alt={list[current].alt} />
 						<p class="placeholder-note">Replace with high-res project visuals.</p>
-					</div>
+					</Card>
 				</div>
 			)}
 		</div>

@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
 
 type Props = {
 	title: string;
@@ -16,11 +17,11 @@ const {
 } = Astro.props as Props;
 ---
 
-<article class="card blog-preview-card">
+<Card as="article" class="blog-preview-card" padding="compact">
 	<div class:list={["placeholder-image", height === 'medium' ? 'placeholder-image-medium' : 'placeholder-image-small']}>
 		Featured image placeholder
 	</div>
 	<h3 class="heading-reset">{title}</h3>
 	<p class="muted-copy">{summary}</p>
 	<Button variant="secondary" href={href}>Read more</Button>
-</article>
+</Card>

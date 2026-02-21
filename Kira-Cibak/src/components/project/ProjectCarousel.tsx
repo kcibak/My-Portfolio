@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+import Card from '../ui/Card';
 
 type Slide = {
 	title: string;
@@ -27,7 +28,7 @@ export default function ProjectCarousel({ slides }: Props) {
 	};
 
 	return (
-		<div class="carousel card">
+		<Card class="carousel" padding="comfortable">
 			<div class="carousel-media">
 				<img
 					src={current.image || '/placeholder-project.jpg'}
@@ -54,6 +55,6 @@ export default function ProjectCarousel({ slides }: Props) {
 					</button>
 				</div>
 			</div>
-		</div>
+		</Card>
 	);
 }

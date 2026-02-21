@@ -1,8 +1,12 @@
-<div class="card card-compact">
+---
+import Card from '../ui/Card.astro';
+---
+
+<Card padding="compact">
 	<h2 class="section-title section-title-small section-title-bottom">Values</h2>
 	<div class="grid-three">
-		<div class="card card-tight">Respecting users with fast, accessible experiences.</div>
-		<div class="card card-tight">Clear communication and frequent checkpoints.</div>
-		<div class="card card-tight">Shipping reliably, then refining with data and feedback.</div>
+		<Card padding="tight">Respecting users with fast, accessible experiences.</Card>
+		<Card padding="tight">Clear communication and frequent checkpoints.</Card>
+		<Card padding="tight">Shipping reliably, then refining with data and feedback.</Card>
 	</div>
-</div>
+</Card>

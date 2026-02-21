@@ -34,6 +34,7 @@
 	--color-transparent: transparent;
 	--radius: 12px;
 	--shadow: 0 10px 30px rgb(90 168 230 / 16%);
+	--ui-card-shadow-soft-hover: 0 14px 36px rgb(90 168 230 / 22%);
 	--content-max: 1100px;
 	color-scheme: light;
 }
@@ -73,6 +74,7 @@ html.dark {
 	--color-transparent: transparent;
 	--radius: 12px;
 	--shadow: 0 10px 30px rgb(91 192 235 / 28%);
+	--ui-card-shadow-soft-hover: 0 14px 36px rgb(91 192 235 / 34%);
 	color-scheme: dark;
 }
 
@@ -201,11 +203,38 @@ main {
 	border: 0;
 }
 
-.card {
+.ui-card {
 	background: var(--color-card);
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius);
 	box-shadow: var(--shadow);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ui-card[data-hover='true']:hover,
+.ui-card[data-hover='true']:focus-within {
+	transform: translateY(-2px);
+	box-shadow: var(--ui-card-shadow-soft-hover);
+}
+
+.ui-card[data-padding='tight'] {
+	padding: 0.8rem;
+}
+
+.ui-card[data-padding='dense'] {
+	padding: 0.9rem;
+}
+
+.ui-card[data-padding='compact'] {
+	padding: 1rem;
+}
+
+.ui-card[data-padding='default'] {
+	padding: 1.2rem;
+}
+
+.ui-card[data-padding='comfortable'] {
+	padding: 1.25rem;
 }
 
 .tag {
@@ -401,15 +430,11 @@ main {
 	display: flex;
 }
 
-.section .card {
-	padding: 1.25rem;
-}
-
-.section .card h3 {
+.section .ui-card h3 {
 	margin: 0 0 0.4rem;
 }
 
-.section .card p {
+.section .ui-card p {
 	margin: 0;
 	color: var(--color-muted);
 	line-height: 1.5;
@@ -650,18 +675,9 @@ main {
 	color: var(--color-muted);
 }
 
-.card-compact {
-	padding: 1rem;
-}
-
-.card-tight {
-	padding: 0.8rem;
-}
-
 .stack-card {
 	display: grid;
 	gap: 0.5rem;
-	padding: 1rem;
 }
 
 .stack-grid {
@@ -730,7 +746,6 @@ main {
 }
 
 .project-card {
-	padding: 1rem;
 	display: grid;
 	gap: 0.6rem;
 }
@@ -751,12 +766,7 @@ main {
 	flex-wrap: wrap;
 }
 
-.project-feature-card {
-	padding: 0.9rem;
-}
-
 .case-section-card {
-	padding: 1.25rem;
 	display: grid;
 	gap: 0.6rem;
 }
@@ -767,13 +777,11 @@ main {
 }
 
 .blog-preview-card {
-	padding: 1rem;
 	display: grid;
 	gap: 0.5rem;
 }
 
 .blog-article-card {
-	padding: 1.2rem;
 	display: grid;
 	gap: 0.9rem;
 }
@@ -786,7 +794,6 @@ main {
 }
 
 .home-cta-card {
-	padding: 1.25rem;
 	display: grid;
 	gap: 0.75rem;
 }

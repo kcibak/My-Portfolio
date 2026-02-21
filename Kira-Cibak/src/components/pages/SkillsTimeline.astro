@@ -1,5 +1,9 @@
+---
+import Card from '../ui/Card.astro';
+---
+
 <div class="stack-grid">
-	<article class="card stack-card">
+	<Card as="article" class="stack-card" padding="compact">
 		<div class="row-between-wrap">
 			<h3 class="heading-reset">Role @ Company</h3>
 			<span class="tag">2024 — Present</span>
@@ -10,19 +14,19 @@
 			<li>Collaboration highlight</li>
 			<li>Technical accomplishment</li>
 		</ul>
-	</article>
-	<article class="card stack-card">
+	</Card>
+	<Card as="article" class="stack-card" padding="compact">
 		<div class="row-between-wrap">
 			<h3 class="heading-reset">Previous Role @ Company</h3>
 			<span class="tag">2022 — 2024</span>
 		</div>
 		<p class="muted-copy">Add more context on projects or systems you led.</p>
-	</article>
-	<article class="card stack-card">
+	</Card>
+	<Card as="article" class="stack-card" padding="compact">
 		<div class="row-between-wrap">
 			<h3 class="heading-reset">Education</h3>
 			<span class="tag">Year</span>
 		</div>
 		<p class="muted-copy">Include degree, certifications, or relevant coursework.</p>
-	</article>
+	</Card>
 </div>

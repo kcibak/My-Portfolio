@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
 
 type Props = {
 	title: string;
@@ -10,7 +11,7 @@ const {
 } = Astro.props as Props;
 ---
 
-<article class="card blog-article-card">
+<Card as="article" class="blog-article-card" padding="default">
 	<p class="eyebrow">Blog</p>
 	<h1 class="section-title">{title}</h1>
 	<div class="placeholder-image placeholder-image-article">Featured image placeholder</div>
@@ -30,4 +31,4 @@ const {
 		<Button href="/blog">Back to blog</Button>
 		<Button variant="secondary" href="/contact">Discuss this topic</Button>
 	</footer>
-</article>
+</Card>
