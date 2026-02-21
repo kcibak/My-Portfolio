@@ -6,6 +6,7 @@ import ProjectFeatureCard from '../../components/project/ProjectFeatureCard.astr
 import LightboxGallery from '../../components/project/LightboxGallery.tsx';
 import ProjectMeta from '../../components/pages/ProjectMeta.astro';
 import ProjectCaseSection from '../../components/pages/ProjectCaseSection.astro';
+import Button from '../../components/ui/Button.astro';
 
 export const prerender = true;
 
@@ -83,8 +84,8 @@ const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 	<Section class="section">
 		<Container>
 			<div class="action-row">
-				<a class="button" href="/projects">Back to projects</a>
-				<a class="button secondary" href="/contact">Discuss this work</a>
+				<Button href="/projects">Back to projects</Button>
+				<Button variant="secondary" href="/contact">Discuss this work</Button>
 			</div>
 		</Container>
 	</Section>

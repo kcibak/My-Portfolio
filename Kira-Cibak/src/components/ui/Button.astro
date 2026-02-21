@@ -1,0 +1,80 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Variant = 'primary' | 'secondary';
+
+type Props = HTMLAttributes<'a'> & HTMLAttributes<'button'> & {
+	variant?: Variant;
+	href?: string;
+	type?: 'button' | 'submit' | 'reset';
+	class?: string;
+};
+
+const {
+	variant = 'primary',
+	href,
+	type = 'button',
+	class: className,
+	...attrs
+} = Astro.props as Props;
+---
+
+{
+	href ? (
+		<a
+			href={href}
+			class:list={['button', `button--${variant}`, className]}
+			{...attrs}
+		>
+			<slot />
+		</a>
+	) : (
+		<button
+			type={type}
+			class:list={['button', `button--${variant}`, className]}
+			{...attrs}
+		>
+			<slot />
+		</button>
+	)
+}
+
+<style>
+	.button {
+		--shadow-soft: var(--shadow);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		padding: 0.75rem 1.1rem;
+		border-radius: calc(var(--radius) * 999);
+		border: 1px solid transparent;
+		font-size: 0.95rem;
+		font-weight: 500;
+		color: var(--color-ink);
+		text-decoration: none;
+		box-shadow: var(--shadow-soft);
+		cursor: pointer;
+		transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease;
+	}
+
+	.button--primary {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+
+	.button--secondary {
+		background: var(--color-card);
+		border-color: var(--color-border);
+	}
+
+	.button:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-soft);
+	}
+
+	.button:focus-visible {
+		outline: 2px solid var(--color-focus-ring);
+		outline-offset: 2px;
+	}
+ </style>

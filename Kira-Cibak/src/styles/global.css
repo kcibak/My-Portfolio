@@ -208,34 +208,6 @@ main {
 	box-shadow: var(--shadow);
 }
 
-.button {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.45rem;
-	padding: 0.75rem 1.1rem;
-	border-radius: calc(var(--radius) * 999);
-	border: 1px solid var(--color-border);
-	font-weight: 600;
-	font-size: 0.95rem;
-	background: linear-gradient(120deg, var(--color-accent), var(--color-accent-2));
-	color: var(--color-on-accent);
-	box-shadow: var(--shadow);
-	transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-	cursor: pointer;
-}
-
-.button.secondary {
-	background: var(--color-card);
-	color: var(--color-ink);
-	border-color: var(--color-border);
-	box-shadow: var(--shadow);
-}
-
-.button:hover {
-	transform: translateY(-2px);
-	box-shadow: var(--shadow);
-}
-
 .tag {
 	display: inline-flex;
 	align-items: center;
@@ -853,7 +825,7 @@ main {
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: clamp(2.6rem, 2.5vw, 3.25rem);
 	text-align: center;
 	justify-content: center;
 }
@@ -866,10 +838,10 @@ main {
 }
 
 .contact-actions {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
-	gap: 2rem;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(10.5rem, 1fr));
+	gap: clamp(1.35rem, 2.2vw, 2rem);
+	align-items: start;
 }
 
 .contact-action {
@@ -877,6 +849,7 @@ main {
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
 	gap: 1.2rem;
 	padding: 0.4rem 0.6rem;
 	border-radius: 18px;
@@ -887,7 +860,6 @@ main {
 	transition: transform 0.2s ease, color 0.2s ease;
 	text-align: center;
 	text-decoration: none;
-	min-width: 240px;
 	cursor: pointer;
 }
 
@@ -935,8 +907,18 @@ main {
 }
 
 @media (max-width: 768px) {
+	.contact-shell {
+		gap: 2rem;
+	}
+
 	.contact-actions {
+		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		gap: 1.8rem;
+	}
+
+	.contact-action {
+		width: auto;
 	}
 }

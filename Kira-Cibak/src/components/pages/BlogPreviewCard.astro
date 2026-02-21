@@ -1,4 +1,6 @@
 ---
+import Button from '../ui/Button.astro';
+
 type Props = {
 	title: string;
 	summary: string;
@@ -20,5 +22,5 @@ const {
 	</div>
 	<h3 class="heading-reset">{title}</h3>
 	<p class="muted-copy">{summary}</p>
-	<a class="button secondary" href={href}>Read more</a>
+	<Button variant="secondary" href={href}>Read more</Button>
 </article>

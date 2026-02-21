@@ -1,4 +1,6 @@
 ---
+import Button from '../ui/Button.astro';
+
 type Props = {
 	title: string;
 	description: string;
@@ -36,7 +38,7 @@ const {
 			<span class="tag">{tag}</span>
 		))}
 	</div>
-	<a class="button secondary" href={href}>
+	<Button variant="secondary" href={href}>
 		{ctaLabel}
-	</a>
+	</Button>
 </article>

@@ -1,4 +1,6 @@
 ---
+import Button from '../ui/Button.astro';
+
 type Props = {
 	title: string;
 };
@@ -25,7 +27,7 @@ const {
 	</div>
 
 	<footer class="action-row">
-		<a class="button" href="/blog">Back to blog</a>
-		<a class="button secondary" href="/contact">Discuss this topic</a>
+		<Button href="/blog">Back to blog</Button>
+		<Button variant="secondary" href="/contact">Discuss this topic</Button>
 	</footer>
 </article>
