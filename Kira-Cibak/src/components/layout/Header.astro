@@ -291,8 +291,8 @@ const emailAddress = 'cibakkn@gmail.com';
 		.brand {
 			justify-self: center;
 			font-weight: 800;
-			font-size: var(--type-size-h3);
-			line-height: var(--type-line-h3);
+			font-size: var(--type-size-h2);
+			line-height: var(--type-line-h2);
 			letter-spacing: -0.03em;
 			color: var(--color-ink);
 			text-decoration: none;
@@ -300,19 +300,18 @@ const emailAddress = 'cibakkn@gmail.com';
 		}
 
 	:global(.dome-header.is-condensed) {
-		height: 64px;
+		height: 72px;
 	}
 
 	:global(.dome-header.is-condensed) .nav-shell {
 		grid-template-columns: 1fr;
-		padding: 0.7rem 1.2rem;
+		padding: 1rem 1.2rem 0.6rem;
 	}
 
 		:global(.dome-header.is-condensed) .brand {
 			justify-self: center;
-			transform: translateY(-1px);
-			font-size: var(--type-size-h4);
-			line-height: var(--type-line-h4);
+			text-align: center;
+			transform: none;
 		}
 
 	:global(.dome-header.is-condensed) .social-bar,
@@ -513,7 +512,8 @@ const emailAddress = 'cibakkn@gmail.com';
 
 		.brand {
 			grid-column: 1 / -1;
-			justify-self: start;
+			justify-self: center;
+			text-align: center;
 		}
 
 		.menu-shell {
