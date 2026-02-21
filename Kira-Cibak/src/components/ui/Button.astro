@@ -40,7 +40,7 @@ const {
 }
 
 <style>
-	.button {
+		.button {
 		--shadow-soft: var(--shadow);
 		display: inline-flex;
 		align-items: center;
@@ -49,9 +49,10 @@ const {
 		padding: 0.75rem 1.1rem;
 		border-radius: calc(var(--radius) * 999);
 		border: 1px solid transparent;
-		font-size: 0.95rem;
-		font-weight: 500;
-		color: var(--color-ink);
+			font-size: var(--type-size-body);
+			font-weight: var(--type-weight-body);
+			line-height: var(--type-line-body);
+			color: var(--color-ink);
 		text-decoration: none;
 		box-shadow: var(--shadow-soft);
 		cursor: pointer;

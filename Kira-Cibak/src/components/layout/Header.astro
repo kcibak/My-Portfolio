@@ -264,7 +264,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		position: relative;
 	}
 
-	.copy-tooltip {
+		.copy-tooltip {
 		position: absolute;
 		left: 50%;
 		bottom: -2.75rem;
@@ -273,8 +273,9 @@ const emailAddress = 'cibakkn@gmail.com';
 		border-radius: var(--radius);
 		background: var(--color-ink);
 		color: var(--color-bg);
-		font-size: 0.8rem;
-		font-weight: 700;
+			font-size: var(--type-size-small);
+			line-height: var(--type-line-small);
+			font-weight: 700;
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 0.2s ease, transform 0.2s ease;
@@ -287,15 +288,16 @@ const emailAddress = 'cibakkn@gmail.com';
 		transform: translateX(-50%) translateY(0);
 	}
 
-	.brand {
-		justify-self: center;
-		font-weight: 800;
-		font-size: clamp(1.5rem, 2.2vw, 2.35rem);
-		letter-spacing: -0.03em;
-		color: var(--color-ink);
-		text-decoration: none;
-		transition: transform 0.2s ease, font-size 0.2s ease;
-	}
+		.brand {
+			justify-self: center;
+			font-weight: 800;
+			font-size: var(--type-size-h3);
+			line-height: var(--type-line-h3);
+			letter-spacing: -0.03em;
+			color: var(--color-ink);
+			text-decoration: none;
+			transition: transform 0.2s ease;
+		}
 
 	:global(.dome-header.is-condensed) {
 		height: 64px;
@@ -306,11 +308,12 @@ const emailAddress = 'cibakkn@gmail.com';
 		padding: 0.7rem 1.2rem;
 	}
 
-	:global(.dome-header.is-condensed) .brand {
-		justify-self: center;
-		transform: translateY(-1px);
-		font-size: clamp(1.3rem, 2vw, 2rem);
-	}
+		:global(.dome-header.is-condensed) .brand {
+			justify-self: center;
+			transform: translateY(-1px);
+			font-size: var(--type-size-h4);
+			line-height: var(--type-line-h4);
+		}
 
 	:global(.dome-header.is-condensed) .social-bar,
 	:global(.dome-header.is-condensed) .menu-shell,
@@ -423,10 +426,11 @@ const emailAddress = 'cibakkn@gmail.com';
 		transform: translateY(0) scale(1);
 	}
 
-	.parabola-menu a {
-		font-weight: 500;
-		font-size: 1.12rem;
-		padding: 0.6rem 1rem;
+		.parabola-menu a {
+			font-weight: 500;
+			font-size: var(--type-size-body);
+			line-height: var(--type-line-body);
+			padding: 0.6rem 1rem;
 		border-radius: var(--radius);
 		color: var(--color-ink);
 		transition: opacity 0.1s ease, transform 0.12s ease-out;
@@ -517,12 +521,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		}
 	}
 
-	@media (max-width: 520px) {
-		.parabola-menu a {
-			font-size: 1.06rem;
-		}
-	}
-</style>
+	</style>
 
 <script>
 	const header = document.getElementById('site-header');
