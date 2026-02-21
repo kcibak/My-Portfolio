@@ -16,7 +16,9 @@ export const prerender = true;
 ---
 
 <MainLayout title="Contact | Kira Cibak" description="Get in touch with Kira Cibak for web projects and collaborations." centered={true}>
-	<Container>
-		<ContactLinksPanel socials={[...socials]} emailAddress={emailAddress} resumeHref={resumeHref} />
-	</Container>
+	<Section class="section">
+		<Container>
+			<ContactLinksPanel socials={[...socials]} emailAddress={emailAddress} resumeHref={resumeHref} />
+		</Container>
+	</Section>
 </MainLayout>

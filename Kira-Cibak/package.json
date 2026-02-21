@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:rhythm": "node scripts/check-section-rhythm.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.0",
