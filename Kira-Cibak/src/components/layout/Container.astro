@@ -1,6 +1,7 @@
 ---
 const {
 	as = 'div',
+	size = 'default',
 	id,
 	class: className,
 	style
@@ -9,6 +10,6 @@ const {
 const Tag = as;
 ---
 
-<Tag id={id} class={className} style={style}>
+<Tag id={id} class:list={['layout-container', className]} data-size={size} style={style}>
 	<slot />
 </Tag>

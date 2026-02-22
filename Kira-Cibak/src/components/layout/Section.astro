@@ -1,6 +1,7 @@
 ---
 const {
 	as = 'section',
+	padding = 'default',
 	class: className,
 	style
 } = Astro.props;
@@ -8,6 +9,6 @@ const {
 const Tag = as;
 ---
 
-<Tag class:list={['layout-section', className]} style={style}>
+<Tag class:list={['layout-section', className]} data-padding={padding} style={style}>
 	<slot />
 </Tag>
