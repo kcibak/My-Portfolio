@@ -5,28 +5,9 @@ import Container from '../../components/layout/Container.astro';
 import ProjectCard from '../../components/project/ProjectCard.astro';
 import ProjectCarousel from '../../components/project/ProjectCarousel.tsx';
 import SectionHeading from '../../components/ui/SectionHeading.astro';
+import { projects } from '../../data/projects';
 
 export const prerender = true;
-
-const projects = [
-	{
-		slug: 'sample-project',
-		title: 'Sample project name',
-		description: 'Brief description of the project focus and outcomes.',
-		tags: ['Astro', 'Tailwind', 'A11y'],
-		image: '/favicon.svg',
-		link: '/projects/sample-project',
-		linkLabel: 'Read case study'
-	},
-	{
-		slug: 'second-project',
-		title: 'Second project',
-		description: 'Highlight performance, UX, or business impact here.',
-		tags: ['React', 'Design System'],
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
-	}
-];
 ---
 
 <MainLayout title="Projects | Kira Cibak" description="A collection of Kira Cibak’s web projects with case study links.">

@@ -4,49 +4,45 @@ import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import ProjectCard from '../components/project/ProjectCard.astro';
 import HomeHero from '../components/pages/HomeHero.astro';
-import ServiceCards from '../components/pages/ServiceCards.astro';
-import BlogPreviewCard from '../components/pages/BlogPreviewCard.astro';
-import HomeCta from '../components/pages/HomeCta.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import Tag from '../components/ui/Tag.astro';
+import Button from '../components/ui/Button.astro';
+import { projects } from '../data/projects';
 
 export const prerender = true;
 
-const projects = [
+const whatIDo = [
 	{
-		title: 'Interactive Dev Portfolio',
-		description: 'Motion-rich, accessible portfolio built with Astro and smooth islands.',
-		tags: ['Astro', 'Islands', 'A11y'],
-		image: '/favicon.svg',
-		link: '/projects/sample-project',
-		linkLabel: 'Read case study'
+		statement: 'I deliver full-stack SaaS features from architecture to production with stable release velocity.'
 	},
 	{
-		title: 'Design System Starter',
-		description: 'Token-first system with responsive components and documentation.',
-		tags: ['Design Tokens', 'Storybook', 'Figma'],
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		statement: 'I build React + TypeScript systems that stay maintainable as products and teams scale.'
 	},
 	{
-		title: 'API-driven Dashboard',
-		description: 'Real-time insights with charts, auth, and offline support.',
-		tags: ['React', 'Charts', 'Auth'],
-		image: '/favicon.svg',
-		link: 'https://example.com',
-		linkLabel: 'View Live'
+		statement: 'I design APIs and databases together so data flows cleanly from UI to deployment.'
 	}
 ];
 
-const posts = [
+const impactHighlights = [
 	{
-		title: 'Improving Core Web Vitals',
-		summary: 'Quick wins for LCP, CLS, and TBT using image optimization and code-splitting.'
+		signal: 'Reduced Product Complexity',
+		context: 'Led Martinrea\'s SaaS replatform, cutting system complexity by ~25% and improving release reliability.',
+		tags: ['Replatform', 'Architecture']
 	},
 	{
-		title: 'Building Design Systems Faster',
-		summary: 'Practical workflow for tokens, documentation, and component libraries.'
+		signal: 'Delivered at Client Scale',
+		context: 'Shipped 5 client platforms and built Stripe revenue systems from integration through production operations.',
+		tags: ['Delivery', 'Payments']
+	},
+	{
+		signal: 'Performance with Cloud Rigor',
+		context: 'Improved performance with Redis caching and applied Azure-certified practices for secure, cost-aware decisions.',
+		tags: ['Performance', 'Azure']
 	}
 ];
+
+const featuredProjects = projects.slice(0, 3);
 ---
 
 <MainLayout title="Kira Cibak | Front-end Developer" description="Building fast, responsive web experiences with Astro and modern tooling.">
@@ -59,11 +55,49 @@ const posts = [
 	<Section class="section">
 		<Container>
 			<SectionHeading
-				title="Selected projects"
-				subtitle="Replace the placeholders with real work. Each card links to a detailed case study."
+				title="What I Do"
+				subtitle="I partner with product teams to build clear, scalable front-end systems that ship with confidence."
+			/>
+			<div class="grid-three">
+				{whatIDo.map((item) => (
+					<Card as="article" padding="compact">
+						<p class="heading-tight">{item.statement}</p>
+					</Card>
+				))}
+			</div>
+		</Container>
+	</Section>
+
+	<Section class="section">
+		<Container>
+			<SectionHeading
+				title="Impact Highlights"
+				subtitle="A quick read on the outcomes I focus on in delivery work."
+			/>
+			<div class="grid-three">
+				{impactHighlights.map((highlight) => (
+					<Card as="article" padding="compact" class="stack-card">
+						<p class="heading-tight"><strong>{highlight.signal}</strong></p>
+						<p class="muted-copy">{highlight.context}</p>
+						<div class="tag-row-tight">
+							{highlight.tags.map((tag) => (
+								<Tag>{tag}</Tag>
+							))}
+						</div>
+					</Card>
+				))}
+			</div>
+		</Container>
+	</Section>
+
+	<Section class="section">
+		<Container>
+			<SectionHeading
+				title="Projects Preview"
+				subtitle="A compact preview of selected builds. Visit the full projects page for complete case studies."
 			/>
 			<div class="grid-two">
-				{projects.map((project) => (
+				{featuredProjects.map((project) => (
 					<ProjectCard
 						title={project.title}
 						description={project.description}
@@ -74,30 +108,9 @@ const posts = [
 					/>
 				))}
 			</div>
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
-			<SectionHeading title="Services" subtitle="Mobile-first front-ends, design systems, and performance-focused builds." />
-			<ServiceCards />
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
-			<SectionHeading title="Latest posts" />
-			<div class="grid-two">
-				{posts.map((post) => (
-					<BlogPreviewCard title={post.title} summary={post.summary} href="/blog" height="small" />
-				))}
+			<div class="action-row">
+				<Button href="/projects">View All Projects</Button>
 			</div>
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
-			<HomeCta />
 		</Container>
 	</Section>
 </MainLayout>
