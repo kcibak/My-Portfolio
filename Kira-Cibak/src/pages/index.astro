@@ -4,6 +4,7 @@ import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import ProjectCard from '../components/project/ProjectCard.astro';
 import HomeHero from '../components/pages/HomeHero.astro';
+import HomeCta from '../components/pages/HomeCta.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import Card from '../components/ui/Card.astro';
 import Tag from '../components/ui/Tag.astro';
@@ -12,105 +13,63 @@ import { projects } from '../data/projects';
 
 export const prerender = true;
 
-const whatIDo = [
+const howIWork = [
 	{
-		statement: 'I deliver full-stack SaaS features from architecture to production with stable release velocity.'
+		dot: 'blue',
+		heading: 'Architect first',
+		statement: 'I start with goals and constraints, then design lean data flows from UI through API to deployment.'
 	},
 	{
-		statement: 'I build React + TypeScript systems that stay maintainable as products and teams scale.'
+		dot: 'warm',
+		heading: 'Build to scale',
+		statement: 'I write React + TypeScript systems with clear component boundaries that stay maintainable as teams grow.'
 	},
 	{
-		statement: 'I design APIs and databases together so data flows cleanly from UI to deployment.'
+		dot: 'teal',
+		heading: 'Measure & iterate',
+		statement: 'I validate with performance budgets, analytics, and real user feedback — then ship improvements fast.'
 	}
 ];
 
-const impactHighlights = [
-	{
-		signal: 'Reduced Product Complexity',
-		context: 'Led Martinrea\'s SaaS replatform, cutting system complexity by ~25% and improving release reliability.',
-		tags: ['Replatform', 'Architecture']
-	},
-	{
-		signal: 'Delivered at Client Scale',
-		context: 'Shipped 5 client platforms and built Stripe revenue systems from integration through production operations.',
-		tags: ['Delivery', 'Payments']
-	},
-	{
-		signal: 'Performance with Cloud Rigor',
-		context: 'Improved performance with Redis caching and applied Azure-certified practices for secure, cost-aware decisions.',
-		tags: ['Performance', 'Azure']
-	}
-];
-
-const featuredProjects = projects.slice(0, 3);
+const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
 ---
 
 <MainLayout title="Kira Cibak | Front-end Developer" description="Building fast, responsive web experiences with Astro and modern tooling.">
 	<Section class="section" padding="default">
-		<Container size="narrow">
+		<Container>
 			<HomeHero />
 		</Container>
 	</Section>
 
-	<Section class="section">
+	<Section class="section" reveal={true}>
 		<Container>
-			<SectionHeading
-				title="What I Do"
-				subtitle="I partner with product teams to build clear, scalable front-end systems that ship with confidence."
-			/>
-			<div class="grid-three">
-				{whatIDo.map((item) => (
-					<Card as="article" padding="compact">
-						<p class="heading-tight">{item.statement}</p>
-					</Card>
-				))}
-			</div>
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
-			<SectionHeading
-				title="Impact Highlights"
-				subtitle="A quick read on the outcomes I focus on in delivery work."
-			/>
-			<div class="grid-three">
-				{impactHighlights.map((highlight) => (
-					<Card as="article" padding="compact" class="stack-card">
-						<p class="heading-tight"><strong>{highlight.signal}</strong></p>
-						<p class="muted-copy">{highlight.context}</p>
-						<div class="tag-row-tight">
-							{highlight.tags.map((tag) => (
-								<Tag>{tag}</Tag>
-							))}
-						</div>
-					</Card>
-				))}
-			</div>
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
-			<SectionHeading
-				title="Projects Preview"
-				subtitle="A compact preview of selected builds. Visit the full projects page for complete case studies."
-			/>
-			<div class="grid-two">
-				{featuredProjects.map((project) => (
-					<ProjectCard
-						title={project.title}
-						description={project.description}
-						tags={project.tags}
-						image={project.image}
-						link={project.link}
-						linkLabel={project.linkLabel}
+			<div class="two-col-feature">
+				<div class="two-col-feature-text">
+					<SectionHeading
+						title="How I Work"
+						subtitle="I partner with product teams to build clear, scalable front-end systems that ship with confidence."
 					/>
-				))}
+				</div>
+				<div class="two-col-feature-cards">
+					{howIWork.map((item) => (
+						<Card as="article" padding="compact">
+							<div style="display: flex; align-items: center; gap: 0.5rem;">
+								<span class={`card-dot card-dot-${item.dot}`}></span>
+								<p class="heading-tight"><strong>{item.heading}</strong></p>
+							</div>
+							<p class="muted-copy" style="margin: 0;">{item.statement}</p>
+						</Card>
+					))}
+				</div>
 			</div>
-			<div class="action-row">
-				<Button href="/projects">View All Projects</Button>
-			</div>
+		</Container>
+	</Section>
+
+
+
+	<Section class="section" reveal={true}>
+		<Container>
+			<HomeCta />
 		</Container>
 	</Section>
 </MainLayout>

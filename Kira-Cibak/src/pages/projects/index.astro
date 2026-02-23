@@ -3,51 +3,35 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import Section from '../../components/layout/Section.astro';
 import Container from '../../components/layout/Container.astro';
 import ProjectCard from '../../components/project/ProjectCard.astro';
-import ProjectCarousel from '../../components/project/ProjectCarousel.tsx';
-import SectionHeading from '../../components/ui/SectionHeading.astro';
 import { projects } from '../../data/projects';
 
 export const prerender = true;
 ---
 
-<MainLayout title="Projects | Kira Cibak" description="A collection of Kira Cibak’s web projects with case study links.">
+<MainLayout title="Projects | Kira Cibak" description="A collection of web projects and technical builds by Kira Cibak.">
 	<Section class="section">
 		<Container>
 			<p class="eyebrow">Projects</p>
-			<h1 class="section-title">Case studies and builds</h1>
-			<p class="section-subtitle">Swap the placeholder cards with your real projects. Each links to /projects/[slug].</p>
+			<h1 class="section-title"><span class="gradient-text">Things I've built</span></h1>
+			<p class="section-subtitle">From SaaS platforms to data science notebooks — a showcase of what I ship. Each project links to its repository or live demo.</p>
 		</Container>
 	</Section>
 
-	<Section class="section">
+	<Section class="section" reveal={true}>
 		<Container>
-			<SectionHeading
-				title="Interactive carousel (Astro Island)"
-				subtitle="Hydrated client:visible. Replace slides with real thumbnails and summaries."
-			/>
-			<ProjectCarousel
-				client:visible
-				slides={projects.map((p) => ({
-					title: p.title,
-					summary: p.description,
-					image: '/placeholder-project.jpg'
-				}))}
-			/>
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
-			<SectionHeading title="All projects" />
-			<div class="grid-two">
+			<div class="grid-projects">
 				{projects.map((project) => (
 					<ProjectCard
 						title={project.title}
 						description={project.description}
 						tags={project.tags}
 						image={project.image}
+						category={project.category}
+						featured={project.featured}
 						link={project.link}
 						linkLabel={project.linkLabel}
+						repoUrl={project.repoUrl}
+						liveUrl={project.liveUrl}
 					/>
 				))}
 			</div>

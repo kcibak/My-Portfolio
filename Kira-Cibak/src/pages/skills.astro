@@ -13,26 +13,20 @@ export const prerender = true;
 	<Section class="section">
 		<Container>
 			<p class="eyebrow">Skills</p>
-			<h1 class="section-title">Technical range</h1>
-			<p class="section-subtitle">Swap these lists with your own stack. Keep categories short and scannable for recruiters.</p>
+			<h1 class="section-title"><span class="gradient-text">Technical range</span></h1>
+			<p class="section-subtitle">The tools and technologies I use to build reliable products — organized by domain.</p>
 		</Container>
 	</Section>
 
-	<Section class="section">
+	<Section class="section" reveal={true}>
 		<Container>
 			<SkillsCategories />
 		</Container>
 	</Section>
 
-	<Section class="section">
+	<Section class="section" reveal={true}>
 		<Container>
-			<p class="eyebrow">Experience</p>
-			<SectionHeading title="Experience and education" subtitle="Replace the placeholders with your real roles, dates, and achievements." />
-		</Container>
-	</Section>
-
-	<Section class="section">
-		<Container>
+			<SectionHeading title="Experience & education" />
 			<SkillsTimeline />
 		</Container>
 	</Section>

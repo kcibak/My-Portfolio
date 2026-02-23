@@ -1,22 +1,30 @@
 ---
 import Card from '../ui/Card.astro';
+import Tag from '../ui/Tag.astro';
 ---
 
 <div class="grid-two">
 	<Card as="article" class="stack-card" padding="compact">
-		<h2 class="section-title section-title-small">Experience snapshot</h2>
-		<ul class="content-list">
-			<li><strong>Role/company</strong> — Add your most recent position, product type, and standout achievement.</li>
-			<li><strong>Specialties</strong> — Mobile-first UI, design systems, performance tuning, accessibility.</li>
-			<li><strong>Tooling</strong> — Astro, React, TypeScript, Storybook, modern CI.</li>
-		</ul>
+		<h2 class="section-title section-title-small">Background</h2>
+		<p class="muted-copy" style="margin: 0;">
+			Led SaaS replatforming at Martinrea — modernizing architecture and establishing stable release patterns across 5+ client platforms.
+		</p>
+		<div class="tag-row-tight" style="margin-top: 0.25rem;">
+			<Tag>Azure Certified</Tag>
+			<Tag>5+ Client Platforms</Tag>
+			<Tag>SaaS</Tag>
+			<Tag>Stripe</Tag>
+		</div>
 	</Card>
 	<Card as="article" class="stack-card" padding="compact">
-		<h2 class="section-title section-title-small">Working style</h2>
-		<ul class="content-list">
-			<li>Start with goals and constraints, then propose a lean plan.</li>
-			<li>Prototype quickly with responsive layouts and accessibility baked in.</li>
-			<li>Measure with analytics and performance budgets; iterate fast.</li>
-		</ul>
+		<h2 class="section-title section-title-small">Approach</h2>
+		<p class="muted-copy" style="margin: 0;">
+			Goals first, lean plan, responsive prototype with accessibility baked in — then iterate with real data.
+		</p>
+		<div class="tag-row-tight" style="margin-top: 0.25rem;">
+			<Tag>Lean Planning</Tag>
+			<Tag>Accessibility-first</Tag>
+			<Tag>Data-driven</Tag>
+		</div>
 	</Card>
 </div>

@@ -15,7 +15,7 @@ const socials = [
 	{ href: 'https://github.com/kcibak', label: 'GitHub', icon: 'github' }
 ];
 
-const emailAddress = 'cibakkn@gmail.com';
+const emailAddress = 'kiracibakcodes@gmail.com';
 ---
 
 <header class="dome-header" id="site-header">
@@ -50,6 +50,7 @@ const emailAddress = 'cibakkn@gmail.com';
 					<path d="M9 13h6" />
 					<path d="M9 17h6" />
 				</svg>
+				<span class="copy-tooltip" id="resume-tooltip" role="tooltip" aria-hidden="true">View resume</span>
 			</a>
 			<button
 				class="social-icon copy"
@@ -62,7 +63,7 @@ const emailAddress = 'cibakkn@gmail.com';
 				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
 					<path d="m3 8 7.89 4.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
 				</svg>
-				<span class="copy-tooltip" id="email-tooltip" role="status" aria-live="polite">Email copied!</span>
+				<span class="copy-tooltip" id="email-tooltip" role="tooltip" aria-hidden="true"></span>
 			</button>
 		</div>
 		<a href="/" class="brand">Kira Cibak</a>
@@ -243,6 +244,7 @@ const emailAddress = 'cibakkn@gmail.com';
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		position: relative;
 		border-radius: var(--radius);
 		border: 1px solid var(--color-border);
 		background: var(--color-card);
@@ -412,6 +414,47 @@ const emailAddress = 'cibakkn@gmail.com';
 		padding: 0.2rem 2rem 2rem;
 		flex-wrap: nowrap;
 		overflow-x: auto;
+		isolation: isolate;
+		--parabola-edge-width: 0px;
+		--parabola-edge-highlight-width: 0px;
+	}
+
+	.parabola-menu::before,
+	.parabola-menu::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.parabola-menu::before {
+		background: transparent;
+		-webkit-mask: radial-gradient(
+			100% 75% at 50% 0%,
+			transparent calc(100% - var(--parabola-edge-width)),
+			#000 calc(100% - var(--parabola-edge-width))
+		);
+		mask: radial-gradient(
+			100% 75% at 50% 0%,
+			transparent calc(100% - var(--parabola-edge-width)),
+			#000 calc(100% - var(--parabola-edge-width))
+		);
+	}
+
+	.parabola-menu::after {
+		background: transparent;
+		-webkit-mask: radial-gradient(
+			100% 75% at 50% 0%,
+			transparent calc(100% - var(--parabola-edge-highlight-width)),
+			#000 calc(100% - var(--parabola-edge-highlight-width))
+		);
+		mask: radial-gradient(
+			100% 75% at 50% 0%,
+			transparent calc(100% - var(--parabola-edge-highlight-width)),
+			#000 calc(100% - var(--parabola-edge-highlight-width))
+		);
+		opacity: 0.98;
 	}
 
 	:global(.dome-header.is-condensed) .parabola-menu {
@@ -425,17 +468,18 @@ const emailAddress = 'cibakkn@gmail.com';
 		transform: translateY(0) scale(1);
 	}
 
-		.parabola-menu a {
-			font-weight: 500;
-			font-size: var(--type-size-body);
-			line-height: var(--type-line-body);
-			padding: 0.6rem 1rem;
+	.parabola-menu a {
+		font-weight: 500;
+		font-size: calc(var(--type-size-body) * 1.15);
+		line-height: var(--type-line-body);
+		padding: 0.6rem 1rem;
 		border-radius: var(--radius);
 		color: var(--color-ink);
 		transition: opacity 0.1s ease, transform 0.12s ease-out;
 		white-space: nowrap;
 		letter-spacing: 0.02em;
 		position: relative;
+		z-index: 3;
 		overflow: hidden;
 		isolation: isolate;
 	}
@@ -529,11 +573,14 @@ const emailAddress = 'cibakkn@gmail.com';
 	const parabola = document.getElementById('parabola-menu');
 	const menuShell = document.getElementById('menu-shell');
 	const copyBtn = document.getElementById('email-copy');
-	const tooltip = document.getElementById('email-tooltip');
+	const emailTooltip = document.getElementById('email-tooltip');
+	const resumeLink = document.querySelector('.resume-link');
+	const resumeTooltip = document.getElementById('resume-tooltip');
 	const emailAddress = copyBtn?.dataset.email ?? '';
 	let closeTimer: number | undefined;
 	let lastScrollY = window.scrollY;
 	let ticking = false;
+	let isShowingFeedback = false;
 
 	const openMenu = () => {
 		header?.classList.add('is-open');
@@ -602,8 +649,6 @@ const emailAddress = 'cibakkn@gmail.com';
 		closeTimer = window.setTimeout(closeMenu, 140);
 	});
 
-	// No click or focus handlers for menu open; hover-only behavior keeps the icon neutral on click.
-
 	menuShell?.addEventListener('keydown', (event) => {
 		if (event.key === 'Escape') {
 			closeMenu();
@@ -615,19 +660,55 @@ const emailAddress = 'cibakkn@gmail.com';
 		closeTimer = window.setTimeout(closeMenu, 140);
 	});
 
+	const showTooltip = (el: HTMLElement | null) => {
+		if (!el) return;
+		el.classList.add('show');
+		el.setAttribute('aria-hidden', 'false');
+		el.setAttribute('role', 'tooltip');
+		el.removeAttribute('aria-live');
+	};
+
+	const hideTooltip = (el: HTMLElement | null) => {
+		if (!el) return;
+		el.classList.remove('show');
+		el.setAttribute('aria-hidden', 'true');
+	};
+
+	// Resume tooltip hover/focus
+	if (resumeLink && resumeTooltip) {
+		resumeLink.addEventListener('mouseenter', () => showTooltip(resumeTooltip));
+		resumeLink.addEventListener('mouseleave', () => hideTooltip(resumeTooltip));
+		resumeLink.addEventListener('focus', () => showTooltip(resumeTooltip));
+		resumeLink.addEventListener('blur', () => hideTooltip(resumeTooltip));
+	}
+
+	// Email copy tooltip: hover shows "Copy email", click shows "Email copied!"
 	const copyEmail = async () => {
 		try {
 			await navigator.clipboard.writeText(emailAddress);
+			if (!emailTooltip) return;
+			emailTooltip.textContent = 'Email copied!';
+			emailTooltip.setAttribute('role', 'status');
+			emailTooltip.setAttribute('aria-live', 'polite');
+			showTooltip(emailTooltip);
+			isShowingFeedback = true;
+			setTimeout(() => {
+				emailTooltip.textContent = '';
+				emailTooltip.setAttribute('role', 'tooltip');
+				emailTooltip.removeAttribute('aria-live');
+				isShowingFeedback = false;
+				hideTooltip(emailTooltip);
+			}, 1600);
 		} catch (error) {
 			console.error('Could not copy email', error);
 		}
-		if (tooltip) {
-			tooltip.classList.add('show');
-			setTimeout(() => {
-				tooltip.classList.remove('show');
-			}, 1400);
-		}
 	};
 
-	copyBtn?.addEventListener('click', copyEmail);
+	if (copyBtn && emailTooltip) {
+		copyBtn.addEventListener('mouseenter', () => { emailTooltip.textContent = 'Copy email'; showTooltip(emailTooltip); });
+		copyBtn.addEventListener('mouseleave', () => { if (!isShowingFeedback) { hideTooltip(emailTooltip); emailTooltip.textContent = ''; } });
+		copyBtn.addEventListener('focus', () => { emailTooltip.textContent = 'Copy email'; showTooltip(emailTooltip); });
+		copyBtn.addEventListener('blur', () => { if (!isShowingFeedback) { hideTooltip(emailTooltip); emailTooltip.textContent = ''; } });
+		copyBtn.addEventListener('click', copyEmail);
+	}
 </script>

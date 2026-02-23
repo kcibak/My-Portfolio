@@ -3,31 +3,32 @@ import Card from '../ui/Card.astro';
 import Tag from '../ui/Tag.astro';
 ---
 
-<div class="stack-grid">
-	<Card as="article" class="stack-card" padding="compact">
-		<div class="row-between-wrap">
-			<h3 class="heading-reset">Role @ Company</h3>
-			<Tag>2024 — Present</Tag>
-		</div>
-		<p class="muted-copy">Describe your impact, ownership areas, and measurable outcomes.</p>
-		<ul class="content-list">
-			<li>Key achievement or metric</li>
-			<li>Collaboration highlight</li>
-			<li>Technical accomplishment</li>
-		</ul>
-	</Card>
-	<Card as="article" class="stack-card" padding="compact">
-		<div class="row-between-wrap">
-			<h3 class="heading-reset">Previous Role @ Company</h3>
-			<Tag>2022 — 2024</Tag>
-		</div>
-		<p class="muted-copy">Add more context on projects or systems you led.</p>
-	</Card>
-	<Card as="article" class="stack-card" padding="compact">
-		<div class="row-between-wrap">
-			<h3 class="heading-reset">Education</h3>
-			<Tag>Year</Tag>
-		</div>
-		<p class="muted-copy">Include degree, certifications, or relevant coursework.</p>
-	</Card>
+<div class="timeline-grid">
+	<div class="timeline-entry">
+		<Card as="article" class="stack-card" padding="compact">
+			<div class="row-between-wrap">
+				<h3 class="heading-reset">Full-Stack Developer @ Martinrea International</h3>
+				<Tag>2024 — Present</Tag>
+			</div>
+			<p class="muted-copy" style="margin: 0;">Led SaaS replatforming effort, reducing system complexity by ~25% and improving release reliability across multiple product lines.</p>
+		</Card>
+	</div>
+	<div class="timeline-entry">
+		<Card as="article" class="stack-card" padding="compact">
+			<div class="row-between-wrap">
+				<h3 class="heading-reset">Developer — Client Platforms & Payments</h3>
+				<Tag>2022 — 2024</Tag>
+			</div>
+			<p class="muted-copy" style="margin: 0;">Shipped 5+ client-facing platforms and built Stripe revenue systems from integration through production operations.</p>
+		</Card>
+	</div>
+	<div class="timeline-entry">
+		<Card as="article" class="stack-card" padding="compact">
+			<div class="row-between-wrap">
+				<h3 class="heading-reset">Education & Certification</h3>
+				<Tag>AZ-900</Tag>
+			</div>
+			<p class="muted-copy" style="margin: 0;">Microsoft Azure Fundamentals certification combined with formal education and continuous learning.</p>
+		</Card>
+	</div>
 </div>

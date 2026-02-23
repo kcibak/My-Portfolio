@@ -3,12 +3,13 @@ const {
 	as = 'section',
 	padding = 'default',
 	class: className,
-	style
+	style,
+	reveal = false
 } = Astro.props;
 
 const Tag = as;
 ---
 
-<Tag class:list={['layout-section', className]} data-padding={padding} style={style}>
+<Tag class:list={['layout-section', className]} data-padding={padding} style={style} {...(reveal ? { 'data-reveal': '' } : {})}>
 	<slot />
 </Tag>

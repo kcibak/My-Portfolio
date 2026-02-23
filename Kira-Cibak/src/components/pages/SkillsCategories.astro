@@ -1,30 +1,47 @@
 ---
 import Card from '../ui/Card.astro';
+import Tag from '../ui/Tag.astro';
 ---
 
 <div class="grid-three">
-	<Card as="article" padding="compact">
+	<Card as="article" padding="compact" class="card-accent-top">
 		<h2 class="section-title section-title-small section-title-bottom">Front-end</h2>
-		<ul class="content-list">
-			<li>Astro / React / Next.js</li>
-			<li>TypeScript, modern JS patterns</li>
-			<li>CSS tooling, motion, accessibility-first</li>
-		</ul>
+		<div class="tag-row">
+			<Tag>React</Tag>
+			<Tag>TypeScript</Tag>
+			<Tag>Next.js</Tag>
+			<Tag>Astro</Tag>
+			<Tag>JavaScript</Tag>
+			<Tag>HTML5</Tag>
+			<Tag>CSS3</Tag>
+			<Tag>Responsive Design</Tag>
+			<Tag>Accessibility</Tag>
+		</div>
 	</Card>
-	<Card as="article" padding="compact">
+	<Card as="article" padding="compact" class="card-accent-top-teal">
 		<h2 class="section-title section-title-small section-title-bottom">Systems</h2>
-		<ul class="content-list">
-			<li>Design tokens and theming</li>
-			<li>Component libraries, Storybook</li>
-			<li>Responsive grids and typography scales</li>
-		</ul>
+		<div class="tag-row">
+			<Tag>Node.js</Tag>
+			<Tag>Express</Tag>
+			<Tag>PostgreSQL</Tag>
+			<Tag>Redis</Tag>
+			<Tag>REST APIs</Tag>
+			<Tag>Design Tokens</Tag>
+			<Tag>Component Libraries</Tag>
+			<Tag>Storybook</Tag>
+		</div>
 	</Card>
-	<Card as="article" padding="compact">
+	<Card as="article" padding="compact" class="card-accent-top-warm">
 		<h2 class="section-title section-title-small section-title-bottom">Delivery</h2>
-		<ul class="content-list">
-			<li>CI/CD basics, testing strategy</li>
-			<li>Performance monitoring and budgets</li>
-			<li>SEO fundamentals (metadata, sitemaps)</li>
-		</ul>
+		<div class="tag-row">
+			<Tag>Azure</Tag>
+			<Tag>Docker</Tag>
+			<Tag>CI/CD</Tag>
+			<Tag>Git</Tag>
+			<Tag>Stripe</Tag>
+			<Tag>Performance Budgets</Tag>
+			<Tag>SEO</Tag>
+			<Tag>Testing</Tag>
+		</div>
 	</Card>
 </div>

@@ -32,6 +32,7 @@ export default function ThemeToggle() {
 
 	return (
 		<label class="theme-toggle" data-mode={mode} aria-label="Toggle color theme">
+			<span class="sr-only">Toggle color theme</span>
 			<input
 				class="theme-toggle__input"
 				type="checkbox"

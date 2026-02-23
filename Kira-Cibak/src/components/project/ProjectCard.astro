@@ -8,8 +8,12 @@ type Props = {
 	description: string;
 	tags: string[];
 	image?: string;
+	category?: string;
+	featured?: boolean;
 	link: string;
 	linkLabel: string;
+	repoUrl?: string;
+	liveUrl?: string;
 };
 
 const {
@@ -17,14 +21,18 @@ const {
 	description,
 	tags,
 	image,
+	category,
+	featured,
 	link,
-	linkLabel
+	linkLabel,
+	repoUrl,
+	liveUrl
 } = Astro.props as Props;
 
 const isExternalLink = link.startsWith('https://') || link.startsWith('http://');
 ---
 
-<Card as="article" class="project-card" padding="compact">
+<Card as="article" hover={true} class:list={['project-card', { 'card-glow': featured }]} padding="compact">
 	{
 		image ? (
 			<div class="project-card-media">
@@ -32,6 +40,7 @@ const isExternalLink = link.startsWith('https://') || link.startsWith('http://')
 			</div>
 		) : null
 	}
+	{category ? <p class="project-card-category">{category}</p> : null}
 	<h3 class="heading-reset">{title}</h3>
 	<p class="muted-copy">{description}</p>
 	<div class="tag-row">
@@ -39,12 +48,26 @@ const isExternalLink = link.startsWith('https://') || link.startsWith('http://')
 			<Tag>{tag}</Tag>
 		))}
 	</div>
-	<Button
-		variant="secondary"
-		href={link}
-		target={isExternalLink ? '_blank' : undefined}
-		rel={isExternalLink ? 'noreferrer' : undefined}
-	>
-		{linkLabel}
-	</Button>
+	<div class="action-row">
+		<Button
+			variant="secondary"
+			href={link}
+			target={isExternalLink ? '_blank' : undefined}
+			rel={isExternalLink ? 'noreferrer' : undefined}
+		>
+			{linkLabel}
+		</Button>
+	</div>
 </Card>
+
+<style>
+	.project-card-category {
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		font-weight: 700;
+		font-size: 0.75rem;
+		line-height: 1;
+		color: var(--color-accent);
+		margin: 0;
+	}
+</style>

@@ -13,5 +13,11 @@
 			line-height: var(--type-line-small);
 			color: var(--color-ink);
 			background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+			transition: transform 0.15s ease, background-color 0.15s ease;
+		}
+
+		.ui-tag:hover {
+			transform: translateY(-1px);
+			background: color-mix(in srgb, var(--color-accent) 20%, transparent);
 		}
 </style>
