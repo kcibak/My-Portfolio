@@ -5,6 +5,7 @@ import Container from '../components/layout/Container.astro';
 import AboutIntro from '../components/pages/AboutIntro.astro';
 import AboutHighlights from '../components/pages/AboutHighlights.astro';
 import AboutValues from '../components/pages/AboutValues.astro';
+import AboutChatReplay from '../components/pages/AboutChatReplay.astro';
 import Card from '../components/ui/Card.astro';
 import Tag from '../components/ui/Tag.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
@@ -53,6 +54,12 @@ export const prerender = true;
 					<p class="muted-copy" style="margin: 0;">Formal training plus continuous learning through production work.</p>
 				</Card>
 			</div>
+		</Container>
+	</Section>
+
+	<Section class="section" reveal={true}>
+		<Container>
+			<AboutChatReplay />
 		</Container>
 	</Section>
 </MainLayout>

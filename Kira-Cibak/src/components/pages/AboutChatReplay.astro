@@ -1,0 +1,302 @@
+---
+import { Image } from 'astro:assets';
+import Card from '../ui/Card.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+import chatreplay3 from '../../assets/chatreplay3 copy.png';
+import chatreplay4 from '../../assets/chatreplay4 copy.png';
+import chatreplay5 from '../../assets/chatreplay5 copy.png';
+import chatreplay6 from '../../assets/chatreplay6 copy.png';
+---
+
+<SectionHeading
+  title="ChatGPT Year in Review"
+  subtitle="2025 · A look at how AI showed up in my year."
+/>
+
+<div class="grid-two chat-review-row">
+  <Card as="article" class="stack-card" padding="compact">
+    <figure class="chat-figure">
+      <button
+        type="button"
+        class="chat-image-button"
+        data-chat-open
+        data-chat-src={chatreplay3.src}
+        data-chat-alt="ChatGPT 2025 — If 2025 gave out awards"
+        aria-label="Open image: A Year Worth Celebrating"
+      >
+        <Image src={chatreplay3} alt="ChatGPT 2025 — If 2025 gave out awards" class="chat-img" widths={[480, 864]} sizes="(max-width: 768px) 100vw, 55vw" />
+      </button>
+      <figcaption class="eyebrow chat-caption">A Year Worth Celebrating</figcaption>
+    </figure>
+  </Card>
+
+  <Card as="article" class="stack-card" padding="compact">
+    <figure class="chat-figure">
+      <button
+        type="button"
+        class="chat-image-button"
+        data-chat-open
+        data-chat-src={chatreplay6.src}
+        data-chat-alt="ChatGPT 2025 — My year painted in pixels"
+        aria-label="Open image: My Year Painted in Pixels"
+      >
+        <Image src={chatreplay6} alt="ChatGPT 2025 — My year painted in pixels" class="chat-img" widths={[480, 864]} sizes="(max-width: 768px) 100vw, 55vw" />
+      </button>
+      <figcaption class="eyebrow chat-caption">My Year Painted in Pixels</figcaption>
+    </figure>
+  </Card>
+</div>
+
+<Card as="article" class="stack-card archetype-card" padding="comfortable">
+  <h3 class="section-title section-title-small" style="margin-bottom: 0.25rem;">My AI Archetype</h3>
+  <p class="muted-copy" style="margin: 0;">
+    Each year ChatGPT reveals your AI archetype — the lens through which you engaged with it most. Here's mine for 2025.
+  </p>
+  <div class="archetype-grid">
+    <figure class="chat-figure">
+      <button
+        type="button"
+        class="chat-image-button"
+        data-chat-open
+        data-chat-src={chatreplay4.src}
+        data-chat-alt="AI Archetype card — front"
+        aria-label="Open image: AI Archetype card front"
+      >
+        <Image src={chatreplay4} alt="AI Archetype card — front" class="chat-img" widths={[432, 720]} sizes="(max-width: 768px) 100vw, 336px" />
+      </button>
+    </figure>
+    <figure class="chat-figure">
+      <button
+        type="button"
+        class="chat-image-button"
+        data-chat-open
+        data-chat-src={chatreplay5.src}
+        data-chat-alt="AI Archetype card — back"
+        aria-label="Open image: AI Archetype card back"
+      >
+        <Image src={chatreplay5} alt="AI Archetype card — back" class="chat-img" widths={[432, 720]} sizes="(max-width: 768px) 100vw, 336px" />
+      </button>
+    </figure>
+  </div>
+</Card>
+
+<div class="chat-lightbox" data-chat-lightbox hidden role="dialog" aria-modal="true" aria-label="Image preview">
+  <button type="button" class="chat-lightbox-backdrop" data-chat-close aria-label="Close preview"></button>
+  <div class="chat-lightbox-body">
+    <button type="button" class="chat-lightbox-close" data-chat-close aria-label="Close preview">✕</button>
+    <img src="" alt="" class="chat-lightbox-image" data-chat-lightbox-image />
+  </div>
+</div>
+
+<style>
+  .chat-figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  .chat-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .chat-image-button {
+    width: 100%;
+    display: block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: var(--color-transparent);
+    cursor: zoom-in;
+    border-radius: var(--radius);
+  }
+
+  .chat-image-button:focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .chat-image-button:hover .chat-img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 32px rgb(11 34 63 / 15%);
+  }
+
+  .chat-review-row .chat-image-button {
+    display: grid;
+    place-items: center;
+    min-height: clamp(240px, 30vw, 320px);
+  }
+
+  .chat-review-row .chat-img {
+    width: auto;
+    max-width: 100%;
+    height: clamp(240px, 30vw, 320px);
+    object-fit: contain;
+  }
+
+  .chat-caption {
+    margin-top: 0.6rem;
+    text-align: center;
+  }
+
+  .chat-review-row {
+    margin-bottom: 1rem;
+  }
+
+  .archetype-card {
+    margin-top: 0;
+  }
+
+  .archetype-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 720px;
+    margin-inline: auto;
+    margin-top: 0.75rem;
+  }
+
+  .chat-lightbox {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+
+  .chat-lightbox[hidden] {
+    display: none !important;
+  }
+
+  .chat-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border: 0;
+    background: var(--color-overlay);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+  }
+
+  .chat-lightbox-body {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+    max-width: min(1104px, 92vw);
+    max-height: 90vh;
+    display: grid;
+    gap: 0.75rem;
+    padding: 2.6rem 1.2rem 1.2rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 40px rgb(11 34 63 / 22%);
+    overflow: auto;
+  }
+
+  .chat-lightbox-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    color: var(--color-ink);
+    border-radius: var(--radius);
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .chat-lightbox-image {
+    display: block;
+    width: auto;
+    max-width: min(1060px, 88vw);
+    max-height: calc(90vh - 5rem);
+    object-fit: contain;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  @media (max-width: 640px) {
+    .archetype-grid {
+      grid-template-columns: 1fr;
+      max-width: 384px;
+    }
+
+    .chat-lightbox-body {
+      max-width: min(96vw, 720px);
+    }
+
+    .chat-lightbox-image {
+      max-width: min(92vw, 720px);
+    }
+  }
+</style>
+
+<script>
+  const lightbox = document.querySelector('[data-chat-lightbox]');
+  const lightboxImage = document.querySelector('[data-chat-lightbox-image]');
+
+  const openLightbox = () => {
+    if (!(lightbox instanceof HTMLElement) || !(lightboxImage instanceof HTMLImageElement)) return;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    if (!(lightbox instanceof HTMLElement) || !(lightboxImage instanceof HTMLImageElement)) return;
+    lightbox.hidden = true;
+    lightboxImage.src = '';
+    lightboxImage.alt = '';
+    document.body.style.overflow = '';
+  };
+
+  if (lightbox instanceof HTMLElement) {
+    lightbox.hidden = true;
+  }
+  document.body.style.overflow = '';
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const openTrigger = target.closest('[data-chat-open]');
+    if (openTrigger instanceof HTMLElement) {
+      const src = openTrigger.dataset.chatSrc;
+      const alt = openTrigger.dataset.chatAlt ?? 'Image preview';
+      if (!src) return;
+      if (!(lightboxImage instanceof HTMLImageElement)) return;
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+      openLightbox();
+      return;
+    }
+
+    const closeTrigger = target.closest('[data-chat-close]');
+    if (closeTrigger) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    if (!(lightbox instanceof HTMLElement) || lightbox.hidden) return;
+    closeLightbox();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'hidden') return;
+    if (!(lightbox instanceof HTMLElement) || lightbox.hidden) return;
+    closeLightbox();
+  });
+</script>
