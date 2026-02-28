@@ -8,10 +8,8 @@ type Props = {
 	description: string;
 	tags: string[];
 	image?: string;
-	category?: string;
 	featured?: boolean;
 	link: string;
-	linkLabel: string;
 	repoUrl?: string;
 	liveUrl?: string;
 };
@@ -21,18 +19,19 @@ const {
 	description,
 	tags,
 	image,
-	category,
 	featured,
 	link,
-	linkLabel,
 	repoUrl,
 	liveUrl
 } = Astro.props as Props;
 
-const isExternalLink = link.startsWith('https://') || link.startsWith('http://');
+const projectUrl = liveUrl ?? link;
+const isExternalProjectLink = projectUrl.startsWith('https://') || projectUrl.startsWith('http://');
+const githubUrl = repoUrl && repoUrl !== projectUrl ? repoUrl : undefined;
+const isExternalGithubLink = githubUrl ? githubUrl.startsWith('https://') || githubUrl.startsWith('http://') : false;
 ---
 
-<Card as="article" hover={true} class:list={['project-card', { 'card-glow': featured }]} padding="compact">
+<Card as="article" hover={false} class:list={['project-card', { 'card-glow': featured }]} padding="compact">
 	{
 		image ? (
 			<div class="project-card-media">
@@ -40,7 +39,6 @@ const isExternalLink = link.startsWith('https://') || link.startsWith('http://')
 			</div>
 		) : null
 	}
-	{category ? <p class="project-card-category">{category}</p> : null}
 	<h3 class="heading-reset">{title}</h3>
 	<p class="muted-copy">{description}</p>
 	<div class="tag-row">
@@ -51,23 +49,21 @@ const isExternalLink = link.startsWith('https://') || link.startsWith('http://')
 	<div class="action-row">
 		<Button
 			variant="secondary"
-			href={link}
-			target={isExternalLink ? '_blank' : undefined}
-			rel={isExternalLink ? 'noreferrer' : undefined}
+			href={projectUrl}
+			target={isExternalProjectLink ? '_blank' : undefined}
+			rel={isExternalProjectLink ? 'noreferrer' : undefined}
 		>
-			{linkLabel}
+			View Project
 		</Button>
+		{githubUrl ? (
+			<Button
+				variant="secondary"
+				href={githubUrl}
+				target={isExternalGithubLink ? '_blank' : undefined}
+				rel={isExternalGithubLink ? 'noreferrer' : undefined}
+			>
+				View on GitHub
+			</Button>
+		) : null}
 	</div>
 </Card>
-
-<style>
-	.project-card-category {
-		text-transform: uppercase;
-		letter-spacing: 0.14em;
-		font-weight: 700;
-		font-size: 0.75rem;
-		line-height: 1;
-		color: var(--color-accent);
-		margin: 0;
-	}
-</style>

@@ -1,5 +1,4 @@
 export type ProjectPreview = {
-	slug: string;
 	title: string;
 	description: string;
 	tags: string[];
@@ -11,110 +10,92 @@ export type ProjectPreview = {
 	repoUrl?: string;
 	/** @deprecated use liveUrl or repoUrl instead */
 	link: string;
-	linkLabel: string;
 };
 
 export const projects: ProjectPreview[] = [
 	{
-		slug: 'license-management-system',
-		title: 'License Management System',
-		description: 'SaaS licensing platform for Martinrea — streamlined subscription management, user provisioning, and usage tracking.',
-		tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Azure'],
+		title: 'Captured by Capri',
+		description: 'Photography portfolio website showcasing film and digital work, with gallery browsing and contact pathways for client inquiries.',
+		tags: ['Astro', 'TypeScript', 'CSS'],
 		category: 'SaaS',
 		year: '2024',
 		featured: true,
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		liveUrl: 'https://capturedbycapri.netlify.app/',
+		link: 'https://capturedbycapri.netlify.app/'
 	},
 	{
-		slug: 'pain-detection-system',
-		title: 'Pain Detection System',
-		description: 'Collaborative notebook for ML-based pain detection using computer vision and signal processing techniques.',
-		tags: ['Python', 'Jupyter', 'Machine Learning', 'Computer Vision'],
+		title: 'SCxCMC Consulting Site',
+		description: 'Pharmaceutical consulting website presenting CMC strategy services, consultant profiles, and contact-driven conversion paths.',
+		tags: ['Astro', 'TypeScript', 'CSS'],
 		category: 'Data Science',
 		year: '2024',
 		featured: true,
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		liveUrl: 'https://scxcmc.netlify.app/',
+		link: 'https://scxcmc.netlify.app/'
 	},
 	{
-		slug: 'project-three',
-		title: 'Project Three',
-		description: 'Brief summary of project goals and measurable outcomes.',
+		title: 'LiMANS Internship Project',
+		description: 'Full-stack migration project rebuilt from a low-code platform into a custom PostgreSQL-backed system with end-to-end ownership.',
 		tags: ['React', 'Next.js', 'Stripe'],
 		category: 'Web App',
 		year: '2024',
 		featured: true,
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		repoUrl: 'https://github.com/kcibak/limans_internship_project',
+		link: 'https://github.com/kcibak/limans_internship_project'
 	},
 	{
-		slug: 'project-four',
-		title: 'Project Four',
-		description: 'Brief summary of project goals and measurable outcomes.',
-		tags: ['Astro', 'TypeScript', 'CSS'],
+		title: 'Pain Detection System',
+		description: 'Machine learning project classifying pain/no-pain states from physiological signals with feature extraction, SVM modeling, and evaluation.',
+		tags: ['Machine Learning', 'SVM', 'NumPy', 'Pandas', 'scikit-learn'],
 		category: 'Web App',
 		year: '2023',
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		repoUrl: 'https://github.com/kcibak/pain_detection_system',
+		link: 'https://github.com/kcibak/pain_detection_system'
 	},
 	{
-		slug: 'project-five',
-		title: 'Project Five',
-		description: 'Brief summary of project goals and measurable outcomes.',
+		title: 'Continuous Manufacturing Forum',
+		description: 'Conference and community platform for pharmaceutical continuous manufacturing, featuring speaker, sponsor, and registration flows.',
 		tags: ['React', 'Node.js', 'Express'],
 		category: 'Web App',
 		year: '2023',
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		liveUrl: 'https://www.contmfg.com/',
+		link: 'https://www.contmfg.com/'
 	},
 	{
-		slug: 'project-six',
-		title: 'Project Six',
-		description: 'Brief summary of project goals and measurable outcomes.',
+		title: 'Compaction Simulation Forum',
+		description: 'Event website for the global compaction science community with forum information, agenda access, and partner visibility.',
 		tags: ['TypeScript', 'Redis', 'Docker'],
 		category: 'Web App',
 		year: '2023',
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		liveUrl: 'https://www.compactionsimulation.com/',
+		link: 'https://www.compactionsimulation.com/'
 	},
 	{
-		slug: 'project-seven',
-		title: 'Project Seven',
-		description: 'Brief summary of project goals and measurable outcomes.',
+		title: 'Temp Excursions',
+		description: 'Pharmaceutical consulting site focused on temperature excursion analysis, regulatory documentation, and rapid-response support.',
 		tags: ['React', 'PostgreSQL', 'CI/CD'],
 		category: 'Web App',
 		year: '2023',
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		liveUrl: 'https://tempexcursions.com/',
+		link: 'https://tempexcursions.com/'
 	},
 	{
-		slug: 'project-eight',
-		title: 'Project Eight',
-		description: 'Brief summary of project goals and measurable outcomes.',
+		title: 'Sanare (Live App)',
+		description: 'Live demo of a visual-first mental health platform for providers and patients, centered on secure, supportive care workflows.',
 		tags: ['Next.js', 'TypeScript', 'Stripe'],
 		category: 'Web App',
 		year: '2022',
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		liveUrl: 'https://mysanare.netlify.app/',
+		repoUrl: 'https://github.com/kcibak/Sanare',
+		link: 'https://mysanare.netlify.app/'
 	},
 	{
-		slug: 'project-nine',
-		title: 'Project Nine',
-		description: 'Brief summary of project goals and measurable outcomes.',
-		tags: ['React', 'Node.js', 'Azure'],
+		title: 'This Portfolio Site',
+		description: 'Source repository for this portfolio website, including the Astro-based architecture, reusable UI components, and page content structure.',
+		tags: ['Astro', 'TypeScript', 'CSS'],
 		category: 'Web App',
 		year: '2022',
-		repoUrl: 'https://github.com',
-		link: 'https://github.com',
-		linkLabel: 'View GitHub'
+		repoUrl: 'https://github.com/kcibak/My-Portfolio',
+		link: 'https://github.com/kcibak/My-Portfolio'
 	}
 ];

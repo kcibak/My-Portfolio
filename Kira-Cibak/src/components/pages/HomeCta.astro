@@ -1,13 +1,51 @@
 ---
 import Button from '../ui/Button.astro';
-import Card from '../ui/Card.astro';
 ---
 
-<Card class="home-cta-card" padding="comfortable">
-	<h2 class="section-title section-title-compact"><span class="gradient-text">Let's build something great</span></h2>
-	<p class="section-subtitle section-subtitle-compact">I'd love to hear about your project.</p>
+<div class="cta-panel">
+	<h2 class="cta-title"><span class="gradient-text">Let's build something great</span></h2>
+	<p class="cta-subtitle">I'd love to hear about your project — whether it's a SaaS replatform, a greenfield build, or a performance overhaul.</p>
 	<div class="action-row">
 		<Button variant="accent" href="/contact">Get in touch</Button>
 		<Button variant="secondary" href="/skills">View skills</Button>
 	</div>
-</Card>
+</div>
+
+<style>
+	.cta-panel {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.9rem;
+		padding: 2rem 2.25rem;
+		border-radius: calc(var(--radius) * 1.5);
+		background:
+			linear-gradient(
+				145deg,
+				var(--color-card) 0%,
+				var(--color-accent-warm-subtle) 100%
+			);
+		border: 1px solid color-mix(in srgb, var(--color-accent-warm) 18%, transparent);
+		box-shadow:
+			0 1px 0 0 color-mix(in srgb, var(--color-accent-warm) 6%, transparent),
+			0 8px 32px -8px rgb(80 215 230 / 8%);
+		box-sizing: border-box;
+	}
+
+	.cta-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		margin: 0;
+	}
+
+	.cta-subtitle {
+		font-size: var(--type-size-small);
+		color: var(--color-muted);
+		line-height: 1.55;
+		margin: 0;
+		max-width: 44ch;
+	}
+</style>

@@ -2,16 +2,16 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
-import ProjectCard from '../components/project/ProjectCard.astro';
 import HomeHero from '../components/pages/HomeHero.astro';
 import HomeCta from '../components/pages/HomeCta.astro';
-import SectionHeading from '../components/ui/SectionHeading.astro';
-import Card from '../components/ui/Card.astro';
-import Tag from '../components/ui/Tag.astro';
-import Button from '../components/ui/Button.astro';
-import { projects } from '../data/projects';
 
 export const prerender = true;
+
+const dotColorMap: Record<string, string> = {
+	blue: 'var(--color-accent)',
+	warm: 'var(--color-accent-warm)',
+	teal: 'var(--color-accent-2)',
+};
 
 const howIWork = [
 	{
@@ -30,46 +30,147 @@ const howIWork = [
 		statement: 'I validate with performance budgets, analytics, and real user feedback — then ship improvements fast.'
 	}
 ];
-
-const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
 ---
 
 <MainLayout title="Kira Cibak | Front-end Developer" description="Building fast, responsive web experiences with Astro and modern tooling.">
-	<Section class="section" padding="default">
+	<Section class="section">
 		<Container>
 			<HomeHero />
 		</Container>
 	</Section>
 
-	<Section class="section" reveal={true}>
+	<Section class="section">
 		<Container>
-			<div class="two-col-feature">
-				<div class="two-col-feature-text">
-					<SectionHeading
-						title="How I Work"
-						subtitle="I partner with product teams to build clear, scalable front-end systems that ship with confidence."
-					/>
-				</div>
-				<div class="two-col-feature-cards">
-					{howIWork.map((item) => (
-						<Card as="article" padding="compact">
-							<div style="display: flex; align-items: center; gap: 0.5rem;">
-								<span class={`card-dot card-dot-${item.dot}`}></span>
-								<p class="heading-tight"><strong>{item.heading}</strong></p>
+			<div class="landing-bottom">
+				<div class="landing-work">
+					<span class="work-eyebrow">How I Work</span>
+					<div class="work-list">
+						{howIWork.map((item, i) => (
+							<div class="work-item" style={`--item-accent: ${dotColorMap[item.dot]}`}>
+								<span class="work-item-num">{String(i + 1).padStart(2, '0')}</span>
+								<p class="work-item-heading">{item.heading}</p>
+								<p class="work-item-body">{item.statement}</p>
 							</div>
-							<p class="muted-copy" style="margin: 0;">{item.statement}</p>
-						</Card>
-					))}
+						))}
+					</div>
+				</div>
+
+				<div class="landing-cta">
+					<HomeCta />
 				</div>
 			</div>
-		</Container>
-	</Section>
-
-
-
-	<Section class="section" reveal={true}>
-		<Container>
-			<HomeCta />
-		</Container>
+	</Container>
 	</Section>
 </MainLayout>
+
+<style>
+	/* ── Root grid: hero top, split bottom ── */
+	.landing-root {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		height: calc(100dvh - 96px - 5.2rem - 5rem);
+		padding: 0;
+		gap: 2rem;
+		box-sizing: border-box;
+	}
+
+	/* ── Hero row ── */
+	.landing-hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	/* ── Bottom split row ── */
+	.landing-bottom {
+		display: grid;
+		grid-template-columns: 2fr 3fr;
+		align-items: center;
+		align-content: center;
+		min-height: 0; /* prevent grid blowout */
+	}
+
+	/* ── Left column: How I Work ── */
+	.landing-work {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding-right: 2.5rem;
+	}
+
+	.work-eyebrow {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.7rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+		opacity: 0.85;
+	}
+
+	.work-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.work-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		padding-left: 0.9rem;
+		border-left: 2px solid var(--item-accent);
+	}
+
+	.work-item-num {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--item-accent);
+		opacity: 0.9;
+	}
+
+	.work-item-heading {
+		margin: 0;
+		font-size: var(--type-size-body);
+		font-weight: var(--type-weight-h4);
+		line-height: 1.25;
+		color: var(--color-ink);
+	}
+
+	.work-item-body {
+		font-size: var(--type-size-small);
+		color: var(--color-muted);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 42ch;
+	}
+
+	/* ── Right column: CTA ── */
+	.landing-cta {
+		position: relative;
+		padding-left: 3rem;
+		display: flex;
+		align-items: center;
+		max-height: 100%;
+	}
+
+	/* Fading vertical separator */
+	.landing-cta::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 8%;
+		height: 84%;
+		width: 1px;
+		background: linear-gradient(
+			to bottom,
+			transparent,
+			var(--color-border) 25%,
+			var(--color-border) 75%,
+			transparent
+		);
+	}
+</style>

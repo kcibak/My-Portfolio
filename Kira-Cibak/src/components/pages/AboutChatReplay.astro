@@ -1,12 +1,12 @@
 ---
-import { Image } from 'astro:assets';
 import Card from '../ui/Card.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 
-import chatreplay3 from '../../assets/chatreplay3 copy.png';
-import chatreplay4 from '../../assets/chatreplay4 copy.png';
-import chatreplay5 from '../../assets/chatreplay5 copy.png';
-import chatreplay6 from '../../assets/chatreplay6 copy.png';
+const baseUrl = import.meta.env.BASE_URL;
+const chatreplay3 = `${baseUrl}chatreplay3%20copy.png`;
+const chatreplay4 = `${baseUrl}chatreplay4%20copy.png`;
+const chatreplay5 = `${baseUrl}chatreplay5%20copy.png`;
+const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
 ---
 
 <SectionHeading
@@ -21,11 +21,11 @@ import chatreplay6 from '../../assets/chatreplay6 copy.png';
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay3.src}
+        data-chat-src={chatreplay3}
         data-chat-alt="ChatGPT 2025 — If 2025 gave out awards"
         aria-label="Open image: A Year Worth Celebrating"
       >
-        <Image src={chatreplay3} alt="ChatGPT 2025 — If 2025 gave out awards" class="chat-img" widths={[480, 864]} sizes="(max-width: 768px) 100vw, 55vw" />
+        <img src={chatreplay3} alt="ChatGPT 2025 — If 2025 gave out awards" class="chat-img" loading="lazy" decoding="async" />
       </button>
       <figcaption class="eyebrow chat-caption">A Year Worth Celebrating</figcaption>
     </figure>
@@ -37,11 +37,11 @@ import chatreplay6 from '../../assets/chatreplay6 copy.png';
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay6.src}
+        data-chat-src={chatreplay6}
         data-chat-alt="ChatGPT 2025 — My year painted in pixels"
         aria-label="Open image: My Year Painted in Pixels"
       >
-        <Image src={chatreplay6} alt="ChatGPT 2025 — My year painted in pixels" class="chat-img" widths={[480, 864]} sizes="(max-width: 768px) 100vw, 55vw" />
+        <img src={chatreplay6} alt="ChatGPT 2025 — My year painted in pixels" class="chat-img" loading="lazy" decoding="async" />
       </button>
       <figcaption class="eyebrow chat-caption">My Year Painted in Pixels</figcaption>
     </figure>
@@ -59,11 +59,11 @@ import chatreplay6 from '../../assets/chatreplay6 copy.png';
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay4.src}
+        data-chat-src={chatreplay4}
         data-chat-alt="AI Archetype card — front"
         aria-label="Open image: AI Archetype card front"
       >
-        <Image src={chatreplay4} alt="AI Archetype card — front" class="chat-img" widths={[432, 720]} sizes="(max-width: 768px) 100vw, 336px" />
+        <img src={chatreplay4} alt="AI Archetype card — front" class="chat-img" loading="lazy" decoding="async" />
       </button>
     </figure>
     <figure class="chat-figure">
@@ -71,11 +71,11 @@ import chatreplay6 from '../../assets/chatreplay6 copy.png';
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay5.src}
+        data-chat-src={chatreplay5}
         data-chat-alt="AI Archetype card — back"
         aria-label="Open image: AI Archetype card back"
       >
-        <Image src={chatreplay5} alt="AI Archetype card — back" class="chat-img" widths={[432, 720]} sizes="(max-width: 768px) 100vw, 336px" />
+        <img src={chatreplay5} alt="AI Archetype card — back" class="chat-img" loading="lazy" decoding="async" />
       </button>
     </figure>
   </div>
