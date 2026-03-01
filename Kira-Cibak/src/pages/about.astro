@@ -4,62 +4,76 @@ import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import AboutIntro from '../components/pages/AboutIntro.astro';
 import AboutHighlights from '../components/pages/AboutHighlights.astro';
-import AboutValues from '../components/pages/AboutValues.astro';
 import AboutChatReplay from '../components/pages/AboutChatReplay.astro';
-import Card from '../components/ui/Card.astro';
-import Tag from '../components/ui/Tag.astro';
-import SectionHeading from '../components/ui/SectionHeading.astro';
+// import AboutPortfolioStack from '../components/pages/AboutPortfolioStack.astro';
 
 export const prerender = true;
 ---
 
 <MainLayout title="About | Kira Cibak" description="Learn about Kira Cibak’s background, process, and approach to building for the web.">
-	<Section class="section">
-		<Container>
-			<AboutIntro />
+	<!-- Hero -->
+	<Section padding="compact">
+		<Container size="narrow">
+			<p class="eyebrow">About Me</p>
+			<h1 class="section-title">I build <span class="gradient-text">digital products</span> that balance clarity, speed, and reliability.</h1>
 		</Container>
 	</Section>
 
-	<Section class="section" reveal={true}>
-		<Container>
-			<AboutHighlights />
-		</Container>
-	</Section>
-
-	<Section class="section" reveal={true}>
-		<Container>
-			<AboutValues />
-		</Container>
-	</Section>
-
-	<Section class="section" reveal={true}>
-		<Container>
-			<SectionHeading
-				title="Credentials"
-				subtitle="Certifications and education that ground my technical decisions."
-			/>
-			<div class="grid-two">
-				<Card as="article" class="stack-card" padding="compact">
-					<div class="row-between-wrap">
-						<h3 class="heading-reset">Microsoft Azure Fundamentals</h3>
-						<Tag>AZ-900</Tag>
-					</div>
-					<p class="muted-copy" style="margin: 0;">Cloud-certified foundation for secure, cost-aware infrastructure.</p>
-				</Card>
-				<Card as="article" class="stack-card" padding="compact">
-					<div class="row-between-wrap">
-						<h3 class="heading-reset">Education</h3>
-						<Tag>Degree</Tag>
-					</div>
-					<p class="muted-copy" style="margin: 0;">Formal training plus continuous learning through production work.</p>
-				</Card>
+	<!-- 01 — Why I Build -->
+	<Section padding="compact" reveal={true}>
+		<Container size="narrow">
+			<div class="editorial-row">
+				<div class="editorial-label">
+					<span class="section-num gradient-text">01</span>
+					<span class="editorial-label-text">Why I Build</span>
+				</div>
+				<AboutIntro />
 			</div>
 		</Container>
 	</Section>
 
-	<Section class="section" reveal={true}>
-		<Container>
+	<!-- 02 — How I Engineer -->
+	<Section padding="compact" reveal={true}>
+		<Container size="narrow">
+			<div class="editorial-row">
+				<div class="editorial-label">
+					<span class="section-num gradient-text">02</span>
+					<span class="editorial-label-text">How I Engineer</span>
+				</div>
+				<AboutHighlights />
+			</div>
+		</Container>
+	</Section>
+
+	<!-- 03 — AI in My Workflow -->
+	<Section padding="compact" reveal={true}>
+		<Container size="narrow">
+			<div class="editorial-row">
+				<div class="editorial-label">
+					<span class="section-num gradient-text">03</span>
+					<span class="editorial-label-text">AI in My Workflow</span>
+				</div>
+				<div class="editorial-content">
+					<p>
+						AI is a daily collaborator — for prototyping, refactoring, and pressure-testing ideas before they reach production.
+						Below is my ChatGPT Year in Review, a snapshot of how that showed up across 2025.
+					</p>
+				</div>
+			</div>
 			<AboutChatReplay />
 		</Container>
 	</Section>
+
+	<!-- 04 — Building This Portfolio
+	<Section padding="compact" reveal={true}>
+		<Container size="narrow">
+			<div class="editorial-row">
+				<div class="editorial-label">
+					<span class="section-num gradient-text">04</span>
+					<span class="editorial-label-text">Building This Portfolio</span>
+				</div>
+				<AboutPortfolioStack />
+			</div>
+		</Container>
+	</Section> -->
 </MainLayout>

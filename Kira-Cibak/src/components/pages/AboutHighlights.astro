@@ -1,30 +1,20 @@
 ---
 import Card from '../ui/Card.astro';
-import Tag from '../ui/Tag.astro';
+
+const principles = [
+  { title: 'Goals Before Code', desc: 'Define what success looks like before writing a line — clarity up front prevents rework later.' },
+  { title: 'Accessibility by Default', desc: 'Semantic HTML, keyboard nav, and ARIA from the start — not bolted on before launch.' },
+  { title: 'Lean Architecture', desc: 'Pick the simplest stack that solves the problem. Complexity should be earned, not inherited.' },
+  { title: 'Ship Then Iterate', desc: 'Get working software in front of users fast, then refine with real feedback over assumptions.' },
+  { title: 'Performance as UX', desc: 'Every unnecessary kilobyte is a choice against the user. Bundle size, LCP, CLS — they all matter.' },
+  { title: 'Observable Systems', desc: 'If you can\'t see it breaking, you can\'t fix it. Logging, monitoring, and error boundaries everywhere.' },
+];
 ---
 
-<div class="grid-two">
-	<Card as="article" class="stack-card" padding="compact">
-		<h2 class="section-title section-title-small">Background</h2>
-		<p class="muted-copy" style="margin: 0;">
-			Led SaaS replatforming at Martinrea — modernizing architecture and establishing stable release patterns across 5+ client platforms.
-		</p>
-		<div class="tag-row-tight" style="margin-top: 0.25rem;">
-			<Tag>Azure Certified</Tag>
-			<Tag>5+ Client Platforms</Tag>
-			<Tag>SaaS</Tag>
-			<Tag>Stripe</Tag>
-		</div>
-	</Card>
-	<Card as="article" class="stack-card" padding="compact">
-		<h2 class="section-title section-title-small">Approach</h2>
-		<p class="muted-copy" style="margin: 0;">
-			Goals first, lean plan, responsive prototype with accessibility baked in — then iterate with real data.
-		</p>
-		<div class="tag-row-tight" style="margin-top: 0.25rem;">
-			<Tag>Lean Planning</Tag>
-			<Tag>Accessibility-first</Tag>
-			<Tag>Data-driven</Tag>
-		</div>
-	</Card>
-</div>
+<div class="principles-grid">
+  {principles.map((p, i) => (
+    <Card as="article" padding="dense" class={`stack-card ${i % 3 === 0 ? 'card-accent-top' : i % 3 === 1 ? 'card-accent-top-teal' : 'card-accent-top-warm'}`}>
+      <h3 class="heading-reset" style="margin-bottom: 0.2rem;">{p.title}</h3>
+      <p class="muted-copy" style="margin: 0; font-size: var(--type-size-small);">{p.desc}</p>
+    </Card>
+  ))}
