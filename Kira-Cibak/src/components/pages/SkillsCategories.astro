@@ -1,60 +1,105 @@
 ---
-import Card from '../ui/Card.astro';
-import Tag from '../ui/Tag.astro';
 ---
 
-<div class="grid-three">
-	<Card as="article" padding="compact" class="card-accent-top">
-		<h2 class="section-title section-title-small section-title-bottom">Front-end</h2>
-		<div class="tag-row">
-			<Tag>React</Tag>
-			<Tag>TypeScript</Tag>
-			<Tag>Next.js</Tag>
-			<Tag>Astro</Tag>
-			<Tag>JavaScript</Tag>
-			<Tag>HTML5</Tag>
-			<Tag>CSS3</Tag>
-			<Tag>Responsive Design</Tag>
-			<Tag>Accessibility (WCAG)</Tag>
-			<Tag>Component Architecture</Tag>
-			<Tag>Design Systems</Tag>
-			<Tag>WordPress Integration</Tag>
-		</div>
-	</Card>
+<div class="skills-groups">
+	<div class="skills-group">
+		<h3 class="skills-cat">Languages</h3>
+		<ul class="skills-list">
+			<li>TypeScript</li>
+			<li>Python</li>
+			<li>C</li>
+			<li>C#</li>
+			<li>Java</li>
+			<li>PHP</li>
+			<li>CSS</li>
+			<li>SQL</li>
+		</ul>
+	</div>
 
-	<Card as="article" padding="compact" class="card-accent-top-teal">
-		<h2 class="section-title section-title-small section-title-bottom">Back-end & Systems</h2>
-		<div class="tag-row">
-			<Tag>Node.js</Tag>
-			<Tag>NestJS</Tag>
-			<Tag>Express</Tag>
-			<Tag>GraphQL</Tag>
-			<Tag>REST APIs</Tag>
-			<Tag>PostgreSQL</Tag>
-			<Tag>Redis</Tag>
-			<Tag>Sequelize</Tag>
-			<Tag>Authentication & RBAC</Tag>
-			<Tag>Keycloak</Tag>
-			<Tag>API Validation</Tag>
-			<Tag>System Replatforming</Tag>
-		</div>
-	</Card>
+	<div class="skills-group">
+		<h3 class="skills-cat">Frameworks & APIs</h3>
+		<ul class="skills-list">
+			<li>React</li>
+			<li>Astro</li>
+			<li>Next.js</li>
+			<li>Node.js</li>
+			<li>NestJS</li>
+			<li>.NET</li>
+			<li>GraphQL</li>
+			<li>REST</li>
+			<li>Keycloak</li>
+		</ul>
+	</div>
 
-	<Card as="article" padding="compact" class="card-accent-top-warm">
-		<h2 class="section-title section-title-small section-title-bottom">Cloud & Delivery</h2>
-		<div class="tag-row">
-			<Tag>Azure</Tag>
-			<Tag>Docker</Tag>
-			<Tag>CI/CD Pipelines</Tag>
-			<Tag>Git / GitHub</Tag>
-			<Tag>Netlify</Tag>
-			<Tag>Stripe Integration</Tag>
-			<Tag>Deployment Automation</Tag>
-			<Tag>Performance Optimization</Tag>
-			<Tag>SEO Fundamentals</Tag>
-			<Tag>Postman</Tag>
-			<Tag>GitHub Copilot</Tag>
-			<Tag>Cursor</Tag>
-		</div>
-	</Card>
+	<div class="skills-group">
+		<h3 class="skills-cat">Databases & Cloud</h3>
+		<ul class="skills-list">
+			<li>PostgreSQL</li>
+			<li>Azure</li>
+			<li>Docker</li>
+			<li>Redis</li>
+			<li>Redux</li>
+			<li>Sequelize</li>
+			<li>Netlify</li>
+		</ul>
+	</div>
+
+	<div class="skills-group">
+		<h3 class="skills-cat">Tooling & Prototyping</h3>
+		<ul class="skills-list">
+			<li>GitHub / Git</li>
+			<li>VS Code</li>
+			<li>Cursor</li>
+			<li>Postman</li>
+			<li>Lovable.dev</li>
+			<li>Storybook</li>
+			<li>OpenAI APIs</li>
+			<li>HuggingFace APIs</li>
+			<li>Codex</li>
+			<li>GitHub Copilot</li>
+			<li>Jira / ClickUp</li>
+		</ul>
+	</div>
 </div>
+
+<style>
+	.skills-groups {
+		display: grid;
+		gap: 1.1rem;
+	}
+
+	@media (min-width: 768px) {
+		.skills-groups {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.skills-cat {
+		font-size: var(--type-size-small);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.25rem;
+	}
+
+	.skills-list {
+		margin: 0;
+		padding-left: 1.1rem;
+		color: var(--color-muted);
+		font-size: var(--type-size-small);
+		line-height: 1.6;
+		columns: 2;
+		column-gap: 0.5rem;
+	}
+
+	.skills-list li {
+		padding: 0.05rem 0;
+		break-inside: avoid;
+	}
+
+	.proto-note {
+		font-style: italic;
+		opacity: 0.75;
+	}
+</style>

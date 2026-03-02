@@ -1,0 +1,116 @@
+---
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+---
+
+<div class="snapshot">
+	<!-- Currently blurb -->
+	<div class="snapshot-block">
+		<h3 class="snapshot-label">Currently</h3>
+		<p class="snapshot-blurb">
+			Building SaaS platforms at SCx CMC Solutions · Exploring cloud architecture · Open to full-time opportunities in full-stack or cloud engineering.
+		</p>
+	</div>
+
+	<!-- Stats strip -->
+	<div class="stats-grid">
+		<Card as="div" padding="compact">
+			<p class="stat-number">6</p>
+			<p class="stat-label">Client platforms shipped</p>
+		</Card>
+		<Card as="div" padding="compact">
+			<p class="stat-number">44</p>
+			<p class="stat-label">MS Learn badges earned</p>
+		</Card>
+		<Card as="div" padding="compact">
+			<p class="stat-number">42<sup>nd</sup></p>
+			<p class="stat-label">Internationally in U.S. Cyber</p>
+		</Card>
+		<Card as="div" padding="compact">
+			<p class="stat-number">25%</p>
+			<p class="stat-label">DB complexity reduced</p>
+		</Card>
+	</div>
+
+	<!-- CTA buttons -->
+	<div class="snapshot-cta">
+		<Button variant="primary" href="/Kira%20Cibak_2025.pdf" target="_blank" rel="noopener noreferrer">
+			View Resume
+		</Button>
+		<Button variant="secondary" href="/contact" class="cta-outline">
+			Get in Touch
+		</Button>
+	</div>
+</div>
+
+<style>
+	.snapshot {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-top: 2rem;
+	}
+
+	/* ── Currently blurb ── */
+	.snapshot-label {
+		font-size: var(--type-size-small);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 0.25rem;
+	}
+
+	.snapshot-blurb {
+		margin: 0;
+		color: var(--color-muted);
+		font-size: var(--type-size-small);
+		line-height: 1.6;
+		max-width: var(--readability-paragraph-max);
+	}
+
+	/* ── Stats grid ── */
+	.stats-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.75rem;
+	}
+
+	.stat-number {
+		margin: 0;
+		font-size: var(--type-size-h3);
+		font-weight: 700;
+		line-height: 1.15;
+		color: var(--color-accent);
+	}
+
+	.stat-number sup {
+		font-size: 0.55em;
+		vertical-align: super;
+	}
+
+	.stat-label {
+		margin: 0.15rem 0 0;
+		font-size: var(--type-size-small);
+		color: var(--color-muted);
+		line-height: 1.35;
+	}
+
+	/* ── CTA row ── */
+	.snapshot-cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	/* Outlined teal variant override */
+	.snapshot-cta :global(.cta-outline) {
+		background: transparent;
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	.snapshot-cta :global(.cta-outline:hover) {
+		background: var(--color-hover-bg);
+	}
+</style>

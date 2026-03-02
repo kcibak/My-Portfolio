@@ -7,28 +7,138 @@ import Tag from '../ui/Tag.astro';
 	<div class="timeline-entry">
 		<Card as="article" class="stack-card" padding="compact">
 			<div class="row-between-wrap">
-				<h3 class="heading-reset">Full-Stack Developer @ Martinrea International</h3>
-				<Tag>2024 — Present</Tag>
+				<h3 class="heading-reset">Lead Web Developer / Project Lead</h3>
+				<Tag>Aug 2025 – Present</Tag>
 			</div>
-			<p class="muted-copy" style="margin: 0;">Led SaaS replatforming effort, reducing system complexity by ~25% and improving release reliability across multiple product lines.</p>
+			<p class="timeline-org">SCx CMC Solutions · Remote</p>
+			<p class="timeline-desc">Led delivery of 5 client platforms across pharma and nonprofit sectors — owning architecture, Stripe integrations, and deployment pipelines end-to-end.</p>
 		</Card>
 	</div>
+
 	<div class="timeline-entry">
 		<Card as="article" class="stack-card" padding="compact">
 			<div class="row-between-wrap">
-				<h3 class="heading-reset">Developer — Client Platforms & Payments</h3>
-				<Tag>2022 — 2024</Tag>
+				<h3 class="heading-reset">Software Engineer Intern</h3>
+				<Tag>May 2025 – Aug 2025</Tag>
 			</div>
-			<p class="muted-copy" style="margin: 0;">Shipped 5+ client-facing platforms and built Stripe revenue systems from integration through production operations.</p>
+			<p class="timeline-org">Martinrea International – MiNDCAN · Remote</p>
+			<p class="timeline-desc">Independently replatformed a SaaS license management system to React + TypeScript and PostgreSQL, cutting database complexity by ~25%.</p>
 		</Card>
 	</div>
+
 	<div class="timeline-entry">
 		<Card as="article" class="stack-card" padding="compact">
 			<div class="row-between-wrap">
-				<h3 class="heading-reset">Education & Certification</h3>
-				<Tag>AZ-900</Tag>
+				<h3 class="heading-reset">Microsoft Certified: Azure Fundamentals</h3>
+				<Tag>AZ-900 · Dec 2025</Tag>
 			</div>
-			<p class="muted-copy" style="margin: 0;">Microsoft Azure Fundamentals certification combined with formal education and continuous learning.</p>
+			<p class="timeline-desc">Cloud concepts, Azure services, security, and identity. Earned 44 Microsoft Learn badges and 11 trophies.</p>
+		</Card>
+	</div>
+
+	<div class="timeline-entry">
+		<Card as="article" class="stack-card" padding="compact">
+			<div class="row-between-wrap">
+				<h3 class="heading-reset">US Cyber Challenge – Cyber Quests</h3>
+				<Tag>Cybersecurity</Tag>
+			</div>
+			<p class="timeline-desc">Competitive national cybersecurity talent pipeline. Ranked 83rd, 76th and 42nd internationally across three US Cyber Challenge competitions.</p>
 		</Card>
 	</div>
 </div>
+
+<style>
+	.timeline-grid {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding-left: 0;
+	}
+
+	.timeline-grid::before {
+		content: '';
+		position: absolute;
+		width: 2px;
+		background-color: var(--color-border);
+		border-radius: 999px;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 1.2rem;
+		bottom: 1.2rem;
+	}
+
+	.timeline-entry {
+		position: relative;
+		width: calc(50% - 1.25rem);
+	}
+
+	.timeline-entry::before {
+		content: '';
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: var(--color-accent);
+		border: 2px solid var(--color-bg);
+		border-radius: 50%;
+	}
+
+	.timeline-entry:nth-child(odd) {
+		align-self: flex-start;
+		padding-right: 0.5rem;
+	}
+
+	.timeline-entry:nth-child(even) {
+		align-self: flex-end;
+		padding-left: 0.5rem;
+	}
+
+	.timeline-entry:nth-child(odd)::before {
+		left: auto;
+		right: -1.35rem;
+		top: 1.15rem;
+	}
+
+	.timeline-entry:nth-child(even)::before {
+		left: -1.35rem;
+		top: 1.15rem;
+	}
+
+	@media (max-width: 767px) {
+		.timeline-grid {
+			padding-left: 1.5rem;
+		}
+
+		.timeline-grid::before {
+			left: 5px;
+			transform: none;
+		}
+
+		.timeline-entry {
+			width: 100%;
+			align-self: stretch;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.timeline-entry:nth-child(odd)::before,
+		.timeline-entry:nth-child(even)::before {
+			left: -1.5rem;
+			right: auto;
+		}
+	}
+
+	.timeline-org {
+		margin: 0;
+		font-weight: 500;
+		font-size: var(--type-size-small);
+		color: var(--color-muted);
+	}
+
+	.timeline-desc {
+		margin: 0.2rem 0 0;
+		font-size: var(--type-size-small);
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
+</style>

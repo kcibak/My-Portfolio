@@ -4,6 +4,7 @@ import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import SkillsCategories from '../components/pages/SkillsCategories.astro';
 import SkillsTimeline from '../components/pages/SkillsTimeline.astro';
+import SkillsSnapshot from '../components/pages/SkillsSnapshot.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 
 export const prerender = true;
@@ -18,16 +19,34 @@ export const prerender = true;
 		</Container>
 	</Section>
 
-	<Section class="section" reveal={true}>
+	<Section class="section" reveal={true} style="padding-top: 0">
 		<Container>
-			<SkillsCategories />
-		</Container>
-	</Section>
-
-	<Section class="section" reveal={true}>
-		<Container>
-			<SectionHeading title="Experience & education" />
-			<SkillsTimeline />
+			<div class="skills-split">
+				<div>
+					<SectionHeading title="Skills & Tools" size="sub" />
+					<SkillsCategories />
+					<SkillsSnapshot />
+				</div>
+				<div>
+					<SectionHeading title="Experience & Education" size="sub" />
+					<SkillsTimeline />
+				</div>
+			</div>
 		</Container>
 	</Section>
 </MainLayout>
+
+<style>
+	.skills-split {
+		display: grid;
+		gap: 2rem;
+	}
+
+	@media (min-width: 768px) {
+		.skills-split {
+			grid-template-columns: 2fr 3fr;
+			gap: 2.5rem;
+			align-items: start;
+		}
+	}
+</style>

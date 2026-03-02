@@ -67,36 +67,9 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			</button>
 		</div>
 		<a href="/" class="brand">Kira Cibak</a>
-		<div class="menu-shell" id="menu-shell">
-			<button
-				class="menu-trigger"
-				id="menu-toggle"
-				type="button"
-				aria-expanded="false"
-				aria-controls="parabola-menu"
-				aria-label="Open primary navigation"
-			>
-				<span class="diamond-icon" aria-hidden="true">
-					<svg viewBox="0 0 64 64" fill="none" xmlns="http:a//www.w3.org/2000/svg">
-						<defs>
-							<linearGradient id="diamond-face" x1="16" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
-								<stop stop-color="var(--color-accent)" stop-opacity="0.92" />
-								<stop offset="1" stop-color="var(--color-accent)" stop-opacity="0.6" />
-							</linearGradient>
-							<linearGradient id="diamond-edge" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
-								<stop stop-color="var(--color-ink)" stop-opacity="0.7" />
-								<stop offset="1" stop-color="var(--color-ink)" stop-opacity="0.4" />
-							</linearGradient>
-						</defs>
-						<path d="M32 4 8 32l24 28 24-28L32 4Z" fill="url(#diamond-face)" />
-						<path d="M32 4 18 32l14 28 14-28L32 4Z" fill="url(#diamond-edge)" opacity="0.65" />
-						<circle cx="32" cy="20" r="4" fill="var(--color-bg)" opacity="0.9" />
-					</svg>
-				</span>
-			</button>
-		</div>
+		<div class="nav-balance" aria-hidden="true"></div>
 	</div>
-	<nav id="parabola-menu" class="parabola-menu" aria-label="Primary navigation" aria-hidden="true">
+	<nav id="parabola-menu" class="parabola-menu" aria-label="Primary navigation">
 		{links.map((link, index) => (
 			<a href={link.href} style={`--arc-offset:${Math.abs((links.length - 1) / 2 - index)};`}>{link.label}</a>
 		))}
@@ -114,10 +87,6 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		height: 96px;
 		box-shadow: var(--shadow-soft);
 		transition: height 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-	}
-
-	:global(.dome-header.is-open) {
-		box-shadow: var(--shadow-soft);
 	}
 
 	:global(html.dark .dome-header) {
@@ -218,8 +187,6 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		color: var(--color-theme-toggle-active-icon);
 	}
 
-
-
 	.nav-shell {
 		max-width: var(--content-max);
 		margin: 0 auto;
@@ -266,7 +233,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		position: relative;
 	}
 
-		.copy-tooltip {
+	.copy-tooltip {
 		position: absolute;
 		left: 50%;
 		bottom: -2.75rem;
@@ -275,9 +242,9 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		border-radius: var(--radius);
 		background: var(--color-ink);
 		color: var(--color-bg);
-			font-size: var(--type-size-small);
-			line-height: var(--type-line-small);
-			font-weight: 700;
+		font-size: var(--type-size-small);
+		line-height: var(--type-line-small);
+		font-weight: 700;
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 0.2s ease, transform 0.2s ease;
@@ -290,16 +257,22 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		transform: translateX(-50%) translateY(0);
 	}
 
-		.brand {
-			justify-self: center;
-			font-weight: 800;
-			font-size: var(--type-size-h2);
-			line-height: var(--type-line-h2);
-			letter-spacing: -0.03em;
-			color: var(--color-ink);
-			text-decoration: none;
-			transition: transform 0.2s ease;
-		}
+	.brand {
+		justify-self: center;
+		font-weight: 800;
+		font-size: var(--type-size-h2);
+		line-height: var(--type-line-h2);
+		letter-spacing: -0.03em;
+		color: var(--color-ink);
+		text-decoration: none;
+		transition: transform 0.2s ease;
+	}
+
+	.nav-balance {
+		justify-self: end;
+		width: 44px;
+		height: 44px;
+	}
 
 	:global(.dome-header.is-condensed) {
 		height: 72px;
@@ -310,79 +283,18 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		padding: 1rem 1.2rem 0.6rem;
 	}
 
-		:global(.dome-header.is-condensed) .brand {
-			justify-self: center;
-			text-align: center;
-			transform: none;
-		}
+	:global(.dome-header.is-condensed) .brand {
+		justify-self: center;
+		text-align: center;
+		transform: none;
+	}
 
-	:global(.dome-header.is-condensed) .social-bar,
-	:global(.dome-header.is-condensed) .menu-shell,
-	:global(.dome-header.is-condensed) .parabola-menu,
-	:global(.dome-header.is-condensed) .theme-toggle {
+	:global(.dome-header.is-condensed) .social-bar {
 		opacity: 0;
 		pointer-events: none;
 		transform: translateY(-6px);
 		transition: opacity 0.16s ease, transform 0.16s ease;
-	}
-
-
-	:global(.dome-header.is-condensed) .social-bar,
-	:global(.dome-header.is-condensed) .menu-shell,
-	:global(.dome-header.is-condensed) .theme-toggle {
 		display: none;
-	}
-
-
-	.menu-shell {
-		justify-self: end;
-		display: inline-flex;
-		align-items: center;
-	}
-
-	.menu-trigger {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.4rem;
-		border-radius: var(--radius);
-		border: none;
-		background: var(--color-transparent);
-		font-weight: 700;
-		color: var(--color-ink);
-		cursor: pointer;
-		box-shadow: var(--shadow-soft);
-		transition: none;
-	}
-
-	.menu-trigger:hover {
-		outline: none;
-	}
-
-	.menu-trigger:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 4px;
-	}
-
-	.diamond-icon {
-		width: 42px;
-		height: 42px;
-		display: grid;
-		place-items: center;
-		filter: drop-shadow(var(--shadow-soft));
-		transition: transform 0.28s ease;
-	}
-
-	.diamond-icon svg {
-		width: 100%;
-		height: 100%;
-		transform-origin: center;
-		transform: rotate(-8deg) scale(0.96);
-		transition: transform 0.28s ease;
-	}
-
-	.menu-shell:hover .diamond-icon svg,
-	.dome-header.is-open .diamond-icon svg {
-		transform: rotate(180deg) scale(0.96);
 	}
 
 	.dome-header {
@@ -394,11 +306,11 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		left: 0;
 		right: 0;
 		top: 100%;
-		transform: translateY(0) scale(0.98);
+		transform: translateY(0) scale(1);
 		width: 100%;
 		height: clamp(84px, 6vw, 119px);
-		opacity: 0;
-		pointer-events: none;
+		opacity: 1;
+		pointer-events: auto;
 		transition: transform 0.28s ease, opacity 0.28s ease;
 		z-index: 60;
 		clip-path: ellipse(100% 75% at 50% 0%);
@@ -417,6 +329,12 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		isolation: isolate;
 		--parabola-edge-width: 0px;
 		--parabola-edge-highlight-width: 0px;
+	}
+
+	:global(.dome-header.is-condensed) .parabola-menu {
+		height: clamp(72px, 5.2vw, 96px);
+		padding: 0.1rem 1.6rem 1.35rem;
+		gap: clamp(0.5rem, 1.5vw, 1.4rem);
 	}
 
 	.parabola-menu::before,
@@ -457,17 +375,6 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		opacity: 0.98;
 	}
 
-	:global(.dome-header.is-condensed) .parabola-menu {
-		display: none;
-	}
-
-	.menu-shell:hover + .parabola-menu,
-	.dome-header.is-open .parabola-menu {
-		opacity: 1;
-		pointer-events: auto;
-		transform: translateY(0) scale(1);
-	}
-
 	.parabola-menu a {
 		font-weight: 500;
 		font-size: calc(var(--type-size-body) * 1.15);
@@ -482,6 +389,12 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		z-index: 3;
 		overflow: hidden;
 		isolation: isolate;
+	}
+
+	:global(.dome-header.is-condensed) .parabola-menu a {
+		font-size: calc(var(--type-size-body) * 1.03);
+		padding: 0.45rem 0.8rem;
+		opacity: 0.86;
 	}
 
 	.parabola-menu a::before {
@@ -544,68 +457,40 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 
 	@media (max-width: 720px) {
 		.nav-shell {
-			grid-template-columns: 1fr auto;
-			grid-template-rows: auto auto;
+			grid-template-columns: 1fr;
 			row-gap: 0.75rem;
 		}
 
 		.social-bar {
-			grid-column: 1 / 2;
 			justify-content: flex-start;
 		}
 
 		.brand {
-			grid-column: 1 / -1;
 			justify-self: center;
 			text-align: center;
 		}
 
-		.menu-shell {
-			grid-column: 2 / 3;
+		.nav-balance {
+			display: none;
 		}
 	}
-
-	</style>
+</style>
 
 <script>
 	const header = document.getElementById('site-header');
-	const toggle = document.getElementById('menu-toggle');
-	const parabola = document.getElementById('parabola-menu');
-	const menuShell = document.getElementById('menu-shell');
 	const copyBtn = document.getElementById('email-copy');
 	const emailTooltip = document.getElementById('email-tooltip');
 	const resumeLink = document.querySelector('.resume-link');
 	const resumeTooltip = document.getElementById('resume-tooltip');
 	const emailAddress = copyBtn?.dataset.email ?? '';
-	let closeTimer: number | undefined;
 	let lastScrollY = window.scrollY;
 	let ticking = false;
 	let isShowingFeedback = false;
-
-	const openMenu = () => {
-		header?.classList.add('is-open');
-		parabola?.setAttribute('aria-hidden', 'false');
-		toggle?.setAttribute('aria-expanded', 'true');
-	};
-
-	const closeMenu = () => {
-		header?.classList.remove('is-open');
-		parabola?.setAttribute('aria-hidden', 'true');
-		toggle?.setAttribute('aria-expanded', 'false');
-	};
-
-	const cancelCloseTimer = () => {
-		if (closeTimer) {
-			clearTimeout(closeTimer);
-			closeTimer = undefined;
-		}
-	};
 
 	const setCondensed = (condensed: boolean) => {
 		if (!header) return;
 		if (condensed) {
 			header.classList.add('is-condensed');
-			closeMenu();
 		} else {
 			header.classList.remove('is-condensed');
 		}
@@ -628,37 +513,21 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		lastScrollY = currentY;
 	};
 
-	window.addEventListener('scroll', () => {
-		if (!ticking) {
-			window.requestAnimationFrame(() => {
-				handleScroll();
-				ticking = false;
-			});
-			ticking = true;
-		}
-	}, { passive: true });
+	window.addEventListener(
+		'scroll',
+		() => {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					handleScroll();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		},
+		{ passive: true }
+	);
 
 	handleScroll();
-
-	menuShell?.addEventListener('mouseenter', () => {
-		cancelCloseTimer();
-		openMenu();
-	});
-
-	menuShell?.addEventListener('mouseleave', () => {
-		closeTimer = window.setTimeout(closeMenu, 140);
-	});
-
-	menuShell?.addEventListener('keydown', (event) => {
-		if (event.key === 'Escape') {
-			closeMenu();
-		}
-	});
-
-	parabola?.addEventListener('mouseenter', cancelCloseTimer);
-	parabola?.addEventListener('mouseleave', () => {
-		closeTimer = window.setTimeout(closeMenu, 140);
-	});
 
 	const showTooltip = (el: HTMLElement | null) => {
 		if (!el) return;
@@ -674,7 +543,6 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		el.setAttribute('aria-hidden', 'true');
 	};
 
-	// Resume tooltip hover/focus
 	if (resumeLink && resumeTooltip) {
 		resumeLink.addEventListener('mouseenter', () => showTooltip(resumeTooltip));
 		resumeLink.addEventListener('mouseleave', () => hideTooltip(resumeTooltip));
@@ -682,7 +550,6 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		resumeLink.addEventListener('blur', () => hideTooltip(resumeTooltip));
 	}
 
-	// Email copy tooltip: hover shows "Copy email", click shows "Email copied!"
 	const copyEmail = async () => {
 		try {
 			await navigator.clipboard.writeText(emailAddress);
@@ -705,10 +572,28 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	};
 
 	if (copyBtn && emailTooltip) {
-		copyBtn.addEventListener('mouseenter', () => { emailTooltip.textContent = 'Copy email'; showTooltip(emailTooltip); });
-		copyBtn.addEventListener('mouseleave', () => { if (!isShowingFeedback) { hideTooltip(emailTooltip); emailTooltip.textContent = ''; } });
-		copyBtn.addEventListener('focus', () => { emailTooltip.textContent = 'Copy email'; showTooltip(emailTooltip); });
-		copyBtn.addEventListener('blur', () => { if (!isShowingFeedback) { hideTooltip(emailTooltip); emailTooltip.textContent = ''; } });
+		copyBtn.addEventListener('mouseenter', () => {
+			if (isShowingFeedback) return;
+			emailTooltip.textContent = 'Copy email';
+			showTooltip(emailTooltip);
+		});
+		copyBtn.addEventListener('mouseleave', () => {
+			if (!isShowingFeedback) {
+				hideTooltip(emailTooltip);
+				emailTooltip.textContent = '';
+			}
+		});
+		copyBtn.addEventListener('focus', () => {
+			if (isShowingFeedback) return;
+			emailTooltip.textContent = 'Copy email';
+			showTooltip(emailTooltip);
+		});
+		copyBtn.addEventListener('blur', () => {
+			if (!isShowingFeedback) {
+				hideTooltip(emailTooltip);
+				emailTooltip.textContent = '';
+			}
+		});
 		copyBtn.addEventListener('click', copyEmail);
 	}
 </script>

@@ -2,15 +2,17 @@
 type Props = {
 	title: string;
 	subtitle?: string;
+	size?: 'default' | 'sub';
 };
 
 const {
 	title,
-	subtitle
+	subtitle,
+	size = 'default'
 } = Astro.props as Props;
 ---
 
 <div class="section-heading">
-	<h2 class="section-title">{title}</h2>
+	<h2 class:list={['section-title', size === 'sub' && 'section-title-small']}>{title}</h2>
 	{subtitle ? <p class="section-subtitle">{subtitle}</p> : null}
 </div>
