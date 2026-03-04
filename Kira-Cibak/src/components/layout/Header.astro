@@ -164,7 +164,20 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		box-shadow: var(--shadow-soft);
 	}
 
+	:global(html.dark .theme-toggle .theme-toggle__track),
+	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__track) {
+		border-color: var(--color-accent);
+		background: var(--color-theme-toggle-active-bg);
+		box-shadow: var(--shadow-soft);
+	}
+
 	:global(.theme-toggle[data-mode='dark'] .theme-toggle__knob) {
+		transform: translateX(32px);
+		background: var(--color-ink);
+	}
+
+	:global(html.dark .theme-toggle .theme-toggle__knob),
+	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__knob) {
 		transform: translateX(32px);
 		background: var(--color-ink);
 	}
@@ -173,7 +186,18 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		opacity: 0;
 	}
 
+	:global(html:not(.dark) .theme-toggle .theme-toggle__icon.sun),
+	:global(html[data-theme-mode='light'] .theme-toggle .theme-toggle__icon.sun) {
+		opacity: 0;
+	}
+
 	:global(.theme-toggle[data-mode='light'] .theme-toggle__icon.moon) {
+		opacity: 1;
+		color: var(--color-ink);
+	}
+
+	:global(html:not(.dark) .theme-toggle .theme-toggle__icon.moon),
+	:global(html[data-theme-mode='light'] .theme-toggle .theme-toggle__icon.moon) {
 		opacity: 1;
 		color: var(--color-ink);
 	}
@@ -182,7 +206,18 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		opacity: 0;
 	}
 
+	:global(html.dark .theme-toggle .theme-toggle__icon.moon),
+	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__icon.moon) {
+		opacity: 0;
+	}
+
 	:global(.theme-toggle[data-mode='dark'] .theme-toggle__icon.sun) {
+		opacity: 1;
+		color: var(--color-theme-toggle-active-icon);
+	}
+
+	:global(html.dark .theme-toggle .theme-toggle__icon.sun),
+	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__icon.sun) {
 		opacity: 1;
 		color: var(--color-theme-toggle-active-icon);
 	}
@@ -203,6 +238,8 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		align-items: center;
 		justify-content: flex-start;
 		gap: 0.55rem;
+		position: relative;
+		z-index: 65;
 	}
 
 	.social-icon {
@@ -250,6 +287,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		transition: opacity 0.2s ease, transform 0.2s ease;
 		white-space: nowrap;
 		box-shadow: var(--shadow-soft);
+		z-index: 80;
 	}
 
 	.copy-tooltip.show {

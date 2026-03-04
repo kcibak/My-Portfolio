@@ -14,6 +14,7 @@ function getInitialMode(): Mode {
 function applyMode(mode: Mode) {
 	const root = document.documentElement;
 	root.classList.toggle('dark', mode === 'dark');
+	root.dataset.themeMode = mode;
 	window.localStorage.setItem(storageKey, mode);
 }
 
@@ -24,8 +25,8 @@ export default function ThemeToggle() {
 		applyMode(mode);
 	}, [mode]);
 
-	const onChange = (e: Event) => {
-		const input = e.target as HTMLInputElement;
+	const onInput = (e: Event) => {
+		const input = e.currentTarget as HTMLInputElement;
 		const next: Mode = input.checked ? 'dark' : 'light';
 		setMode(next);
 	};
@@ -38,7 +39,7 @@ export default function ThemeToggle() {
 				type="checkbox"
 				role="switch"
 				checked={mode === 'dark'}
-				onChange={onChange}
+				onInput={onInput}
 				aria-checked={mode === 'dark'}
 			/>
 			<span class="theme-toggle__track" aria-hidden="true">
