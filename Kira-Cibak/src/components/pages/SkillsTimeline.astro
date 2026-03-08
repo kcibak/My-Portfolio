@@ -3,142 +3,240 @@ import Card from '../ui/Card.astro';
 import Tag from '../ui/Tag.astro';
 ---
 
-<div class="timeline-grid">
-	<div class="timeline-entry">
-		<Card as="article" class="stack-card" padding="compact">
-			<div class="row-between-wrap">
-				<h3 class="heading-reset">Lead Web Developer / Project Lead</h3>
+<div class="timeline">
+	<!-- Entry 1 — top (odd) -->
+	<div class="tl-entry">
+		<div class="tl-card">
+			<Card as="article" padding="compact">
 				<Tag>Aug 2025 – Present</Tag>
-			</div>
-			<p class="timeline-org">SCx CMC Solutions · Remote</p>
-			<p class="timeline-desc">Led delivery of 5 client platforms across pharma and nonprofit sectors — owning architecture, Stripe integrations, and deployment pipelines end-to-end.</p>
-		</Card>
+				<h3 class="tl-title">Lead Web Developer</h3>
+				<p class="tl-org">SCx CMC Solutions</p>
+				<p class="tl-desc">Led delivery of 5 client platforms across pharma and nonprofit — architecture, Stripe, deployments.</p>
+			</Card>
+		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
 	</div>
 
-	<div class="timeline-entry">
-		<Card as="article" class="stack-card" padding="compact">
-			<div class="row-between-wrap">
-				<h3 class="heading-reset">Software Engineer Intern</h3>
-				<Tag>May 2025 – Aug 2025</Tag>
-			</div>
-			<p class="timeline-org">Martinrea International – MiNDCAN · Remote</p>
-			<p class="timeline-desc">Independently replatformed a SaaS license management system to React + TypeScript and PostgreSQL, cutting database complexity by ~25%.</p>
-		</Card>
+	<!-- Entry 2 — bottom (even) · placeholder after present -->
+	<div class="tl-entry tl-entry--placeholder">
+		<div class="tl-pad"></div>
+		<div class="tl-dot tl-dot--muted"></div>
+		<div class="tl-card">
+			<Card as="article" padding="compact" class="tl-placeholder">
+				<Tag>Coming Soon</Tag>
+				<h3 class="tl-title">Next Role</h3>
+				<p class="tl-org">TBD</p>
+				<p class="tl-desc">Placeholder — open to full-time opportunities in full-stack or cloud engineering.</p>
+			</Card>
+		</div>
 	</div>
 
-	<div class="timeline-entry">
-		<Card as="article" class="stack-card" padding="compact">
-			<div class="row-between-wrap">
-				<h3 class="heading-reset">Microsoft Certified: Azure Fundamentals</h3>
-				<Tag>AZ-900 · Dec 2025</Tag>
-			</div>
-			<p class="timeline-desc">Cloud concepts, Azure services, security, and identity. Earned 44 Microsoft Learn badges and 11 trophies.</p>
-		</Card>
+	<!-- Entry 3 — top (odd) -->
+	<div class="tl-entry">
+		<div class="tl-card">
+			<Card as="article" padding="compact">
+				<Tag>May – Aug 2025</Tag>
+				<h3 class="tl-title">Software Engineer Intern</h3>
+				<p class="tl-org">Martinrea International</p>
+				<p class="tl-desc">Replatformed a SaaS license system to React + TypeScript, cutting DB complexity ~25%.</p>
+			</Card>
+		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
 	</div>
 
-	<div class="timeline-entry">
-		<Card as="article" class="stack-card" padding="compact">
-			<div class="row-between-wrap">
-				<h3 class="heading-reset">US Cyber Challenge – Cyber Quests</h3>
+	<!-- Entry 4 — bottom (even) · placeholder before Azure -->
+	<div class="tl-entry tl-entry--placeholder">
+		<div class="tl-pad"></div>
+		<div class="tl-dot tl-dot--muted"></div>
+		<div class="tl-card">
+			<Card as="article" padding="compact" class="tl-placeholder">
+				<Tag>TBD</Tag>
+				<h3 class="tl-title">Placeholder</h3>
+				<p class="tl-org">—</p>
+				<p class="tl-desc">Another cert, course, or milestone to be added here.</p>
+			</Card>
+		</div>
+	</div>
+
+	<!-- Entry 5 — top (odd) -->
+	<div class="tl-entry">
+		<div class="tl-card">
+			<Card as="article" padding="compact">
+				<Tag>Dec 2025</Tag>
+				<h3 class="tl-title">Azure Fundamentals</h3>
+				<p class="tl-org">AZ-900 Certification</p>
+				<p class="tl-desc">Cloud services, security & identity. 44 MS Learn badges, 11 trophies.</p>
+			</Card>
+		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
+	</div>
+
+	<!-- Entry 6 — bottom (even) -->
+	<div class="tl-entry">
+		<div class="tl-pad"></div>
+		<div class="tl-dot"></div>
+		<div class="tl-card">
+			<Card as="article" padding="compact">
 				<Tag>Cybersecurity</Tag>
-			</div>
-			<p class="timeline-desc">Competitive national cybersecurity talent pipeline. Ranked 83rd, 76th and 42nd internationally across three US Cyber Challenge competitions.</p>
-		</Card>
+				<h3 class="tl-title">US Cyber Challenge</h3>
+				<p class="tl-org">Cyber Quests</p>
+				<p class="tl-desc">National cybersecurity pipeline. Ranked 42nd internationally.</p>
+			</Card>
+		</div>
 	</div>
 </div>
 
 <style>
-	.timeline-grid {
+	/* ── Alternating horizontal timeline ── */
+	.timeline {
+		display: grid;
+		grid-template-rows: min-content 28px min-content;
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
+		column-gap: 1.25rem;
 		position: relative;
+	}
+
+	/* Horizontal line through the dot row */
+	.timeline::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: var(--color-border);
+		border-radius: 999px;
+		transform: translateY(-50%);
+	}
+
+	.tl-entry {
+		display: contents;
+	}
+
+	/* ── Card cell — rows are fixed so cards fill them exactly ── */
+	.tl-card {
+		height: 100%;
+	}
+
+	.tl-card :global(.ui-card) {
+		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.75rem;
-		padding-left: 0;
+		gap: 0.2rem;
+		overflow: hidden;
 	}
 
-	.timeline-grid::before {
-		content: '';
-		position: absolute;
-		width: 2px;
-		background-color: var(--color-border);
-		border-radius: 999px;
-		left: 50%;
-		transform: translateX(-50%);
-		top: 1.2rem;
-		bottom: 1.2rem;
+	.tl-card :global(.tl-placeholder) {
+		opacity: 0.5;
+		border-style: dashed;
 	}
 
-	.timeline-entry {
-		position: relative;
-		width: calc(50% - 1.25rem);
+	/* Muted dot for placeholder entries */
+	.tl-dot--muted {
+		background: var(--color-border) !important;
 	}
 
-	.timeline-entry::before {
-		content: '';
-		position: absolute;
-		width: 10px;
-		height: 10px;
-		background-color: var(--color-accent);
-		border: 2px solid var(--color-bg);
+	/* Cards fill their fixed-height row — no alignment shift needed */
+	.tl-entry:nth-child(odd) .tl-card,
+	.tl-entry:nth-child(even) .tl-card {
+		align-self: stretch;
+	}
+
+	/* ── Dot ── */
+	.tl-dot {
+		width: 12px;
+		height: 12px;
 		border-radius: 50%;
+		background: var(--color-accent);
+		border: 2px solid var(--color-bg);
+		justify-self: center;
+		align-self: center;
+		z-index: 1;
 	}
 
-	.timeline-entry:nth-child(odd) {
-		align-self: flex-start;
-		padding-right: 0.5rem;
+	/* ── Spacer (holds the empty row opposite the card) ── */
+	.tl-pad {
+		pointer-events: none;
 	}
 
-	.timeline-entry:nth-child(even) {
-		align-self: flex-end;
-		padding-left: 0.5rem;
+	/* ── Typography ── */
+	.tl-title {
+		margin: 0;
+		font-size: var(--type-size-h4);
+		font-weight: 600;
+		line-height: 1.3;
 	}
 
-	.timeline-entry:nth-child(odd)::before {
-		left: auto;
-		right: -1.35rem;
-		top: 1.15rem;
+	.tl-org {
+		margin: 0;
+		font-size: var(--type-size-small);
+		font-weight: 500;
+		color: var(--color-muted);
 	}
 
-	.timeline-entry:nth-child(even)::before {
-		left: -1.35rem;
-		top: 1.15rem;
+	.tl-desc {
+		margin: 0;
+		font-size: var(--type-size-small);
+		color: var(--color-muted);
+		line-height: 1.45;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
+	/* ── Mobile: collapse to vertical timeline ── */
 	@media (max-width: 767px) {
-		.timeline-grid {
+		.timeline {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
 			padding-left: 1.5rem;
 		}
 
-		.timeline-grid::before {
+		.timeline::after {
+			top: 0.5rem;
+			bottom: 0.5rem;
 			left: 5px;
+			right: auto;
+			width: 2px;
+			height: auto;
 			transform: none;
 		}
 
-		.timeline-entry {
-			width: 100%;
-			align-self: stretch;
-			padding-left: 0;
-			padding-right: 0;
+		.tl-entry {
+			display: block;
+			position: relative;
 		}
 
-		.timeline-entry:nth-child(odd)::before,
-		.timeline-entry:nth-child(even)::before {
+		.tl-dot,
+		.tl-pad {
+			display: none;
+		}
+
+		.tl-entry::before {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background: var(--color-accent);
+			border: 2px solid var(--color-bg);
+			border-radius: 50%;
+			top: 1rem;
 			left: -1.5rem;
-			right: auto;
 		}
-	}
 
-	.timeline-org {
-		margin: 0;
-		font-weight: 500;
-		font-size: var(--type-size-small);
-		color: var(--color-muted);
-	}
+		.tl-entry--placeholder::before {
+			background: var(--color-border);
+		}
 
-	.timeline-desc {
-		margin: 0.2rem 0 0;
-		font-size: var(--type-size-small);
-		color: var(--color-muted);
-		line-height: 1.5;
+		.tl-card {
+			height: auto;
+			min-height: 0;
+		}
 	}
 </style>

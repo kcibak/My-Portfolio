@@ -6,7 +6,6 @@ import SkillsCategories from '../components/pages/SkillsCategories.astro';
 import SkillsTimeline from '../components/pages/SkillsTimeline.astro';
 import SkillsSnapshot from '../components/pages/SkillsSnapshot.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
-
 export const prerender = true;
 ---
 
@@ -21,15 +20,20 @@ export const prerender = true;
 
 	<Section class="section" reveal={true} style="padding-top: 0">
 		<Container>
+			<SectionHeading title="Experience & Education" size="sub" />
+			<SkillsTimeline />
+		</Container>
+	</Section>
+
+	<Section class="section" reveal={true} style="padding-top: 0">
+		<Container>
+			<SectionHeading title="Skills & Tools" size="sub" />
 			<div class="skills-split">
-				<div>
-					<SectionHeading title="Skills & Tools" size="sub" />
+				<div class="skills-split-left">
 					<SkillsCategories />
-					<SkillsSnapshot />
 				</div>
-				<div>
-					<SectionHeading title="Experience & Education" size="sub" />
-					<SkillsTimeline />
+				<div class="skills-split-right">
+					<SkillsSnapshot />
 				</div>
 			</div>
 		</Container>
@@ -39,14 +43,22 @@ export const prerender = true;
 <style>
 	.skills-split {
 		display: grid;
-		gap: 2rem;
+		grid-template-columns: 1fr 300px;
+		gap: 3rem;
+		align-items: start;
 	}
 
-	@media (min-width: 768px) {
+	.skills-split-right {
+	}
+
+	@media (max-width: 900px) {
 		.skills-split {
-			grid-template-columns: 2fr 3fr;
-			gap: 2.5rem;
-			align-items: start;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.skills-split-right {
+			max-width: none;
 		}
 	}
 </style>

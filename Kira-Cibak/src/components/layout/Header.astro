@@ -1,6 +1,8 @@
 ---
 import ThemeToggle from '../ui/ThemeToggle.tsx';
 
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
 const links = [
 	{ href: '/about', label: 'About' },
 	{ href: '/skills', label: 'Skills & Experience' },
@@ -20,6 +22,20 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 
 <header class="dome-header" id="site-header">
 	<ThemeToggle client:load />
+	<button
+		class="mobile-toggle"
+		id="mobile-menu-toggle"
+		type="button"
+		aria-expanded="false"
+		aria-controls="mobile-menu"
+		aria-label="Open navigation menu"
+	>
+		<svg class="toggle-icon" aria-hidden="true" viewBox="0 0 64 64" width="24" height="24">
+			<path d="M32 4 8 32l24 28 24-28L32 4Z" fill="currentColor" />
+			<path d="M32 4 18 32l14 28 14-28L32 4Z" fill="currentColor" opacity="0.4" />
+			<circle cx="32" cy="20" r="4" fill="var(--color-bg)" />
+		</svg>
+	</button>
 	<div class="nav-shell">
 		<div class="social-bar">
 			{socials.map((link) => (
@@ -71,9 +87,69 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	</div>
 	<nav id="parabola-menu" class="parabola-menu" aria-label="Primary navigation">
 		{links.map((link, index) => (
-			<a href={link.href} style={`--arc-offset:${Math.abs((links.length - 1) / 2 - index)};`}>{link.label}</a>
+			<a
+			href={link.href}
+			style={`--arc-offset:${Math.abs((links.length - 1) / 2 - index)};`}
+			{...(currentPath === link.href || currentPath.startsWith(link.href + '/') ? { 'aria-current': 'page' } : {})}
+		>{link.label}</a>
 		))}
 	</nav>
+
+	<div id="mobile-menu" class="mobile-menu" inert aria-label="Navigation menu">
+		<nav class="mobile-menu__nav" aria-label="Mobile navigation">
+			{links.map((link) => (
+				<a
+					href={link.href}
+					{...(currentPath === link.href || currentPath.startsWith(link.href + '/') ? { 'aria-current': 'page' } : {})}
+				>{link.label}</a>
+			))}
+		</nav>
+		<div class="mobile-menu__socials">
+			{socials.map((link) => (
+				<a class="social-icon" href={link.href} aria-label={link.label} target="_blank" rel="noreferrer">
+					{link.icon === 'linkedin' ? (
+						<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+							<path d="M6.94 9.75V18" />
+							<circle cx="6.94" cy="6.94" r="1.44" />
+							<path d="M12 18v-5.21c0-1.53 1.24-2.77 2.77-2.77s2.77 1.24 2.77 2.77V18" />
+						</svg>
+					) : (
+						<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+							<path d="M9 19c-4 1-4-2-6-2m12 4v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75 5.07 5.07 0 0 0-.09-3.77S18.16-1 15 1.38a13.38 13.38 0 0 0-6 0C5-1 3.09 1 3.09 1a5.07 5.07 0 0 0-.09 3.77A5.44 5.44 0 0 0 1.5 8.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 7 18.13V22" />
+						</svg>
+					)}
+				</a>
+			))}
+			<a
+				class="social-icon"
+				href={resumeHref}
+				aria-label="View Resume"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+					<path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z" />
+					<path d="M14 2v5h5" />
+					<path d="M9 13h6" />
+					<path d="M9 17h6" />
+				</svg>
+			</a>
+			<button
+				class="social-icon copy"
+				id="email-copy-mobile"
+				type="button"
+				aria-label={`Copy ${emailAddress}`}
+				data-email={emailAddress}
+			>
+				<span class="sr-only">Copy email address</span>
+				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+					<path d="m3 8 7.89 4.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
+				</svg>
+				<span class="copy-tooltip" id="email-tooltip-mobile" role="tooltip" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
+	<div id="mobile-backdrop" class="mobile-backdrop"></div>
 </header>
 
 <style>
@@ -102,124 +178,28 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		align-items: center;
 		justify-content: center;
 		z-index: 75;
-		width: 70px;
-		height: 38px;
-	}
-
-	:global(.theme-toggle__input) {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		opacity: 0;
-		appearance: none;
-		margin: 0;
+		width: 44px;
+		height: 44px;
+		background: none;
+		border: none;
+		padding: 0;
 		cursor: pointer;
-		z-index: 2;
+		border-radius: var(--radius);
+		transition: opacity 0.18s ease;
 	}
 
-	:global(.theme-toggle__track) {
-		position: relative;
-		width: 70px;
-		height: 38px;
-		border-radius: calc(var(--radius) * 999);
-		background: var(--color-card);
-		border: 1px solid var(--color-border);
-		box-shadow: var(--shadow-soft);
-		transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-		display: inline-flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0 10px;
-		box-sizing: border-box;
-		pointer-events: none;
+	:global(.theme-toggle:hover),
+	:global(.theme-toggle:focus-visible) {
+		opacity: 0.75;
+		outline: none;
 	}
 
-	:global(.theme-toggle__knob) {
-		position: absolute;
-		top: 4px;
-		left: 4px;
+	:global(.theme-toggle__img) {
+		display: block;
 		width: 30px;
 		height: 30px;
-		border-radius: 50%;
-		background: var(--color-bg);
-		box-shadow: var(--shadow-soft);
-		transition: transform 0.2s ease, background 0.18s ease, box-shadow 0.18s ease;
-	}
-
-	:global(.theme-toggle__icon) {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		color: var(--color-ink);
-		opacity: 0.8;
-		transition: opacity 0.18s ease, color 0.18s ease;
-		pointer-events: none;
-		z-index: 1;
-	}
-
-	:global(.theme-toggle[data-mode='dark'] .theme-toggle__track) {
-		border-color: var(--color-accent);
-		background: var(--color-theme-toggle-active-bg);
-		box-shadow: var(--shadow-soft);
-	}
-
-	:global(html.dark .theme-toggle .theme-toggle__track),
-	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__track) {
-		border-color: var(--color-accent);
-		background: var(--color-theme-toggle-active-bg);
-		box-shadow: var(--shadow-soft);
-	}
-
-	:global(.theme-toggle[data-mode='dark'] .theme-toggle__knob) {
-		transform: translateX(32px);
-		background: var(--color-ink);
-	}
-
-	:global(html.dark .theme-toggle .theme-toggle__knob),
-	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__knob) {
-		transform: translateX(32px);
-		background: var(--color-ink);
-	}
-
-	:global(.theme-toggle[data-mode='light'] .theme-toggle__icon.sun) {
-		opacity: 0;
-	}
-
-	:global(html:not(.dark) .theme-toggle .theme-toggle__icon.sun),
-	:global(html[data-theme-mode='light'] .theme-toggle .theme-toggle__icon.sun) {
-		opacity: 0;
-	}
-
-	:global(.theme-toggle[data-mode='light'] .theme-toggle__icon.moon) {
-		opacity: 1;
-		color: var(--color-ink);
-	}
-
-	:global(html:not(.dark) .theme-toggle .theme-toggle__icon.moon),
-	:global(html[data-theme-mode='light'] .theme-toggle .theme-toggle__icon.moon) {
-		opacity: 1;
-		color: var(--color-ink);
-	}
-
-	:global(.theme-toggle[data-mode='dark'] .theme-toggle__icon.moon) {
-		opacity: 0;
-	}
-
-	:global(html.dark .theme-toggle .theme-toggle__icon.moon),
-	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__icon.moon) {
-		opacity: 0;
-	}
-
-	:global(.theme-toggle[data-mode='dark'] .theme-toggle__icon.sun) {
-		opacity: 1;
-		color: var(--color-theme-toggle-active-icon);
-	}
-
-	:global(html.dark .theme-toggle .theme-toggle__icon.sun),
-	:global(html[data-theme-mode='dark'] .theme-toggle .theme-toggle__icon.sun) {
-		opacity: 1;
-		color: var(--color-theme-toggle-active-icon);
+		object-fit: contain;
+		transition: opacity 0.2s ease;
 	}
 
 	.nav-shell {
@@ -470,6 +450,16 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		transform: scale(1.03);
 	}
 
+	.parabola-menu a[aria-current='page'] {
+		transform: scale(1.03);
+	}
+
+	.parabola-menu a[aria-current='page']::before {
+		opacity: 1;
+		transform: translateX(0);
+		animation: none;
+	}
+
 	.parabola-menu a:focus-visible {
 		outline: 2px solid var(--color-focus-ring);
 		outline-offset: 0;
@@ -491,6 +481,138 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			transform: translateX(0);
 			opacity: 0.35;
 		}
+
+		.parabola-menu a[aria-current='page']::before {
+			opacity: 1;
+			transform: translateX(0);
+			animation: none;
+		}
+	}
+
+	/* ── Hidden by default on desktop; revealed inside the mobile media query ── */
+	.mobile-toggle {
+		display: none;
+	}
+
+	.mobile-menu {
+		display: none;
+		position: fixed;
+		top: 0;
+		right: 0;
+		height: 100dvh;
+		width: min(320px, 85vw);
+		z-index: 68;
+		flex-direction: column;
+		background: var(--color-card);
+		border-left: 1px solid var(--color-border);
+		box-shadow: -4px 0 32px rgba(0, 0, 0, 0.18);
+		transform: translateX(100%);
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		padding-top: 96px;
+		overflow-y: auto;
+	}
+
+	.mobile-menu.is-open {
+		transform: translateX(0);
+	}
+
+	.mobile-menu__nav {
+		display: flex;
+		flex-direction: column;
+		padding: 1rem 0;
+	}
+
+	.mobile-menu__nav a {
+		display: block;
+		padding: 0.9rem 1.5rem;
+		font-size: calc(var(--type-size-body) * 1.2);
+		font-weight: 500;
+		color: var(--color-ink);
+		text-decoration: none;
+		letter-spacing: 0.01em;
+		border-bottom: 1px solid var(--color-border);
+		transition: background 0.15s ease, color 0.15s ease;
+	}
+
+	.mobile-menu__nav a:first-child {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.mobile-menu__nav a:hover,
+	.mobile-menu__nav a:focus-visible {
+		background: var(--color-bg);
+		color: var(--color-accent);
+		outline: none;
+	}
+
+	.mobile-menu__nav a[aria-current='page'] {
+		color: var(--color-accent);
+		font-weight: 700;
+	}
+
+	.mobile-menu__socials {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1.25rem 1.5rem;
+		border-top: 1px solid var(--color-border);
+		margin-top: auto;
+	}
+
+	.mobile-backdrop {
+		display: none;
+		position: fixed;
+		inset: 0;
+		z-index: 65;
+		background: rgba(0, 0, 0, 0.38);
+		backdrop-filter: blur(2px);
+		-webkit-backdrop-filter: blur(2px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.28s ease;
+	}
+
+	.mobile-backdrop.is-open {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	/* ── Toggle button base ── */
+	.mobile-toggle {
+		position: absolute;
+		right: 1.2rem;
+		top: 50%;
+		transform: translateY(-50%);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		z-index: 75;
+		border-radius: var(--radius);
+		border: 1px solid var(--color-border);
+		background: var(--color-card);
+		color: var(--color-ink);
+		box-shadow: var(--shadow-soft);
+		cursor: pointer;
+		transition: border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+	}
+
+	.mobile-toggle:hover,
+	.mobile-toggle:focus-visible {
+		border-color: var(--color-accent);
+		outline: none;
+	}
+
+	.toggle-icon {
+		transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+		color: var(--color-ink);
+	}
+
+	.mobile-toggle[aria-expanded='true'] .toggle-icon {
+		transform: rotate(135deg);
+		color: var(--color-accent);
 	}
 
 	@media (max-width: 720px) {
@@ -499,8 +621,14 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			row-gap: 0.75rem;
 		}
 
-		.social-bar {
-			justify-content: flex-start;
+		.social-bar,
+		.parabola-menu,
+		.nav-balance {
+			display: none;
+		}
+
+		:global(.theme-toggle) {
+			display: none;
 		}
 
 		.brand {
@@ -508,8 +636,16 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			text-align: center;
 		}
 
-		.nav-balance {
-			display: none;
+		.mobile-toggle {
+			display: inline-flex;
+		}
+
+		.mobile-backdrop {
+			display: block;
+		}
+
+		.mobile-menu {
+			display: flex;
 		}
 	}
 </style>
@@ -633,5 +769,85 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			}
 		});
 		copyBtn.addEventListener('click', copyEmail);
+	}
+
+	// ── Mobile menu ────────────────────────────────────────────────
+	const mobileToggle = document.getElementById('mobile-menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+	const mobileBackdrop = document.getElementById('mobile-backdrop');
+	const mobileCopyBtn = document.getElementById('email-copy-mobile');
+	const mobileEmailTooltip = document.getElementById('email-tooltip-mobile');
+	const mobileEmailAddress = mobileCopyBtn?.dataset.email ?? '';
+	let mobileIsShowingFeedback = false;
+
+	const openMenu = () => {
+		if (!mobileMenu || !mobileToggle || !mobileBackdrop) return;
+		mobileMenu.classList.add('is-open');
+		mobileBackdrop.classList.add('is-open');
+		mobileToggle.setAttribute('aria-expanded', 'true');
+		mobileToggle.setAttribute('aria-label', 'Close navigation menu');
+		mobileMenu.removeAttribute('inert');
+		document.body.style.overflow = 'hidden';
+	};
+
+	const closeMenu = () => {
+		if (!mobileMenu || !mobileToggle || !mobileBackdrop) return;
+		mobileMenu.classList.remove('is-open');
+		mobileBackdrop.classList.remove('is-open');
+		mobileToggle.setAttribute('aria-expanded', 'false');
+		mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+		mobileMenu.setAttribute('inert', '');
+		document.body.style.overflow = '';
+	};
+
+	if (mobileToggle) {
+		mobileToggle.addEventListener('click', () => {
+			const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
+			isOpen ? closeMenu() : openMenu();
+		});
+	}
+
+	if (mobileBackdrop) {
+		mobileBackdrop.addEventListener('click', closeMenu);
+	}
+
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeMenu();
+	});
+
+	// Close drawer when a nav link inside it is tapped
+	if (mobileMenu) {
+		mobileMenu.querySelectorAll('.mobile-menu__nav a').forEach((link) => {
+			link.addEventListener('click', closeMenu);
+		});
+	}
+
+	// Mobile email copy
+	const copyMobileEmail = async () => {
+		try {
+			await navigator.clipboard.writeText(mobileEmailAddress);
+			if (!mobileEmailTooltip) return;
+			mobileEmailTooltip.textContent = 'Email copied!';
+			mobileEmailTooltip.setAttribute('role', 'status');
+			mobileEmailTooltip.setAttribute('aria-live', 'polite');
+			mobileEmailTooltip.classList.add('show');
+			mobileEmailTooltip.setAttribute('aria-hidden', 'false');
+			mobileIsShowingFeedback = true;
+			setTimeout(() => {
+				if (!mobileEmailTooltip) return;
+				mobileEmailTooltip.textContent = '';
+				mobileEmailTooltip.setAttribute('role', 'tooltip');
+				mobileEmailTooltip.removeAttribute('aria-live');
+				mobileEmailTooltip.classList.remove('show');
+				mobileEmailTooltip.setAttribute('aria-hidden', 'true');
+				mobileIsShowingFeedback = false;
+			}, 1600);
+		} catch (err) {
+			console.error('Could not copy email', err);
+		}
+	};
+
+	if (mobileCopyBtn) {
+		mobileCopyBtn.addEventListener('click', copyMobileEmail);
 	}
 </script>

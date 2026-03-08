@@ -1,116 +1,124 @@
 ---
-import Card from '../ui/Card.astro';
 import Button from '../ui/Button.astro';
 ---
 
-<div class="snapshot">
-	<!-- Currently blurb -->
-	<div class="snapshot-block">
-		<h3 class="snapshot-label">Currently</h3>
-		<p class="snapshot-blurb">
-			Building SaaS platforms at SCx CMC Solutions · Exploring cloud architecture · Open to full-time opportunities in full-stack or cloud engineering.
-		</p>
+<div class="numbers-block">
+	<h3 class="numbers-subhead">By the Numbers</h3>
+	<div class="orb-grid">
+		<div class="stat-orb">
+			<p class="orb-value">6</p>
+			<p class="orb-label">Client platforms shipped</p>
+		</div>
+		<div class="stat-orb">
+			<p class="orb-value">44</p>
+			<p class="orb-label">MS Learn badges earned</p>
+		</div>
+		<div class="stat-orb">
+			<p class="orb-value">42<sup>nd</sup></p>
+			<p class="orb-label">Internationally in U.S. Cyber</p>
+		</div>
+		<div class="stat-orb">
+			<p class="orb-value">25%</p>
+			<p class="orb-label">DB complexity reduced</p>
+		</div>
 	</div>
-
-	<!-- Stats strip -->
-	<div class="stats-grid">
-		<Card as="div" padding="compact">
-			<p class="stat-number">6</p>
-			<p class="stat-label">Client platforms shipped</p>
-		</Card>
-		<Card as="div" padding="compact">
-			<p class="stat-number">44</p>
-			<p class="stat-label">MS Learn badges earned</p>
-		</Card>
-		<Card as="div" padding="compact">
-			<p class="stat-number">42<sup>nd</sup></p>
-			<p class="stat-label">Internationally in U.S. Cyber</p>
-		</Card>
-		<Card as="div" padding="compact">
-			<p class="stat-number">25%</p>
-			<p class="stat-label">DB complexity reduced</p>
-		</Card>
-	</div>
-
-	<!-- CTA buttons -->
 	<div class="snapshot-cta">
-		<Button variant="primary" href="/Kira%20Cibak_2025.pdf" target="_blank" rel="noopener noreferrer">
-			View Resume
-		</Button>
-		<Button variant="secondary" href="/contact" class="cta-outline">
-			Get in Touch
+		<Button variant="primary" href="/contact">
+			Get In Touch
 		</Button>
 	</div>
 </div>
 
 <style>
-	.snapshot {
+	.numbers-block {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		margin-top: 2rem;
 	}
 
-	/* ── Currently blurb ── */
-	.snapshot-label {
+	.numbers-subhead {
 		font-size: var(--type-size-small);
 		font-weight: 600;
 		color: var(--color-accent);
 		text-transform: uppercase;
-		letter-spacing: 0.04em;
-		margin: 0 0 0.25rem;
-	}
-
-	.snapshot-blurb {
+		letter-spacing: 0.06em;
 		margin: 0;
-		color: var(--color-muted);
-		font-size: var(--type-size-small);
-		line-height: 1.6;
-		max-width: var(--readability-paragraph-max);
 	}
 
-	/* ── Stats grid ── */
-	.stats-grid {
+	/* Fixed column widths so the 2×2 grid resolves inside an auto-width parent */
+	.orb-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.75rem;
+		grid-template-columns: repeat(2, clamp(108px, 9vw, 136px));
+		gap: 1rem;
 	}
 
-	.stat-number {
-		margin: 0;
-		font-size: var(--type-size-h3);
-		font-weight: 700;
-		line-height: 1.15;
-		color: var(--color-accent);
-	}
-
-	.stat-number sup {
-		font-size: 0.55em;
-		vertical-align: super;
-	}
-
-	.stat-label {
-		margin: 0.15rem 0 0;
-		font-size: var(--type-size-small);
-		color: var(--color-muted);
-		line-height: 1.35;
-	}
-
-	/* ── CTA row ── */
 	.snapshot-cta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
+		gap: 0.6rem;
+		padding-top: 0.5rem;
 	}
 
-	/* Outlined teal variant override */
-	.snapshot-cta :global(.cta-outline) {
-		background: transparent;
-		border-color: var(--color-accent);
-		color: var(--color-accent);
+	.stat-orb {
+		width: clamp(108px, 9vw, 136px);
+		aspect-ratio: 1 / 1;
+		border-radius: 50%;
+		flex-shrink: 0;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 24%, var(--color-border));
+		background: radial-gradient(
+			circle at 34% 20%,
+			color-mix(in srgb, var(--color-accent-2) 34%, var(--color-card)) 0%,
+			color-mix(in srgb, var(--color-accent) 26%, var(--color-card)) 50%,
+			color-mix(in srgb, var(--color-accent-warm) 18%, var(--color-card)) 100%
+		);
+		box-shadow: 0 2px 10px -7px color-mix(in srgb, var(--color-accent) 28%, transparent);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		padding: 0.5rem;
+		gap: 0.2rem;
 	}
 
-	.snapshot-cta :global(.cta-outline:hover) {
-		background: var(--color-hover-bg);
+	:global(html.dark) .stat-orb {
+		background: radial-gradient(
+			circle at 34% 20%,
+			color-mix(in srgb, var(--color-accent-2) 28%, var(--color-card)) 0%,
+			color-mix(in srgb, var(--color-accent) 22%, var(--color-card)) 52%,
+			color-mix(in srgb, var(--color-accent-warm) 14%, var(--color-card)) 100%
+		);
+	}
+
+	.orb-value {
+		margin: 0;
+		font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+		font-weight: 700;
+		line-height: 1.1;
+		color: var(--color-ink);
+	}
+
+	.orb-value sup {
+		font-size: 0.52em;
+		vertical-align: super;
+	}
+
+	.orb-label {
+		margin: 0;
+		font-size: 0.7rem;
+		color: var(--color-muted);
+		line-height: 1.3;
+		max-width: 10ch;
+		text-wrap: pretty;
+	}
+
+	@media (max-width: 600px) {
+		.orb-grid {
+			grid-template-columns: repeat(2, 40vw);
+		}
+
+		.stat-orb {
+			width: 40vw;
+		}
 	}
 </style>

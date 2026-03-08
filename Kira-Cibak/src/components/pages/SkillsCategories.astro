@@ -1,64 +1,73 @@
 ---
+const icon = '/placeholder.svg';
 ---
 
 <div class="skills-groups">
 	<div class="skills-group">
 		<h3 class="skills-cat">Languages</h3>
-		<ul class="skills-list">
-			<li>TypeScript</li>
-			<li>Python</li>
-			<li>C</li>
-			<li>C#</li>
-			<li>Java</li>
-			<li>PHP</li>
-			<li>CSS</li>
-			<li>SQL</li>
-		</ul>
+		<div class="skills-icon-grid">
+			<div class="skill-item"><img src="/typescript-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>TypeScript</span></div>
+			<div class="skill-item"><img src="/python-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Python</span></div>
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>C</span></div>
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>C#</span></div>
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Java</span></div>
+			<div class="skill-item"><img src="/php.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>PHP</span></div>
+			<div class="skill-item"><img src="/css3-plain.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>CSS3</span></div>
+		</div>
 	</div>
 
 	<div class="skills-group">
-		<h3 class="skills-cat">Frameworks & APIs</h3>
-		<ul class="skills-list">
-			<li>React</li>
-			<li>Astro</li>
-			<li>Next.js</li>
-			<li>Node.js</li>
-			<li>NestJS</li>
-			<li>.NET</li>
-			<li>GraphQL</li>
-			<li>REST</li>
-			<li>Keycloak</li>
-		</ul>
+		<h3 class="skills-cat">Frameworks & Libraries</h3>
+		<div class="skills-icon-grid">
+			<div class="skill-item"><img src="/react-original-wordmark.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>React</span></div>
+			<div class="skill-item"><img src="/astro.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Astro</span></div>
+			<div class="skill-item"><img src="/nextjs-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Next.js</span></div>
+			<div class="skill-item"><img src="/nodejs-original-wordmark.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Node.js</span></div>
+			<div class="skill-item"><img src="/nestjs.png" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>NestJS</span></div>
+			<div class="skill-item"><img src="/redux-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Redux</span></div>
+			<div class="skill-item"><img src="/tailwindcss-icon.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Tailwind CSS</span></div>
+			<div class="skill-item"><img src="/sequelize.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Sequelize</span></div>
+		</div>
 	</div>
 
 	<div class="skills-group">
-		<h3 class="skills-cat">Databases & Cloud</h3>
-		<ul class="skills-list">
-			<li>PostgreSQL</li>
-			<li>Azure</li>
-			<li>Docker</li>
-			<li>Redis</li>
-			<li>Redux</li>
-			<li>Sequelize</li>
-			<li>Netlify</li>
-		</ul>
+		<h3 class="skills-cat">APIs & Integrations</h3>
+		<div class="skills-icon-grid">
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>REST</span></div>
+			<div class="skill-item"><img src="/graphql.png" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>GraphQL</span></div>
+			<div class="skill-item"><img src="/keycloak.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Keycloak</span></div>
+			<div class="skill-item"><img src="/openai.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>OpenAI APIs</span></div>
+			<div class="skill-item"><img src="/huggingface.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>HuggingFace APIs</span></div>
+		</div>
 	</div>
 
 	<div class="skills-group">
-		<h3 class="skills-cat">Tooling & Prototyping</h3>
-		<ul class="skills-list">
-			<li>GitHub / Git</li>
-			<li>VS Code</li>
-			<li>Cursor</li>
-			<li>Postman</li>
-			<li>Lovable.dev</li>
-			<li>Storybook</li>
-			<li>OpenAI APIs</li>
-			<li>HuggingFace APIs</li>
-			<li>Codex</li>
-			<li>GitHub Copilot</li>
-			<li>Jira / ClickUp</li>
-		</ul>
+		<h3 class="skills-cat">Databases & Infrastructure</h3>
+		<div class="skills-icon-grid">
+			<div class="skill-item"><img src="/postgresql.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>PostgreSQL</span></div>
+			<div class="skill-item"><img src="/redis.png" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Redis</span></div>
+			<div class="skill-item"><img src="/docker-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Docker</span></div>
+			<div class="skill-item"><img src="/azure-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Azure</span></div>
+			<div class="skill-item"><img src="/netlify.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Netlify</span></div>
+		</div>
+	</div>
+
+	<div class="skills-group">
+		<h3 class="skills-cat">Tooling</h3>
+		<div class="skills-icon-grid">
+			<div class="skill-item"><img src="/git-plain.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Git</span></div>
+			<div class="skill-item"><img src="/visual-studio-code.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>VS Code</span></div>
+			<div class="skill-item"><img src="/cursor.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Cursor</span></div>
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>DBeaver</span></div>
+			<div class="skill-item"><img src="/getpostman-icon.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Postman</span></div>
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Storybook</span></div>
+			<div class="skill-item"><img src={icon} width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Lovable.dev</span></div>
+			<div class="skill-item"><img src="/codex-color.png" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Codex</span></div>
+			<div class="skill-item"><img src="/githubcopilot.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>GitHub Copilot</span></div>
+			<div class="skill-item"><img src="/jira.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Jira</span></div>
+			<div class="skill-item"><img src="/clickup.png" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>ClickUp</span></div>
+			<div class="skill-item"><img src="/monday.png" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Monday.com</span></div>
+		</div>
 	</div>
 </div>
 
@@ -80,26 +89,27 @@
 		color: var(--color-accent);
 		text-transform: uppercase;
 		letter-spacing: 0.04em;
-		margin: 0 0 0.25rem;
+		margin: 0 0 0.35rem;
 	}
 
-	.skills-list {
-		margin: 0;
-		padding-left: 1.1rem;
-		color: var(--color-muted);
+	.skills-icon-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 0.75rem;
+	}
+
+	.skill-item {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
 		font-size: var(--type-size-small);
-		line-height: 1.6;
-		columns: 2;
-		column-gap: 0.5rem;
+		color: var(--color-muted);
 	}
 
-	.skills-list li {
-		padding: 0.05rem 0;
-		break-inside: avoid;
-	}
-
-	.proto-note {
-		font-style: italic;
-		opacity: 0.75;
+	.skill-icon {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
+		opacity: 0.7;
 	}
 </style>
