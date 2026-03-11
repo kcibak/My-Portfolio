@@ -14,7 +14,7 @@ export const prerender = true;
 		<Container>
 			<p class="eyebrow">Skills</p>
 			<h1 class="section-title"><span class="gradient-text">Technical range</span></h1>
-			<p class="section-subtitle">The tools and technologies I use to build reliable products — organized by domain.</p>
+			<p class="section-subtitle">The arsenal I've built through education, experience, and effort.</p>
 		</Container>
 	</Section>
 
@@ -28,37 +28,9 @@ export const prerender = true;
 	<Section class="section" reveal={true} style="padding-top: 0">
 		<Container>
 			<SectionHeading title="Skills & Tools" size="sub" />
-			<div class="skills-split">
-				<div class="skills-split-left">
-					<SkillsCategories />
-				</div>
-				<div class="skills-split-right">
-					<SkillsSnapshot />
-				</div>
-			</div>
+			<SkillsCategories />
 		</Container>
 	</Section>
 </MainLayout>
 
-<style>
-	.skills-split {
-		display: grid;
-		grid-template-columns: 1fr 300px;
-		gap: 3rem;
-		align-items: start;
-	}
 
-	.skills-split-right {
-	}
-
-	@media (max-width: 900px) {
-		.skills-split {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-
-		.skills-split-right {
-			max-width: none;
-		}
-	}
-</style>

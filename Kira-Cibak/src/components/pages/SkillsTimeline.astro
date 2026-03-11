@@ -6,7 +6,23 @@ import Tag from '../ui/Tag.astro';
 <div class="timeline">
 	<!-- Entry 1 — top (odd) -->
 	<div class="tl-entry">
-		<div class="tl-card">
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+			<Card as="article" padding="compact">
+				<Tag>Feb 2026 – Present</Tag>
+				<h3 class="tl-title">Cybersecurity & Architecture Consultant</h3>
+				<p class="tl-org">Trace Systems Inc.</p>
+				<p class="tl-desc">Supported enterprise architecture with Zero Trust, secure system design, and workflow artifacts for DoD-aligned evaluations.</p>
+			</Card>
+		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
+	</div>
+
+	<!-- Entry 2 — bottom (even) -->
+	<div class="tl-entry">
+		<div class="tl-pad"></div>
+		<div class="tl-dot"></div>
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Aug 2025 – Present</Tag>
 				<h3 class="tl-title">Lead Web Developer</h3>
@@ -14,27 +30,11 @@ import Tag from '../ui/Tag.astro';
 				<p class="tl-desc">Led delivery of 5 client platforms across pharma and nonprofit — architecture, Stripe, deployments.</p>
 			</Card>
 		</div>
-		<div class="tl-dot"></div>
-		<div class="tl-pad"></div>
-	</div>
-
-	<!-- Entry 2 — bottom (even) · placeholder after present -->
-	<div class="tl-entry tl-entry--placeholder">
-		<div class="tl-pad"></div>
-		<div class="tl-dot tl-dot--muted"></div>
-		<div class="tl-card">
-			<Card as="article" padding="compact" class="tl-placeholder">
-				<Tag>Coming Soon</Tag>
-				<h3 class="tl-title">Next Role</h3>
-				<p class="tl-org">TBD</p>
-				<p class="tl-desc">Placeholder — open to full-time opportunities in full-stack or cloud engineering.</p>
-			</Card>
-		</div>
 	</div>
 
 	<!-- Entry 3 — top (odd) -->
 	<div class="tl-entry">
-		<div class="tl-card">
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>May – Aug 2025</Tag>
 				<h3 class="tl-title">Software Engineer Intern</h3>
@@ -46,28 +46,28 @@ import Tag from '../ui/Tag.astro';
 		<div class="tl-pad"></div>
 	</div>
 
-	<!-- Entry 4 — bottom (even) · placeholder before Azure -->
-	<div class="tl-entry tl-entry--placeholder">
-		<div class="tl-pad"></div>
-		<div class="tl-dot tl-dot--muted"></div>
-		<div class="tl-card">
-			<Card as="article" padding="compact" class="tl-placeholder">
-				<Tag>TBD</Tag>
-				<h3 class="tl-title">Placeholder</h3>
-				<p class="tl-org">—</p>
-				<p class="tl-desc">Another cert, course, or milestone to be added here.</p>
-			</Card>
-		</div>
-	</div>
-
-	<!-- Entry 5 — top (odd) -->
+	<!-- Entry 4 — bottom (even) · Azure Fundamentals -->
 	<div class="tl-entry">
-		<div class="tl-card">
+		<div class="tl-pad"></div>
+		<div class="tl-dot"></div>
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Dec 2025</Tag>
 				<h3 class="tl-title">Azure Fundamentals</h3>
 				<p class="tl-org">AZ-900 Certification</p>
 				<p class="tl-desc">Cloud services, security & identity. 44 MS Learn badges, 11 trophies.</p>
+			</Card>
+		</div>
+	</div>
+
+	<!-- Entry 5 — top (odd) · BS Degree -->
+	<div class="tl-entry">
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+			<Card as="article" padding="compact">
+				<Tag>Dec 2025</Tag>
+				<h3 class="tl-title">Bachelor of Science</h3>
+				<p class="tl-org">University of South Florida</p>
+				<p class="tl-desc">Graduated with a focus on computer science and software engineering.</p>
 			</Card>
 		</div>
 		<div class="tl-dot"></div>
@@ -78,7 +78,7 @@ import Tag from '../ui/Tag.astro';
 	<div class="tl-entry">
 		<div class="tl-pad"></div>
 		<div class="tl-dot"></div>
-		<div class="tl-card">
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Cybersecurity</Tag>
 				<h3 class="tl-title">US Cyber Challenge</h3>
@@ -89,14 +89,25 @@ import Tag from '../ui/Tag.astro';
 	</div>
 </div>
 
+<div class="tl-lightbox" data-tl-lightbox hidden role="dialog" aria-modal="true" aria-label="Timeline experience detail" tabindex="-1">
+	<button type="button" class="tl-lightbox-backdrop" data-tl-close aria-label="Close detail"></button>
+	<div class="tl-lightbox-body">
+		<button type="button" class="tl-lightbox-close" data-tl-close aria-label="Close detail">✕</button>
+		<span class="tl-lightbox-tag" data-tl-date></span>
+		<h3 class="tl-lightbox-title" data-tl-title></h3>
+		<p class="tl-lightbox-org" data-tl-org></p>
+		<p class="tl-lightbox-desc" data-tl-desc></p>
+	</div>
+</div>
+
 <style>
 	/* ── Alternating horizontal timeline ── */
 	.timeline {
 		display: grid;
-		grid-template-rows: min-content 28px min-content;
+		grid-template-rows: min-content 3.5rem min-content;
 		grid-auto-flow: column;
 		grid-auto-columns: 1fr;
-		column-gap: 1.25rem;
+		column-gap: 1.5rem;
 		position: relative;
 	}
 
@@ -120,30 +131,61 @@ import Tag from '../ui/Tag.astro';
 	/* ── Card cell — rows are fixed so cards fill them exactly ── */
 	.tl-card {
 		height: 100%;
+		cursor: pointer;
 	}
 
 	.tl-card :global(.ui-card) {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.2rem;
+		gap: 0.4rem;
+		padding: 1.4rem 1.35rem 1.3rem;
 		overflow: hidden;
+		transition:
+			transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+			box-shadow 0.3s ease,
+			border-color 0.3s ease,
+			background-color 0.3s ease;
 	}
 
-	.tl-card :global(.tl-placeholder) {
-		opacity: 0.5;
-		border-style: dashed;
+	.tl-card :global(.ui-tag) {
+		align-self: flex-start;
+		width: fit-content;
+		max-width: 100%;
+		padding: 0.28rem 0.72rem !important;
+		font-size: 0.82rem;
+		line-height: 1.2;
+		white-space: nowrap;
+		margin-bottom: 0.15rem;
+		pointer-events: none;
 	}
 
-	/* Muted dot for placeholder entries */
-	.tl-dot--muted {
-		background: var(--color-border) !important;
+	.tl-card:hover :global(.ui-card),
+	.tl-card:focus-visible :global(.ui-card) {
+		transform: translateY(-5px);
+		box-shadow: var(--ui-card-shadow-warm-glow);
+		border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+		background: color-mix(in srgb, var(--color-accent) 3%, var(--color-card));
+	}
+
+	.tl-card:focus-visible {
+		outline: none;
+	}
+
+	.tl-card:focus-visible :global(.ui-card) {
+		outline: 3px solid var(--color-focus-ring);
+		outline-offset: 2px;
 	}
 
 	/* Cards fill their fixed-height row — no alignment shift needed */
-	.tl-entry:nth-child(odd) .tl-card,
+	.tl-entry:nth-child(odd) .tl-card {
+		align-self: stretch;
+		padding-bottom: 0.25rem;
+	}
+
 	.tl-entry:nth-child(even) .tl-card {
 		align-self: stretch;
+		padding-top: 0.25rem;
 	}
 
 	/* ── Dot ── */
@@ -189,12 +231,101 @@ import Tag from '../ui/Tag.astro';
 		overflow: hidden;
 	}
 
+	.tl-lightbox {
+		position: fixed;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		z-index: 1000;
+		padding: 1rem;
+	}
+
+	.tl-lightbox[hidden] {
+		display: none !important;
+	}
+
+	.tl-lightbox-backdrop {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		border: 0;
+		background: var(--color-overlay);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+		cursor: pointer;
+	}
+
+	.tl-lightbox-body {
+		position: relative;
+		z-index: 2;
+		width: min(560px, 94vw);
+		max-height: 90vh;
+		display: grid;
+		gap: 0.6rem;
+		padding: 2.5rem 1.4rem 1.4rem;
+		background: var(--color-card);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		box-shadow: 0 8px 40px rgb(11 34 63 / 22%);
+		overflow: auto;
+	}
+
+	.tl-lightbox-close {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		border: 1px solid var(--color-border);
+		background: var(--color-card);
+		color: var(--color-ink);
+		border-radius: var(--radius);
+		width: 2rem;
+		height: 2rem;
+		display: grid;
+		place-items: center;
+		font-size: 1rem;
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.tl-lightbox-tag {
+		display: inline-flex;
+		align-self: flex-start;
+		padding: 0.28rem 0.72rem;
+		border-radius: calc(var(--radius) * 999);
+		font-size: var(--type-size-small);
+		font-weight: var(--type-weight-small);
+		line-height: var(--type-line-small);
+		color: var(--color-ink);
+		background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+	}
+
+	.tl-lightbox-title {
+		margin: 0;
+		font-size: var(--type-size-h3);
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.tl-lightbox-org {
+		margin: 0;
+		font-size: var(--type-size-body);
+		font-weight: 500;
+		color: var(--color-muted);
+	}
+
+	.tl-lightbox-desc {
+		margin: 0;
+		font-size: var(--type-size-body);
+		line-height: 1.6;
+		color: var(--color-muted);
+	}
+
 	/* ── Mobile: collapse to vertical timeline ── */
 	@media (max-width: 767px) {
 		.timeline {
 			display: flex;
 			flex-direction: column;
-			gap: 0.75rem;
+			gap: 1rem;
 			padding-left: 1.5rem;
 		}
 
@@ -230,13 +361,151 @@ import Tag from '../ui/Tag.astro';
 			left: -1.5rem;
 		}
 
-		.tl-entry--placeholder::before {
-			background: var(--color-border);
-		}
-
 		.tl-card {
 			height: auto;
 			min-height: 0;
 		}
+
+		.tl-card :global(.ui-card) {
+			padding: 1.15rem 1.25rem 1.2rem;
+		}
+
+		.tl-card :global(.ui-tag) {
+			font-size: 0.78rem;
+			padding: 0.26rem 0.62rem !important;
+		}
+
+		.tl-lightbox-body {
+			width: min(520px, 96vw);
+			padding: 2.4rem 1.2rem 1.2rem;
+		}
 	}
 </style>
+
+<script>
+	const lightbox = document.querySelector('[data-tl-lightbox]');
+	const lightboxDate = document.querySelector('[data-tl-date]');
+	const lightboxTitle = document.querySelector('[data-tl-title]');
+	const lightboxOrg = document.querySelector('[data-tl-org]');
+	const lightboxDesc = document.querySelector('[data-tl-desc]');
+	let lastTrigger: HTMLElement | null = null;
+
+	const getLightboxFocusableElements = (): HTMLElement[] => {
+		if (!(lightbox instanceof HTMLElement)) return [];
+
+		const selectors = [
+			'button:not([disabled])',
+			'[href]',
+			'input:not([disabled]):not([type="hidden"])',
+			'select:not([disabled])',
+			'textarea:not([disabled])',
+			'[tabindex]:not([tabindex="-1"])'
+		].join(',');
+
+		const body = lightbox.querySelector('.tl-lightbox-body');
+		if (!(body instanceof HTMLElement)) return [];
+
+		return Array.from(body.querySelectorAll<HTMLElement>(selectors)).filter((element) => {
+			return !element.hasAttribute('disabled') && element.getAttribute('aria-hidden') !== 'true';
+		});
+	};
+
+	const openLightbox = (card: HTMLElement) => {
+		if (!(lightbox instanceof HTMLElement)) return;
+
+		const date = card.querySelector('.ui-tag')?.textContent?.trim() ?? '';
+		const title = card.querySelector('.tl-title')?.textContent?.trim() ?? '';
+		const org = card.querySelector('.tl-org')?.textContent?.trim() ?? '';
+		const desc = card.querySelector('.tl-desc')?.textContent?.trim() ?? '';
+
+		if (lightboxDate instanceof HTMLElement) lightboxDate.textContent = date;
+		if (lightboxTitle instanceof HTMLElement) lightboxTitle.textContent = title;
+		if (lightboxOrg instanceof HTMLElement) lightboxOrg.textContent = org;
+		if (lightboxDesc instanceof HTMLElement) lightboxDesc.textContent = desc;
+
+		lastTrigger = card;
+		lightbox.hidden = false;
+		document.body.style.overflow = 'hidden';
+
+		const closeButton = lightbox.querySelector<HTMLElement>('.tl-lightbox-close[data-tl-close]');
+		if (closeButton instanceof HTMLElement) {
+			closeButton.focus();
+		} else {
+			lightbox.focus();
+		}
+	};
+
+	const closeLightbox = () => {
+		if (!(lightbox instanceof HTMLElement)) return;
+		if (lightbox.hidden) return;
+		lightbox.hidden = true;
+		document.body.style.overflow = '';
+
+		if (lastTrigger instanceof HTMLElement && lastTrigger.isConnected) {
+			lastTrigger.focus();
+		}
+		lastTrigger = null;
+	};
+
+	if (lightbox instanceof HTMLElement) {
+		lightbox.hidden = true;
+	}
+
+	document.addEventListener('click', (event) => {
+		const target = event.target;
+		if (!(target instanceof Element)) return;
+
+		if (target.closest('[data-tl-close]')) {
+			closeLightbox();
+			return;
+		}
+
+		const trigger = target.closest('[data-tl-open]');
+		if (trigger instanceof HTMLElement) {
+			openLightbox(trigger);
+		}
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (!(lightbox instanceof HTMLElement) || lightbox.hidden) {
+			if (event.key !== 'Enter' && event.key !== ' ') return;
+			const activeElement = document.activeElement;
+			if (!(activeElement instanceof HTMLElement) || !activeElement.hasAttribute('data-tl-open')) return;
+
+			event.preventDefault();
+			openLightbox(activeElement);
+			return;
+		}
+
+		if (event.key === 'Escape') {
+			closeLightbox();
+			return;
+		}
+
+		if (event.key === 'Tab') {
+			const focusable = getLightboxFocusableElements();
+			if (focusable.length === 0) {
+				event.preventDefault();
+				lightbox.focus();
+				return;
+			}
+
+			const first = focusable[0];
+			const last = focusable[focusable.length - 1];
+			const activeElement = document.activeElement;
+
+			if (event.shiftKey) {
+				if (activeElement === first || !lightbox.contains(activeElement)) {
+					event.preventDefault();
+					last.focus();
+				}
+				return;
+			}
+
+			if (activeElement === last || !lightbox.contains(activeElement)) {
+				event.preventDefault();
+				first.focus();
+			}
+		}
+	});
+</script>
