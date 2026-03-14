@@ -43,7 +43,7 @@ const isExternalGithubLink = githubUrl ? githubUrl.startsWith('https://') || git
 	<p class="muted-copy">{description}</p>
 	<div class="tag-row">
 		{tags.map((tag) => (
-			<Tag>{tag}</Tag>
+			<Tag class="project-skill-tag" hover={false}>{tag}</Tag>
 		))}
 	</div>
 	<div class="action-row">
@@ -67,3 +67,12 @@ const isExternalGithubLink = githubUrl ? githubUrl.startsWith('https://') || git
 		) : null}
 	</div>
 </Card>
+
+<style>
+	.project-card :global(.project-skill-tag),
+	.project-card :global(.project-skill-tag:hover),
+	.project-card :global(.project-skill-tag:focus-visible) {
+		transform: none;
+		background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+	}
+</style>

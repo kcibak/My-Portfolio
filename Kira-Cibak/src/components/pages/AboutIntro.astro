@@ -1,4 +1,8 @@
-<div class="editorial-content">
+---
+import Button from '../ui/Button.astro';
+---
+
+<div class="why-build-copy editorial-content">
   <p>
     I started building for the web because I wanted to make things people actually use.
     Not templates — products. Dashboards that surface the right data, workflows that cut real friction,
@@ -12,5 +16,31 @@
   <p>
     Today I focus on React and TypeScript SaaS products — full-stack, design-aware, and built to scale
     without becoming painful to maintain. If it ships, it should ship right.
-	</p>
+  </p>
+  <nav class="why-build-ctas" aria-label="About page shortcuts">
+    <Button href="/skills" variant="primary">
+      My Experience <span aria-hidden="true">&rarr;</span>
+    </Button>
+    <Button href="/projects" variant="secondary">
+      Things I've Built <span aria-hidden="true">&rarr;</span>
+    </Button>
+  </nav>
 </div>
+
+<style>
+  .why-build-copy {
+    gap: 0.95rem;
+  }
+
+  .why-build-copy p {
+    max-width: none;
+    width: 100%;
+  }
+
+  .why-build-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+</style>

@@ -12,18 +12,18 @@ export const prerender = true;
 
 <MainLayout title="About | Kira Cibak" description="Learn about Kira Cibak’s background, process, and approach to building for the web.">
 	<!-- Hero -->
-	<Section padding="compact">
-		<Container size="narrow">
+	<Section class="section">
+		<Container>
 			<p class="eyebrow">About Me</p>
 			<h1 class="section-title">I build <span class="gradient-text">digital products</span> that balance clarity, speed, and reliability.</h1>
 		</Container>
 	</Section>
 
 	<!-- 01 — Why I Build -->
-	<Section padding="compact" reveal={true}>
-		<Container size="narrow">
-			<div class="editorial-row">
-				<div class="editorial-label">
+	<Section padding="compact" reveal={true} style="padding: 0">
+		<Container>
+			<div class="about-row">
+				<div class="about-row-label">
 					<span class="section-num gradient-text">01</span>
 					<span class="editorial-label-text">Why I Build</span>
 				</div>
@@ -33,10 +33,10 @@ export const prerender = true;
 	</Section>
 
 	<!-- 02 — How I Engineer -->
-	<Section padding="compact" reveal={true}>
-		<Container size="narrow">
-			<div class="editorial-row">
-				<div class="editorial-label">
+	<Section padding="compact" reveal={true} style="padding: 0">
+		<Container>
+			<div class="about-row">
+				<div class="about-row-label">
 					<span class="section-num gradient-text">02</span>
 					<span class="editorial-label-text">How I Engineer</span>
 				</div>
@@ -46,14 +46,14 @@ export const prerender = true;
 	</Section>
 
 	<!-- 03 — AI in My Workflow -->
-	<Section padding="compact" reveal={true}>
-		<Container size="narrow">
-			<div class="editorial-row">
-				<div class="editorial-label">
+	<Section padding="compact" reveal={true} style="padding: 0">
+		<Container>
+			<div class="about-row">
+				<div class="about-row-label">
 					<span class="section-num gradient-text">03</span>
 					<span class="editorial-label-text">AI in My Workflow</span>
 				</div>
-				<div class="editorial-content">
+				<div class="editorial-content about-ai-copy">
 					<p>
 						AI is a daily collaborator — for prototyping, refactoring, and pressure-testing ideas before they reach production.
 						Below is my ChatGPT Year in Review, a snapshot of how that showed up across 2025.
@@ -77,3 +77,25 @@ export const prerender = true;
 		</Container>
 	</Section> -->
 </MainLayout>
+
+<style>
+	.about-row {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		padding: 1.5rem 0;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.about-row-label {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.about-ai-copy p {
+		max-width: none !important;
+		width: 100%;
+	}
+</style>

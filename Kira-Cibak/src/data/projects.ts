@@ -13,27 +13,7 @@ export type ProjectPreview = {
 };
 
 export const projects: ProjectPreview[] = [
-	{
-		title: 'Captured by Capri',
-		description: 'Photography portfolio website showcasing film and digital work, with gallery browsing and contact pathways for client inquiries.',
-		tags: ['Astro', 'TypeScript', 'CSS'],
-		category: 'SaaS',
-		year: '2024',
-		featured: true,
-		liveUrl: 'https://capturedbycapri.netlify.app/',
-		link: 'https://capturedbycapri.netlify.app/'
-	},
-	{
-		title: 'SCxCMC Consulting Site',
-		description: 'Pharmaceutical consulting website presenting CMC strategy services, consultant profiles, and contact-driven conversion paths.',
-		tags: ['Astro', 'TypeScript', 'CSS'],
-		category: 'Data Science',
-		year: '2024',
-		featured: true,
-		liveUrl: 'https://scxcmc.netlify.app/',
-		link: 'https://scxcmc.netlify.app/'
-	},
-	{
+		{
 		title: 'LiMANS Internship Project',
 		description: 'Full-stack migration project rebuilt from a low-code platform into a custom PostgreSQL-backed system with end-to-end ownership.',
 		tags: ['React', 'Next.js', 'Stripe'],
@@ -42,15 +22,6 @@ export const projects: ProjectPreview[] = [
 		featured: true,
 		repoUrl: 'https://github.com/kcibak/limans_internship_project',
 		link: 'https://github.com/kcibak/limans_internship_project'
-	},
-	{
-		title: 'Pain Detection System',
-		description: 'Machine learning project classifying pain/no-pain states from physiological signals with feature extraction, SVM modeling, and evaluation.',
-		tags: ['Machine Learning', 'SVM', 'NumPy', 'Pandas', 'scikit-learn'],
-		category: 'Web App',
-		year: '2023',
-		repoUrl: 'https://github.com/kcibak/pain_detection_system',
-		link: 'https://github.com/kcibak/pain_detection_system'
 	},
 	{
 		title: 'Continuous Manufacturing Forum',
@@ -71,6 +42,15 @@ export const projects: ProjectPreview[] = [
 		link: 'https://www.compactionsimulation.com/'
 	},
 	{
+		title: 'SOPPhC',
+		description: 'Event website for the global compaction science community with forum information, agenda access, and partner visibility.',
+		tags: ['TypeScript', 'Redis', 'Docker'],
+		category: 'Web App',
+		year: '2023',
+		liveUrl: 'https://www.compactionsimulation.com/',
+		link: 'https://www.compactionsimulation.com/'
+	},
+	{
 		title: 'Temp Excursions',
 		description: 'Pharmaceutical consulting site focused on temperature excursion analysis, regulatory documentation, and rapid-response support.',
 		tags: ['React', 'PostgreSQL', 'CI/CD'],
@@ -80,14 +60,42 @@ export const projects: ProjectPreview[] = [
 		link: 'https://tempexcursions.com/'
 	},
 	{
-		title: 'Sanare (Live App)',
+		title: 'Pain Detection System',
+		description: 'Machine learning project classifying pain/no-pain states from physiological signals with feature extraction, SVM modeling, and evaluation.',
+		tags: ['Machine Learning', 'SVM', 'NumPy', 'Pandas', 'scikit-learn'],
+		category: 'Machine Learning',
+		year: '2023',
+		repoUrl: 'https://github.com/kcibak/pain_detection_system',
+		link: 'https://github.com/kcibak/pain_detection_system'
+	},
+	{
+		title: 'Captured by Capri',
+		description: 'Photography portfolio website showcasing film and digital work, with gallery browsing and contact pathways for client inquiries.',
+		tags: ['Astro', 'TypeScript', 'CSS'],
+		category: 'Portfolio',
+		year: '2024',
+		featured: true,
+		liveUrl: 'https://capturedbycapri.netlify.app/',
+		link: 'https://capturedbycapri.netlify.app/'
+	},
+	{
+		title: 'SCxCMC Consulting Site',
+		description: 'Pharmaceutical consulting website presenting CMC strategy services, consultant profiles, and contact-driven conversion paths.',
+		tags: ['Astro', 'TypeScript', 'CSS'],
+		category: 'Web App',
+		year: '2024',
+		featured: true,
+		liveUrl: 'https://scxcmc.netlify.app/',
+		link: 'https://scxcmc.netlify.app/'
+	},
+	{
+		title: 'Sanare',
 		description: 'Live demo of a visual-first mental health platform for providers and patients, centered on secure, supportive care workflows.',
 		tags: ['Next.js', 'TypeScript', 'Stripe'],
 		category: 'Web App',
 		year: '2022',
 		liveUrl: 'https://mysanare.netlify.app/',
-		repoUrl: 'https://github.com/kcibak/Sanare',
-		link: 'https://mysanare.netlify.app/'
+		link: 'https://github.com/kcibak/Sanare'
 	},
 	{
 		title: 'This Portfolio Site',

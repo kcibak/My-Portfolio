@@ -1,23 +1,36 @@
-<span class="ui-tag">
+---
+type Props = {
+	class?: string;
+	hover?: boolean;
+};
+
+const {
+	class: className,
+	hover = true,
+	...rest
+} = Astro.props as Props;
+---
+
+<span class:list={['ui-tag', hover ? 'tag-hover' : '', className]} {...rest}>
 	<slot />
 </span>
 
 <style>
-		.ui-tag {
-			display: inline-flex;
-			align-items: center;
-			padding: 0.2rem 0.6rem;
-			border-radius: calc(var(--radius) * 999);
-			font-size: var(--type-size-small);
-			font-weight: var(--type-weight-small);
-			line-height: var(--type-line-small);
-			color: var(--color-ink);
-			background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-			transition: transform 0.15s ease, background-color 0.15s ease;
-		}
+	.ui-tag {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.2rem 0.6rem;
+		border-radius: calc(var(--radius) * 999);
+		font-size: var(--type-size-small);
+		font-weight: var(--type-weight-small);
+		line-height: var(--type-line-small);
+		color: var(--color-ink);
+		background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+		transition: transform 0.15s ease, background 0.15s ease;
+	}
 
-		.ui-tag:hover {
-			transform: translateY(-1px);
-			background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-		}
+	.ui-tag.tag-hover:hover {
+		transform: translateY(-1px);
+		background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+	}
 </style>

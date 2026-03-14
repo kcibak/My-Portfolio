@@ -10,8 +10,10 @@
     "check:rhythm": "node scripts/check-section-rhythm.mjs"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.7",
     "@astrojs/preact": "^4.1.0",
     "astro": "^5.16.11",
-    "preact": "^10.20.2"
+    "preact": "^10.20.2",
+    "typescript": "^5.9.3"
   }
 }
