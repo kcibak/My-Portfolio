@@ -5,7 +5,6 @@ import Container from '../components/layout/Container.astro';
 import AboutIntro from '../components/pages/AboutIntro.astro';
 import AboutHighlights from '../components/pages/AboutHighlights.astro';
 import AboutChatReplay from '../components/pages/AboutChatReplay.astro';
-// import AboutPortfolioStack from '../components/pages/AboutPortfolioStack.astro';
 
 export const prerender = true;
 ---
@@ -15,7 +14,8 @@ export const prerender = true;
 	<Section class="section">
 		<Container>
 			<p class="eyebrow">About Me</p>
-			<h1 class="section-title">I build <span class="gradient-text">digital products</span> that balance clarity, speed, and reliability.</h1>
+			<h1 class="section-title"><span class="gradient-text">I build digital products that help achieve goals</span></h1>
+			<p class="section-subtitle">I bring an analytical mind that delivers results without hand-holding.</p>
 		</Container>
 	</Section>
 
@@ -55,27 +55,13 @@ export const prerender = true;
 				</div>
 				<div class="editorial-content about-ai-copy">
 					<p>
-						AI is a daily collaborator — for prototyping, refactoring, and pressure-testing ideas before they reach production.
-						Below is my ChatGPT Year in Review, a snapshot of how that showed up across 2025.
+						AI is a daily collaborator for formulating, solidifying, and refining ideas before they reach production.
 					</p>
 				</div>
 			</div>
 			<AboutChatReplay />
 		</Container>
 	</Section>
-
-	<!-- 04 — Building This Portfolio
-	<Section padding="compact" reveal={true}>
-		<Container size="narrow">
-			<div class="editorial-row">
-				<div class="editorial-label">
-					<span class="section-num gradient-text">04</span>
-					<span class="editorial-label-text">Building This Portfolio</span>
-				</div>
-				<AboutPortfolioStack />
-			</div>
-		</Container>
-	</Section> -->
 </MainLayout>
 
 <style>

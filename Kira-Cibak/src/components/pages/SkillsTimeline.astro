@@ -4,24 +4,36 @@ import Tag from '../ui/Tag.astro';
 ---
 
 <div class="timeline">
-	<!-- Entry 1 — top (odd) -->
+	<!-- Entry 0 — top (odd) · Placeholder -->
 	<div class="tl-entry">
 		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
-				<Tag>Feb 2026 – Present</Tag>
-				<h3 class="tl-title">Cybersecurity & Architecture Consultant</h3>
+				<Tag>Mar 2026 – Present</Tag>
+				<h3 class="tl-title">Security Remediation Consultant</h3>
 				<p class="tl-org">Trace Systems Inc.</p>
-				<p class="tl-desc">Supported enterprise architecture with Zero Trust, secure system design, and workflow artifacts for DoD-aligned evaluations.</p>
+				<p class="tl-desc">Utilized Microsoft Defender to assess, prioritize, and remediate security vulnerabilities, contributing to improved ISO compliance and overall security posture.</p>
 			</Card>
 		</div>
 		<div class="tl-dot"></div>
 		<div class="tl-pad"></div>
 	</div>
 
-	<!-- Entry 2 — bottom (even) -->
+	<!-- Entry 1 — bottom (even) -->
 	<div class="tl-entry">
 		<div class="tl-pad"></div>
 		<div class="tl-dot"></div>
+		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+			<Card as="article" padding="compact">
+				<Tag>Feb 2026 – Present</Tag>
+				<h3 class="tl-title">Cybersecurity & Architecture Consultant</h3>
+				<p class="tl-org">Trace Systems Inc.</p>
+				<p class="tl-desc">Supported enterprise architecture with Zero Trust, secure system design, and workflow artifacts for DoW-aligned evaluations.</p>
+			</Card>
+		</div>
+	</div>
+
+	<!-- Entry 2 — top (odd) -->
+	<div class="tl-entry">
 		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Aug 2025 – Present</Tag>
@@ -30,10 +42,14 @@ import Tag from '../ui/Tag.astro';
 				<p class="tl-desc">Led delivery of 5 client platforms across pharma and nonprofit — architecture, Stripe, deployments.</p>
 			</Card>
 		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
 	</div>
 
-	<!-- Entry 3 — top (odd) -->
+	<!-- Entry 3 — bottom (even) -->
 	<div class="tl-entry">
+		<div class="tl-pad"></div>
+		<div class="tl-dot"></div>
 		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>May – Aug 2025</Tag>
@@ -42,42 +58,38 @@ import Tag from '../ui/Tag.astro';
 				<p class="tl-desc">Replatformed a SaaS license system to React + TypeScript, cutting DB complexity ~25%.</p>
 			</Card>
 		</div>
-		<div class="tl-dot"></div>
-		<div class="tl-pad"></div>
 	</div>
 
-	<!-- Entry 4 — bottom (even) · Azure Fundamentals -->
+	<!-- Entry 4 — top (odd) · Azure Fundamentals -->
 	<div class="tl-entry">
-		<div class="tl-pad"></div>
-		<div class="tl-dot"></div>
 		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Dec 2025</Tag>
 				<h3 class="tl-title">Azure Fundamentals</h3>
-				<p class="tl-org">AZ-900 Certification</p>
+				<p class="tl-org">Microsoft Certified</p>
 				<p class="tl-desc">Cloud services, security & identity. 44 MS Learn badges, 11 trophies.</p>
 			</Card>
 		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
 	</div>
 
-	<!-- Entry 5 — top (odd) · BS Degree -->
+	<!-- Entry 5 — bottom (even) · BS Degree -->
 	<div class="tl-entry">
+		<div class="tl-pad"></div>
+		<div class="tl-dot"></div>
 		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Dec 2025</Tag>
-				<h3 class="tl-title">Bachelor of Science</h3>
+				<h3 class="tl-title">B.S. in Computer Science</h3>
 				<p class="tl-org">University of South Florida</p>
-				<p class="tl-desc">Graduated with a focus on computer science and software engineering.</p>
+				<p class="tl-desc">Graduated from the engineering school with a focus on computer science and software engineering.</p>
 			</Card>
 		</div>
-		<div class="tl-dot"></div>
-		<div class="tl-pad"></div>
 	</div>
 
-	<!-- Entry 6 — bottom (even) -->
+	<!-- Entry 6 — top (odd) -->
 	<div class="tl-entry">
-		<div class="tl-pad"></div>
-		<div class="tl-dot"></div>
 		<div class="tl-card" role="button" tabindex="0" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Cybersecurity</Tag>
@@ -86,28 +98,48 @@ import Tag from '../ui/Tag.astro';
 				<p class="tl-desc">National cybersecurity pipeline. Ranked 42nd internationally.</p>
 			</Card>
 		</div>
+		<div class="tl-dot"></div>
+		<div class="tl-pad"></div>
 	</div>
 </div>
 
-<div class="tl-lightbox" data-tl-lightbox hidden role="dialog" aria-modal="true" aria-label="Timeline experience detail" tabindex="-1">
+<div class="tl-lightbox" data-tl-lightbox hidden>
 	<button type="button" class="tl-lightbox-backdrop" data-tl-close aria-label="Close detail"></button>
-	<div class="tl-lightbox-body">
+	<div
+		class="tl-lightbox-body"
+		data-tl-body
+		tabindex="-1"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="tl-lightbox-title"
+		aria-describedby="tl-lightbox-desc"
+	>
 		<button type="button" class="tl-lightbox-close" data-tl-close aria-label="Close detail">✕</button>
 		<span class="tl-lightbox-tag" data-tl-date></span>
-		<h3 class="tl-lightbox-title" data-tl-title></h3>
+		<h3 class="tl-lightbox-title" id="tl-lightbox-title" data-tl-title></h3>
 		<p class="tl-lightbox-org" data-tl-org></p>
-		<p class="tl-lightbox-desc" data-tl-desc></p>
+		<p class="tl-lightbox-desc" id="tl-lightbox-desc" data-tl-desc></p>
 	</div>
 </div>
 
 <style>
 	/* ── Alternating horizontal timeline ── */
 	.timeline {
+		--tl-card-height: 10.3rem;
+		--tl-card-width: 180px;
+		--tl-card-padding: 0.76rem 0.83rem 0.81rem;
+		--tl-card-gap: 0.34rem;
+		--tl-rail-gap: 2rem;
+		--tl-side-gutter: 1.6rem;
+		--tl-rail-left: 1.6rem;
+		--tl-rail-right: 1.6rem;
 		display: grid;
-		grid-template-rows: min-content 3.5rem min-content;
+		grid-template-rows: var(--tl-card-height) var(--tl-rail-gap) var(--tl-card-height);
 		grid-auto-flow: column;
-		grid-auto-columns: 1fr;
-		column-gap: 1.5rem;
+		grid-auto-columns: minmax(var(--tl-card-width), 1fr);
+		column-gap: 0.85rem;
+		padding-inline: var(--tl-side-gutter);
+		margin-inline: calc(var(--tl-side-gutter) * -1);
 		position: relative;
 	}
 
@@ -116,8 +148,8 @@ import Tag from '../ui/Tag.astro';
 		content: '';
 		position: absolute;
 		top: 50%;
-		left: 0;
-		right: 0;
+		left: var(--tl-rail-left);
+		right: var(--tl-rail-right);
 		height: 2px;
 		background: var(--color-border);
 		border-radius: 999px;
@@ -130,16 +162,21 @@ import Tag from '../ui/Tag.astro';
 
 	/* ── Card cell — rows are fixed so cards fill them exactly ── */
 	.tl-card {
-		height: 100%;
+		height: var(--tl-card-height);
+		width: 100%;
 		cursor: pointer;
 	}
 
 	.tl-card :global(.ui-card) {
+		box-sizing: border-box;
 		height: 100%;
+		min-height: var(--tl-card-height);
+		max-height: var(--tl-card-height);
+		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 0.4rem;
-		padding: 1.4rem 1.35rem 1.3rem;
+		gap: var(--tl-card-gap);
+		padding: var(--tl-card-padding);
 		overflow: hidden;
 		transition:
 			transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -149,10 +186,13 @@ import Tag from '../ui/Tag.astro';
 	}
 
 	.tl-card :global(.ui-tag) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-start;
 		align-self: flex-start;
 		width: fit-content;
-		max-width: 100%;
-		padding: 0.28rem 0.72rem !important;
+		padding: 0.3rem 0.9rem !important;
+		margin-inline-start: 0.08rem;
 		font-size: 0.82rem;
 		line-height: 1.2;
 		white-space: nowrap;
@@ -229,6 +269,14 @@ import Tag from '../ui/Tag.astro';
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+		text-overflow: ellipsis;
+		word-break: break-word;
+		mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+	}
+
+	/* Hide descriptions on timeline cards */
+	.tl-card .tl-desc {
+		display: none;
 	}
 
 	.tl-lightbox {
@@ -290,7 +338,10 @@ import Tag from '../ui/Tag.astro';
 	.tl-lightbox-tag {
 		display: inline-flex;
 		align-self: flex-start;
-		padding: 0.28rem 0.72rem;
+		justify-content: flex-start;
+		padding: 0.32rem 1rem;
+		width: fit-content;
+		white-space: nowrap;
 		border-radius: calc(var(--radius) * 999);
 		font-size: var(--type-size-small);
 		font-weight: var(--type-weight-small);
@@ -323,6 +374,8 @@ import Tag from '../ui/Tag.astro';
 	/* ── Mobile: collapse to vertical timeline ── */
 	@media (max-width: 767px) {
 		.timeline {
+			--tl-card-height: 13rem;
+			--tl-card-padding: 0.95rem 1.1rem 1rem;
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
@@ -362,17 +415,17 @@ import Tag from '../ui/Tag.astro';
 		}
 
 		.tl-card {
-			height: auto;
-			min-height: 0;
+			height: var(--tl-card-height);
 		}
 
 		.tl-card :global(.ui-card) {
-			padding: 1.15rem 1.25rem 1.2rem;
+			padding: var(--tl-card-padding);
 		}
 
 		.tl-card :global(.ui-tag) {
 			font-size: 0.78rem;
 			padding: 0.26rem 0.62rem !important;
+			margin-inline-start: 0.08rem;
 		}
 
 		.tl-lightbox-body {
@@ -383,12 +436,42 @@ import Tag from '../ui/Tag.astro';
 </style>
 
 <script>
+	const timeline = document.querySelector('.timeline');
 	const lightbox = document.querySelector('[data-tl-lightbox]');
 	const lightboxDate = document.querySelector('[data-tl-date]');
 	const lightboxTitle = document.querySelector('[data-tl-title]');
 	const lightboxOrg = document.querySelector('[data-tl-org]');
 	const lightboxDesc = document.querySelector('[data-tl-desc]');
+	const lightboxBody = document.querySelector('[data-tl-body], .tl-lightbox-body');
 	let lastTrigger: HTMLElement | null = null;
+
+	const syncTimelineRailToDots = () => {
+		if (!(timeline instanceof HTMLElement)) return;
+
+		const dots = timeline.querySelectorAll<HTMLElement>('.tl-dot');
+		if (dots.length < 2) return;
+
+		const firstDot = dots[0];
+		const lastDot = dots[dots.length - 1];
+		const timelineRect = timeline.getBoundingClientRect();
+		const firstRect = firstDot.getBoundingClientRect();
+		const lastRect = lastDot.getBoundingClientRect();
+
+		const firstCenter = firstRect.left + firstRect.width / 2 - timelineRect.left;
+		const lastCenter = lastRect.left + lastRect.width / 2 - timelineRect.left;
+
+		const railLeft = Math.max(0, firstCenter);
+		const railRight = Math.max(0, timelineRect.width - lastCenter);
+
+		timeline.style.setProperty('--tl-rail-left', `${railLeft}px`);
+		timeline.style.setProperty('--tl-rail-right', `${railRight}px`);
+	};
+
+	const requestRailSync = () => {
+		requestAnimationFrame(() => {
+			syncTimelineRailToDots();
+		});
+	};
 
 	const getLightboxFocusableElements = (): HTMLElement[] => {
 		if (!(lightbox instanceof HTMLElement)) return [];
@@ -430,8 +513,8 @@ import Tag from '../ui/Tag.astro';
 		const closeButton = lightbox.querySelector<HTMLElement>('.tl-lightbox-close[data-tl-close]');
 		if (closeButton instanceof HTMLElement) {
 			closeButton.focus();
-		} else {
-			lightbox.focus();
+		} else if (lightboxBody instanceof HTMLElement) {
+			lightboxBody.focus();
 		}
 	};
 
@@ -449,6 +532,17 @@ import Tag from '../ui/Tag.astro';
 
 	if (lightbox instanceof HTMLElement) {
 		lightbox.hidden = true;
+	}
+
+	requestRailSync();
+	window.addEventListener('resize', requestRailSync);
+
+	if (timeline instanceof HTMLElement && 'ResizeObserver' in window) {
+		const timelineObserver = new ResizeObserver(() => {
+			requestRailSync();
+		});
+
+		timelineObserver.observe(timeline);
 	}
 
 	document.addEventListener('click', (event) => {
@@ -486,7 +580,9 @@ import Tag from '../ui/Tag.astro';
 			const focusable = getLightboxFocusableElements();
 			if (focusable.length === 0) {
 				event.preventDefault();
-				lightbox.focus();
+				if (lightboxBody instanceof HTMLElement) {
+					lightboxBody.focus();
+				}
 				return;
 			}
 

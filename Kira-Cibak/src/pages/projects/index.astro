@@ -3,7 +3,9 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import Section from '../../components/layout/Section.astro';
 import Container from '../../components/layout/Container.astro';
 import ProjectCard from '../../components/project/ProjectCard.astro';
+import Card from '../../components/ui/Card.astro';
 import Button from '../../components/ui/Button.astro';
+import Tag from '../../components/ui/Tag.astro';
 import { projects } from '../../data/projects';
 
 export const prerender = true;
@@ -11,18 +13,20 @@ export const prerender = true;
 const portfolioProjectTitle = 'This Portfolio Site';
 const portfolioProject = projects.find((project) => project.title === portfolioProjectTitle);
 const showcasedProjects = projects.filter((project) => project.title !== portfolioProjectTitle);
+const portfolioProjectUrl = portfolioProject?.repoUrl ?? portfolioProject?.link;
+const isExternalPortfolioLink = portfolioProjectUrl ? portfolioProjectUrl.startsWith('https://') || portfolioProjectUrl.startsWith('http://') : false;
 ---
 
 <MainLayout title="Projects | Kira Cibak" description="A collection of web projects and technical builds by Kira Cibak.">
 	<Section class="section">
 		<Container>
 			<p class="eyebrow">Projects</p>
-			<h1 class="section-title"><span class="gradient-text">Things I've built</span></h1>
-			<p class="section-subtitle">From SaaS platforms to data science notebooks — a showcase of what I ship. Each project links to its repository or live demo.</p>
+			<h1 class="section-title"><span class="gradient-text">What I've built</span></h1>
+			<p class="section-subtitle">A selection of projects I’ve designed and deployed.</p>
 		</Container>
 	</Section>
 
-	<Section class="section" reveal={true}>
+	<Section class="section" reveal={true} style="padding-top: 0">
 		<Container>
 			<div class="grid-projects">
 				{showcasedProjects.map((project) => (
@@ -37,114 +41,32 @@ const showcasedProjects = projects.filter((project) => project.title !== portfol
 						liveUrl={project.liveUrl}
 					/>
 				))}
+				{
+					portfolioProject && portfolioProjectUrl ? (
+						<Card as="article" hover={false} class="project-card project-card-cta" padding="compact">
+							<div class="project-card-cta-content">
+								<h3 class="heading-reset">{portfolioProject.title}</h3>
+								<p class="muted-copy">{portfolioProject.description}</p>
+								<div class="tag-row project-card-cta-tags" aria-label="Portfolio site technologies">
+									{portfolioProject.tags.map((tag) => (
+										<Tag class="project-skill-tag" hover={false}>{tag}</Tag>
+									))}
+								</div>
+							</div>
+							<div class="action-row project-card-cta-actions">
+								<Button
+									variant="secondary"
+									href={portfolioProjectUrl}
+									target={isExternalPortfolioLink ? '_blank' : undefined}
+									rel={isExternalPortfolioLink ? 'noreferrer' : undefined}
+								>
+									View Project
+								</Button>
+							</div>
+						</Card>
+					) : null
+				}
 			</div>
 		</Container>
 	</Section>
-
-	{
-		portfolioProject ? (
-			<Section class="section" reveal={true}>
-				<Container>
-					<article class="portfolio-cta">
-						<p class="eyebrow portfolio-cta-eyebrow">Built with the same care</p>
-						<h2 class="portfolio-cta-title">
-							This site is part of the portfolio too.
-						</h2>
-						<p class="portfolio-cta-copy">
-							{portfolioProject.description} If you want to see how the experience is structured,
-							styled, and shipped, the source is open.
-						</p>
-						<div class="tag-row portfolio-cta-tags" aria-label="Portfolio site technologies">
-							{portfolioProject.tags.map((tag) => (
-								<span class="portfolio-cta-tag">{tag}</span>
-							))}
-						</div>
-						<div class="action-row action-row-center portfolio-cta-actions">
-							<Button
-								variant="accent"
-								href={portfolioProject.repoUrl ?? portfolioProject.link}
-								target="_blank"
-								rel="noreferrer"
-							>
-								View source on GitHub
-							</Button>
-						</div>
-					</article>
-				</Container>
-			</Section>
-		) : null
-	}
 </MainLayout>
-
-<style>
-	.portfolio-cta {
-		width: min(100%, 54rem);
-		margin: 0 auto;
-		display: grid;
-		justify-items: center;
-		gap: 1rem;
-		padding: 2rem 1.5rem;
-		text-align: center;
-		border-radius: calc(var(--radius) * 1.6);
-		border: 1px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
-		background:
-			radial-gradient(circle at top, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 58%),
-			linear-gradient(
-				155deg,
-				color-mix(in srgb, var(--color-card) 78%, white 22%) 0%,
-				color-mix(in srgb, var(--color-accent) 14%, var(--color-card)) 100%
-			);
-		box-shadow:
-			0 20px 44px -30px color-mix(in srgb, var(--color-accent) 40%, transparent),
-			var(--shadow);
-	}
-
-	.portfolio-cta-eyebrow {
-		margin: 0;
-	}
-
-	.portfolio-cta-title {
-		max-width: 12ch;
-		margin: 0;
-		font-size: clamp(2rem, 5vw, 3.35rem);
-		line-height: 1.05;
-		letter-spacing: -0.04em;
-	}
-
-	.portfolio-cta-copy {
-		max-width: 42rem;
-		margin: 0;
-		color: var(--color-muted);
-	}
-
-	.portfolio-cta-tags {
-		justify-content: center;
-	}
-
-	.portfolio-cta-tag {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.4rem 0.8rem;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--color-accent) 16%, transparent);
-		border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
-		font-size: var(--type-size-small);
-		font-weight: 600;
-		line-height: 1.2;
-	}
-
-	.portfolio-cta-actions {
-		margin-top: 0.25rem;
-	}
-
-	@media (max-width: 640px) {
-		.portfolio-cta {
-			padding: 1.5rem 1.1rem;
-			gap: 0.85rem;
-		}
-
-		.portfolio-cta-title {
-			max-width: 11ch;
-		}
-	}
-</style>

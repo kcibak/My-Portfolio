@@ -52,8 +52,8 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
 
 <Card as="article" class="stack-card archetype-card" padding="comfortable">
   <h3 class="section-title section-title-small" style="margin-bottom: 0.25rem;">My AI Archetype</h3>
-  <p class="muted-copy" style="margin: 0;">
-    Each year ChatGPT reveals your AI archetype — the lens through which you engaged with it most. Here's mine for 2025.
+  <p class="muted-copy archetype-excerpt" style="margin: 0;">
+    Each year, ChatGPT reveals the lens through which you engaged with it most. Here's mine for 2025.
   </p>
   <div class="archetype-grid">
     <figure class="chat-figure">
@@ -155,6 +155,18 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
 
   .archetype-card {
     margin-top: 0;
+  }
+
+  .archetype-excerpt {
+    white-space: normal;
+  }
+
+  @media (min-width: 768px) {
+    .archetype-excerpt {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .archetype-grid {
