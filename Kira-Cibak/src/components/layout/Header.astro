@@ -21,7 +21,9 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 ---
 
 <header class="dome-header" id="site-header">
-	<ThemeToggle client:load />
+	<div class="desktop-theme-toggle">
+		<ThemeToggle client:load />
+	</div>
 	<button
 		class="mobile-toggle"
 		id="mobile-menu-toggle"
@@ -165,6 +167,9 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 				</svg>
 				<span class="copy-tooltip" id="email-tooltip-mobile" role="tooltip" aria-hidden="true"></span>
 			</button>
+			<div class="mobile-menu__theme-inline">
+				<ThemeToggle client:load />
+			</div>
 		</div>
 	</div>
 
@@ -609,6 +614,27 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		margin-top: auto;
 	}
 
+	.mobile-menu__theme-inline {
+		display: inline-flex;
+	}
+
+	.mobile-menu__theme-inline :global(.theme-toggle) {
+		position: static;
+		top: auto;
+		right: auto;
+		transform: none;
+		z-index: auto;
+	}
+
+	#email-tooltip-mobile {
+		bottom: calc(100% + 0.5rem);
+		transform: translateX(-50%) translateY(-8px);
+	}
+
+	#email-tooltip-mobile.show {
+		transform: translateX(-50%) translateY(0);
+	}
+
 	.mobile-backdrop {
 		display: none;
 		position: fixed;
@@ -681,7 +707,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			display: none;
 		}
 
-		:global(.theme-toggle) {
+		.desktop-theme-toggle :global(.theme-toggle) {
 			display: none;
 		}
 
