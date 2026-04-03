@@ -13,7 +13,7 @@ import Button from '../ui/Button.astro';
     <Button href="/skills" variant="primary">
       My Experience <span aria-hidden="true">&rarr;</span>
     </Button>
-    <Button href="/projects" variant="secondary">
+    <Button href="/projects" variant="primary">
       Things I've Built <span aria-hidden="true">&rarr;</span>
     </Button>
   </nav>
@@ -36,6 +36,11 @@ import Button from '../ui/Button.astro';
     margin-top: 0.25rem;
   }
 
+  .why-build-ctas :global(.button) {
+    box-sizing: border-box;
+    min-height: 3.1rem;
+  }
+
   @media (max-width: 768px) {
     .why-build-ctas {
       width: 100%;
@@ -47,6 +52,7 @@ import Button from '../ui/Button.astro';
     .why-build-ctas :global(.button) {
       width: 100%;
       min-width: 0;
+      min-height: 3.1rem;
       padding: 0.64rem 0.7rem;
       font-size: 0.98rem;
       line-height: 1.3;

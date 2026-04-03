@@ -193,6 +193,12 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		box-shadow: var(--shadow-soft);
 	}
 
+	@media (min-width: 721px) {
+		:global(html.dark .dome-header) {
+			border-bottom: none;
+		}
+	}
+
 	:global(.theme-toggle) {
 		position: absolute;
 		right: 1.2rem;
@@ -685,9 +691,12 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		color: var(--color-ink);
 	}
 
+	.mobile-toggle .toggle-icon {
+		color: var(--color-accent);
+	}
+
 	.mobile-toggle[aria-expanded='true'] .toggle-icon {
 		transform: rotate(135deg);
-		color: var(--color-accent);
 	}
 
 	.mobile-menu.is-open .mobile-menu__close-icon {
