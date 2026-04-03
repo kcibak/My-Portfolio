@@ -62,6 +62,7 @@ const {
 				</svg>
 			</span>
 			<span class="action-label">Copy Email</span>
+			<span class="copy-tooltip" role="status" aria-live="polite"></span>
 		</button>
 	</div>
 </div>
@@ -72,6 +73,8 @@ const {
 
 		if (!copyButton) return;
 
+		const copyTooltip = copyButton.querySelector('.copy-tooltip');
+
 		copyButton.addEventListener('click', async () => {
 			const email = copyButton.getAttribute('data-copy-email');
 			if (!email) return;
@@ -79,7 +82,11 @@ const {
 			try {
 				await navigator.clipboard.writeText(email);
 				copyButton.setAttribute('data-copied', 'true');
-				window.setTimeout(() => copyButton.setAttribute('data-copied', 'false'), 1200);
+				if (copyTooltip) copyTooltip.textContent = 'Email copied';
+				window.setTimeout(() => {
+					copyButton.setAttribute('data-copied', 'false');
+					if (copyTooltip) copyTooltip.textContent = '';
+				}, 1200);
 			} catch (error) {
 				console.error('Could not copy email', error);
 			}

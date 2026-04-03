@@ -101,6 +101,14 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
     margin-top: 2rem;
   }
 
+  .chat-heading :global(.section-title) {
+    margin-bottom: 0.2rem;
+  }
+
+  .chat-heading :global(.section-subtitle) {
+    margin: 0;
+  }
+
   .chat-img {
     width: 100%;
     height: auto;
@@ -119,6 +127,7 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
     background: var(--color-transparent);
     cursor: zoom-in;
     border-radius: var(--radius);
+    overflow: hidden;
   }
 
   .chat-image-button:focus-visible {
@@ -132,15 +141,13 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
   }
 
   .chat-review-row .chat-image-button {
-    display: grid;
-    place-items: center;
-    min-height: clamp(240px, 30vw, 320px);
+    display: block;
+    min-height: 0;
   }
 
   .chat-review-row .chat-img {
-    width: auto;
-    max-width: 100%;
-    height: clamp(240px, 30vw, 320px);
+    width: 100%;
+    height: auto;
     object-fit: contain;
   }
 
@@ -182,7 +189,8 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
     display: grid;
     place-items: center;
     z-index: 1000;
-    padding: 1rem;
+    padding: 0.5rem;
+    overflow-x: hidden;
   }
 
   .chat-lightbox[hidden] {
@@ -201,26 +209,28 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
   }
 
   .chat-lightbox-body {
+    box-sizing: border-box;
     position: relative;
     z-index: 2;
-    width: fit-content;
-    max-width: min(1104px, 92vw);
-    max-height: 90vh;
+    width: min(1104px, 100%);
+    max-width: 100%;
+    max-height: calc(100dvh - 1rem);
     display: grid;
     gap: 0.75rem;
-    padding: 2.6rem 1.2rem 1.2rem;
+    padding: 3.35rem 1.2rem 1.2rem;
     background: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     box-shadow: 0 8px 40px rgb(11 34 63 / 22%);
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .chat-lightbox-close {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    border: 1px solid var(--color-border);
+    top: 0.7rem;
+    right: 0.7rem;
+    border: 0;
     background: var(--color-card);
     color: var(--color-ink);
     border-radius: var(--radius);
@@ -234,13 +244,41 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
   }
 
   .chat-lightbox-image {
+    box-sizing: border-box;
     display: block;
-    width: auto;
-    max-width: min(1060px, 88vw);
-    max-height: calc(90vh - 5rem);
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 6rem);
     object-fit: contain;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+  }
+
+  @media (min-width: 768px) {
+    .chat-review-row .chat-image-button {
+      display: grid;
+      place-items: center;
+      min-height: clamp(240px, 30vw, 320px);
+    }
+
+    .chat-review-row .chat-img {
+      width: auto;
+      max-width: 100%;
+      height: clamp(240px, 30vw, 320px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .chat-heading :global(.section-title) {
+      font-size: clamp(2rem, 9vw, 2.35rem);
+      line-height: 1.08;
+      margin-bottom: 0.22rem;
+    }
+
+    .chat-heading :global(.section-subtitle) {
+      font-size: clamp(1rem, 4.3vw, 1.1rem);
+      line-height: 1.45;
+    }
   }
 
   @media (max-width: 640px) {
@@ -250,11 +288,19 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
     }
 
     .chat-lightbox-body {
-      max-width: min(96vw, 720px);
+      width: 100%;
+      max-width: 100%;
+      padding: 3rem 0.55rem 0.55rem;
     }
 
     .chat-lightbox-image {
-      max-width: min(92vw, 720px);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .chat-lightbox-close {
+      top: 0.5rem;
+      right: 0.5rem;
     }
   }
 </style>
