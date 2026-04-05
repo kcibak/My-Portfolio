@@ -1,5 +1,5 @@
 ---
-import ThemeToggle from '../ui/ThemeToggle.tsx';
+import ThemeToggleButton from '../ui/ThemeToggleButton.astro';
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
@@ -20,10 +20,10 @@ const socials = [
 const emailAddress = 'kiracibakcodes@gmail.com';
 ---
 
-<header class="dome-header" id="site-header">
-	<div class="desktop-theme-toggle">
-		<ThemeToggle client:load />
-	</div>
+	<header class="dome-header" id="site-header">
+		<div class="desktop-theme-toggle">
+			<ThemeToggleButton />
+		</div>
 	<button
 		class="mobile-toggle"
 		id="mobile-menu-toggle"
@@ -167,8 +167,8 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 				</svg>
 				<span class="copy-tooltip" id="email-tooltip-mobile" role="tooltip" aria-hidden="true"></span>
 			</button>
-			<div class="mobile-menu__theme-inline">
-				<ThemeToggle client:load />
+			<div class="mobile-menu__theme-toggle">
+				<ThemeToggleButton />
 			</div>
 		</div>
 	</div>
@@ -200,14 +200,9 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	}
 
 	:global(.theme-toggle) {
-		position: absolute;
-		right: 1.2rem;
-		top: 50%;
-		transform: translateY(-50%);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		z-index: 75;
 		width: 44px;
 		height: 44px;
 		background: none;
@@ -218,6 +213,24 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		transition: opacity 0.18s ease;
 	}
 
+	.desktop-theme-toggle {
+		position: absolute;
+		right: 1.2rem;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 75;
+	}
+
+	.mobile-menu__theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-left: auto;
+	}
+
 	:global(.theme-toggle:hover),
 	:global(.theme-toggle:focus-visible) {
 		opacity: 0.75;
@@ -225,11 +238,25 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	}
 
 	:global(.theme-toggle__img) {
-		display: block;
+		position: absolute;
+		inset: 0;
 		width: 30px;
 		height: 30px;
 		object-fit: contain;
+		opacity: 0;
 		transition: opacity 0.2s ease;
+	}
+
+	:global(.theme-toggle__icon-frame) {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		display: block;
+	}
+
+	:global(html[data-theme='light'] .theme-toggle__img--light),
+	:global(html[data-theme='dark'] .theme-toggle__img--dark) {
+		opacity: 1;
 	}
 
 	.nav-shell {
@@ -283,6 +310,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	.copy-tooltip {
 		position: absolute;
 		left: 50%;
+		top: auto;
 		bottom: -2.75rem;
 		transform: translateX(-50%) translateY(8px);
 		padding: 0.4rem 0.7rem;
@@ -620,19 +648,8 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		margin-top: auto;
 	}
 
-	.mobile-menu__theme-inline {
-		display: inline-flex;
-	}
-
-	.mobile-menu__theme-inline :global(.theme-toggle) {
-		position: static;
-		top: auto;
-		right: auto;
-		transform: none;
-		z-index: auto;
-	}
-
 	#email-tooltip-mobile {
+		top: auto;
 		bottom: calc(100% + 0.5rem);
 		transform: translateX(-50%) translateY(-8px);
 	}
@@ -712,11 +729,8 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 
 		.social-bar,
 		.parabola-menu,
-		.nav-balance {
-			display: none;
-		}
-
-		.desktop-theme-toggle :global(.theme-toggle) {
+		.nav-balance,
+		.desktop-theme-toggle {
 			display: none;
 		}
 
@@ -740,6 +754,14 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 </style>
 
 <script>
+	import {
+		getThemeMode,
+		initializeThemeStore,
+		subscribeToThemeMode,
+		toggleThemeMode,
+		type ThemeMode
+	} from '../../lib/theme';
+
 	const header = document.getElementById('site-header');
 	const copyBtn = document.getElementById('email-copy');
 	const emailTooltip = document.getElementById('email-tooltip');
@@ -749,6 +771,17 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	let lastScrollY = window.scrollY;
 	let ticking = false;
 	let isShowingFeedback = false;
+	const themeToggleButtons = Array.from(
+		document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')
+	);
+
+	const syncThemeToggleButton = (button: HTMLButtonElement, mode: ThemeMode) => {
+		button.dataset.mode = mode;
+		button.setAttribute(
+			'aria-label',
+			mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+		);
+	};
 
 	const setCondensed = (condensed: boolean) => {
 		if (!header) return;
@@ -791,6 +824,30 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	);
 
 	handleScroll();
+
+	if (themeToggleButtons.length > 0) {
+		initializeThemeStore();
+		const applyThemeToggleState = (mode: ThemeMode = getThemeMode()) => {
+			themeToggleButtons.forEach((button) => syncThemeToggleButton(button, mode));
+		};
+
+		applyThemeToggleState();
+		const unsubscribeThemeToggle = subscribeToThemeMode((mode) => applyThemeToggleState(mode));
+
+		themeToggleButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				toggleThemeMode();
+			});
+		});
+
+		window.addEventListener(
+			'pagehide',
+			() => {
+				unsubscribeThemeToggle();
+			},
+			{ once: true }
+		);
+	}
 
 	const showTooltip = (el: HTMLElement | null) => {
 		if (!el) return;

@@ -1,0 +1,28 @@
+---
+const { class: className } = Astro.props;
+---
+
+<button type="button" class:list={['theme-toggle', className]} data-theme-toggle aria-label="Toggle theme">
+	<span class="theme-toggle__icon-frame" aria-hidden="true">
+		<img
+			src="/lightmode.png"
+			alt=""
+			width="30"
+			height="30"
+			class="theme-toggle__img theme-toggle__img--light"
+			loading="eager"
+			decoding="async"
+			fetchpriority="high"
+		/>
+		<img
+			src="/darkmode.png"
+			alt=""
+			width="30"
+			height="30"
+			class="theme-toggle__img theme-toggle__img--dark"
+			loading="eager"
+			decoding="async"
+			fetchpriority="high"
+		/>
+	</span>
+</button>

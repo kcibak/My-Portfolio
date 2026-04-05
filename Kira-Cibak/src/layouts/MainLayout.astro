@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Container from '../components/layout/Container.astro';
 import Header from '../components/layout/Header.astro';
+import { themeBootScript } from '../lib/theme';
 
 const {
 	title = 'Kira Cibak | Web Developer',
@@ -21,14 +22,7 @@ const canonical = Astro.site
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script is:inline>
-			try {
-				const savedTheme = localStorage.getItem('kira-theme-mode');
-				const mode = savedTheme === 'dark' ? 'dark' : 'light';
-				document.documentElement.classList.toggle('dark', mode === 'dark');
-				document.documentElement.dataset.themeMode = mode;
-			} catch {}
-		</script>
+		<script is:inline set:html={themeBootScript}></script>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />

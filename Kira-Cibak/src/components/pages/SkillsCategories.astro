@@ -59,7 +59,7 @@ const icon = '/placeholder.svg';
 			<div class="skill-item"><img src="/azure-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Azure</span></div>
 			<div class="skill-item"><img src="/docker-original.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon" /><span>Docker</span></div>
 			<div class="skill-item"><img src="/netlify-logo-svg-vector.svg" width="24" height="24" alt="" aria-hidden="true" class="skill-icon skill-icon--netlify" /><span>Netlify</span></div>
-			<div class="skill-item"><img src="/godaddy.png" width="54" height="28" alt="" aria-hidden="true" class="skill-icon skill-icon--godaddy" /><span>SSL / Email Authentication & DNS / Domain Management (GoDaddy)</span></div>
+			<div class="skill-item"><img src="/godaddy.png" width="54" height="28" alt="" aria-hidden="true" class="skill-icon skill-icon--godaddy" /><span>GoDaddy</span></div>
 		</div>
 	</div>
 
@@ -105,6 +105,7 @@ const icon = '/placeholder.svg';
 	.skills-groups {
 		display: grid;
 		gap: 1.1rem;
+		overflow-x: clip;
 	}
 
 	@media (min-width: 768px) {
@@ -126,6 +127,7 @@ const icon = '/placeholder.svg';
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.65rem 1rem;
+		min-width: 0;
 	}
 
 	.skill-item {
@@ -134,6 +136,7 @@ const icon = '/placeholder.svg';
 		gap: 0.5rem;
 		font-size: var(--type-size-base);
 		color: var(--color-muted);
+		min-width: 0;
 	}
 
 	.skill-icon {
@@ -158,5 +161,64 @@ const icon = '/placeholder.svg';
 
 	:global(html.dark) .skill-icon--placeholder {
 		filter: brightness(0) invert(1);
+	}
+
+	@media (max-width: 767px) {
+		.skills-groups {
+			gap: 0.95rem;
+		}
+
+		.skills-group {
+			min-width: 0;
+		}
+
+		.skills-cat {
+			margin-bottom: 0.5rem;
+			font-size: 0.78rem;
+			letter-spacing: 0.05em;
+		}
+
+		.skills-icon-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.7rem 0.9rem;
+		}
+
+		.skill-item {
+			align-items: flex-start;
+			gap: 0.42rem;
+			padding: 0;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			font-size: 0.94rem;
+			line-height: 1.24;
+		}
+
+		.skill-item span {
+			display: block;
+			min-width: 0;
+			overflow-wrap: anywhere;
+			text-wrap: balance;
+		}
+
+		.skill-icon {
+			width: 20px;
+			height: 20px;
+			margin-top: 0.08rem;
+			opacity: 0.82;
+		}
+
+		.skill-icon--netlify,
+		.skill-icon--copilot {
+			width: 22px;
+			height: 22px;
+		}
+
+		.skill-icon--godaddy {
+			width: 34px;
+			height: 18px;
+			margin-top: 0.18rem;
+		}
 	}
 </style>

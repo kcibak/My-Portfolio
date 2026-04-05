@@ -3,10 +3,12 @@ import Card from '../ui/Card.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 
 const baseUrl = import.meta.env.BASE_URL;
-const chatreplay3 = `${baseUrl}chatreplay3%20copy.png`;
-const chatreplay4 = `${baseUrl}chatreplay4%20copy.png`;
-const chatreplay5 = `${baseUrl}chatreplay5%20copy.png`;
-const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
+const chatreplay3Lightbox = `${baseUrl}chatreplay3%20copy.png`;
+const chatreplay4Lightbox = `${baseUrl}chatreplay4%20copy.png`;
+const chatreplay5Lightbox = `${baseUrl}chatreplay5%20copy.png`;
+const chatreplay6Lightbox = `${baseUrl}chatreplay6%20copy.png`;
+const reviewImageSizes = '(max-width: 767px) 100vw, 50vw';
+const archetypeImageSizes = '(max-width: 767px) 50vw, 360px';
 ---
 
 <div class="chat-heading">
@@ -23,11 +25,18 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay3}
+        data-chat-src={chatreplay3Lightbox}
         data-chat-alt="ChatGPT 2025 — If 2025 gave out awards"
         aria-label="Open image: A Year Worth Celebrating"
       >
-        <img src={chatreplay3} alt="ChatGPT 2025 — If 2025 gave out awards" class="chat-img" loading="lazy" decoding="async" />
+        <img
+          src="/chatreplay3 copy.png"
+          alt="ChatGPT 2025 — If 2025 gave out awards"
+          class="chat-img"
+          loading="lazy"
+          width={1687}
+          height={1299}
+        />
       </button>
       <figcaption class="eyebrow chat-caption">A Year Worth Celebrating</figcaption>
     </figure>
@@ -39,11 +48,18 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay6}
+        data-chat-src={chatreplay6Lightbox}
         data-chat-alt="ChatGPT 2025 — My year painted in pixels"
         aria-label="Open image: My Year Painted in Pixels"
       >
-        <img src={chatreplay6} alt="ChatGPT 2025 — My year painted in pixels" class="chat-img" loading="lazy" decoding="async" />
+        <img
+          src="/chatreplay6 copy.png"
+          alt="ChatGPT 2025 — My year painted in pixels"
+          class="chat-img"
+          loading="lazy"
+          width={1697}
+          height={1359}
+        />
       </button>
       <figcaption class="eyebrow chat-caption">My Year Painted in Pixels</figcaption>
     </figure>
@@ -61,11 +77,18 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay4}
+        data-chat-src={chatreplay4Lightbox}
         data-chat-alt="AI Archetype card — front"
         aria-label="Open image: AI Archetype card front"
       >
-        <img src={chatreplay4} alt="AI Archetype card — front" class="chat-img" loading="lazy" decoding="async" />
+        <img
+          src="/chatreplay4 copy.png"
+          alt="AI Archetype card — front"
+          class="chat-img"
+          loading="lazy"
+          width={1047}
+          height={1412}
+        />
       </button>
     </figure>
     <figure class="chat-figure">
@@ -73,11 +96,18 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
         type="button"
         class="chat-image-button"
         data-chat-open
-        data-chat-src={chatreplay5}
+        data-chat-src={chatreplay5Lightbox}
         data-chat-alt="AI Archetype card — back"
         aria-label="Open image: AI Archetype card back"
       >
-        <img src={chatreplay5} alt="AI Archetype card — back" class="chat-img" loading="lazy" decoding="async" />
+        <img
+          src="/chatreplay5 copy.png"
+          alt="AI Archetype card — back"
+          class="chat-img"
+          loading="lazy"
+          width={1008}
+          height={1368}
+        />
       </button>
     </figure>
   </div>
@@ -114,8 +144,7 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
     height: auto;
     display: block;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .chat-image-button {
@@ -137,7 +166,6 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
 
   .chat-image-button:hover .chat-img {
     transform: scale(1.05);
-    box-shadow: 0 8px 32px rgb(11 34 63 / 15%);
   }
 
   .chat-review-row .chat-image-button {
@@ -251,7 +279,6 @@ const chatreplay6 = `${baseUrl}chatreplay6%20copy.png`;
     max-height: calc(100dvh - 6rem);
     object-fit: contain;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
   }
 
   @media (min-width: 768px) {
