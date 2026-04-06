@@ -22,7 +22,7 @@ import Tag from '../ui/Tag.astro';
 	<div class="tl-entry">
 		<div class="tl-pad"></div>
 		<div class="tl-dot"></div>
-		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+		<div class="tl-card" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Feb 2026 – Present</Tag>
 				<h3 class="tl-title">Cybersecurity & Architecture Consultant</h3>
@@ -34,7 +34,7 @@ import Tag from '../ui/Tag.astro';
 
 	<!-- Entry 2 — top (odd) -->
 	<div class="tl-entry">
-		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+		<div class="tl-card" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Aug 2025 – Present</Tag>
 				<h3 class="tl-title">Lead Web Developer</h3>
@@ -62,7 +62,7 @@ import Tag from '../ui/Tag.astro';
 
 	<!-- Entry 4 — top (odd) · Azure Fundamentals -->
 	<div class="tl-entry">
-		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+		<div class="tl-card" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Dec 2025</Tag>
 				<h3 class="tl-title">Azure Fundamentals</h3>
@@ -78,7 +78,7 @@ import Tag from '../ui/Tag.astro';
 	<div class="tl-entry">
 		<div class="tl-pad"></div>
 		<div class="tl-dot"></div>
-		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+		<div class="tl-card" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>May – Aug 2025</Tag>
 				<h3 class="tl-title">Software Engineer Intern</h3>
@@ -90,7 +90,7 @@ import Tag from '../ui/Tag.astro';
 
 	<!-- Entry 6 — top (odd) -->
 	<div class="tl-entry">
-		<div class="tl-card" role="button" tabindex="0" data-tl-open>
+		<div class="tl-card" data-tl-open>
 			<Card as="article" padding="compact">
 				<Tag>Cybersecurity</Tag>
 				<h3 class="tl-title">US Cyber Challenge</h3>
@@ -463,6 +463,15 @@ import Tag from '../ui/Tag.astro';
 	const lightboxDesc = document.querySelector('[data-tl-desc]');
 	const lightboxBody = document.querySelector('[data-tl-body], .tl-lightbox-body');
 	let lastTrigger: HTMLElement | null = null;
+	let scrollYBeforeLock = 0;
+	let bodyStyleSnapshot: {
+		position: string;
+		top: string;
+		left: string;
+		right: string;
+		width: string;
+		paddingRight: string;
+	} | null = null;
 
 	const syncTimelineRailToDots = () => {
 		if (!(timeline instanceof HTMLElement)) return;
@@ -512,6 +521,61 @@ import Tag from '../ui/Tag.astro';
 		});
 	};
 
+	const lockBodyScroll = () => {
+		const body = document.body;
+		if (bodyStyleSnapshot) return;
+
+		scrollYBeforeLock = window.scrollY;
+		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+		bodyStyleSnapshot = {
+			position: body.style.position,
+			top: body.style.top,
+			left: body.style.left,
+			right: body.style.right,
+			width: body.style.width,
+			paddingRight: body.style.paddingRight
+		};
+
+		body.style.position = 'fixed';
+		body.style.top = `-${scrollYBeforeLock}px`;
+		body.style.left = '0';
+		body.style.right = '0';
+		body.style.width = '100%';
+		body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : bodyStyleSnapshot.paddingRight;
+	};
+
+	const unlockBodyScroll = () => {
+		const body = document.body;
+		if (!bodyStyleSnapshot) return;
+
+		body.style.position = bodyStyleSnapshot.position;
+		body.style.top = bodyStyleSnapshot.top;
+		body.style.left = bodyStyleSnapshot.left;
+		body.style.right = bodyStyleSnapshot.right;
+		body.style.width = bodyStyleSnapshot.width;
+		body.style.paddingRight = bodyStyleSnapshot.paddingRight;
+
+		bodyStyleSnapshot = null;
+		window.scrollTo(0, scrollYBeforeLock);
+	};
+
+	const isMobile = () => window.innerWidth < 768;
+
+	const updateCardInteractivity = () => {
+		const cards = document.querySelectorAll<HTMLElement>('[data-tl-open]');
+		const mobile = isMobile();
+		cards.forEach(card => {
+			if (mobile) {
+				card.removeAttribute('role');
+				card.removeAttribute('tabindex');
+			} else {
+				if (!card.hasAttribute('role')) card.setAttribute('role', 'button');
+				if (!card.hasAttribute('tabindex')) card.setAttribute('tabindex', '0');
+			}
+		});
+	};
+
 	const openLightbox = (card: HTMLElement) => {
 		if (!(lightbox instanceof HTMLElement)) return;
 
@@ -527,7 +591,7 @@ import Tag from '../ui/Tag.astro';
 
 		lastTrigger = card;
 		lightbox.hidden = false;
-		document.body.style.overflow = 'hidden';
+		lockBodyScroll();
 
 		const closeButton = lightbox.querySelector<HTMLElement>('.tl-lightbox-close[data-tl-close]');
 		if (closeButton instanceof HTMLElement) {
@@ -541,7 +605,7 @@ import Tag from '../ui/Tag.astro';
 		if (!(lightbox instanceof HTMLElement)) return;
 		if (lightbox.hidden) return;
 		lightbox.hidden = true;
-		document.body.style.overflow = '';
+		unlockBodyScroll();
 
 		if (lastTrigger instanceof HTMLElement && lastTrigger.isConnected) {
 			lastTrigger.focus();
@@ -564,6 +628,9 @@ import Tag from '../ui/Tag.astro';
 		timelineObserver.observe(timeline);
 	}
 
+	updateCardInteractivity();
+	window.addEventListener('resize', updateCardInteractivity);
+
 	document.addEventListener('click', (event) => {
 		const target = event.target;
 		if (!(target instanceof Element)) return;
@@ -574,7 +641,7 @@ import Tag from '../ui/Tag.astro';
 		}
 
 		const trigger = target.closest('[data-tl-open]');
-		if (trigger instanceof HTMLElement) {
+		if (trigger instanceof HTMLElement && !isMobile()) {
 			openLightbox(trigger);
 		}
 	});
@@ -586,7 +653,9 @@ import Tag from '../ui/Tag.astro';
 			if (!(activeElement instanceof HTMLElement) || !activeElement.hasAttribute('data-tl-open')) return;
 
 			event.preventDefault();
-			openLightbox(activeElement);
+			if (!isMobile()) {
+				openLightbox(activeElement);
+			}
 			return;
 		}
 
