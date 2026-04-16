@@ -180,6 +180,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	:global(.dome-header) {
 		position: sticky;
 		top: 0;
+		width: 100%;
 		z-index: 70;
 		backdrop-filter: blur(18px);
 		background: var(--color-nav);
@@ -940,7 +941,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		left: string;
 		right: string;
 		width: string;
-		paddingRight: string;
+		overflow: string;
 	} | null = null;
 
 	let mainWasInert = false;
@@ -978,7 +979,6 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		if (bodyStyleSnapshot) return;
 
 		scrollYBeforeLock = window.scrollY;
-		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
 		bodyStyleSnapshot = {
 			position: body.style.position,
@@ -986,7 +986,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			left: body.style.left,
 			right: body.style.right,
 			width: body.style.width,
-			paddingRight: body.style.paddingRight
+			overflow: body.style.overflow
 		};
 
 		body.style.position = 'fixed';
@@ -994,7 +994,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		body.style.left = '0';
 		body.style.right = '0';
 		body.style.width = '100%';
-		body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : bodyStyleSnapshot.paddingRight;
+		body.style.overflow = 'hidden';
 	};
 
 	const unlockScroll = () => {
@@ -1006,7 +1006,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		body.style.left = bodyStyleSnapshot.left;
 		body.style.right = bodyStyleSnapshot.right;
 		body.style.width = bodyStyleSnapshot.width;
-		body.style.paddingRight = bodyStyleSnapshot.paddingRight;
+		body.style.overflow = bodyStyleSnapshot.overflow;
 
 		bodyStyleSnapshot = null;
 		window.scrollTo(0, scrollYBeforeLock);

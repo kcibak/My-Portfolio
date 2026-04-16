@@ -95,7 +95,7 @@ import Tag from '../ui/Tag.astro';
 				<Tag>Cybersecurity</Tag>
 				<h3 class="tl-title">US Cyber Challenge</h3>
 				<p class="tl-org">Cyber Quests</p>
-				<p class="tl-desc">National cybersecurity pipeline. Ranked 42nd internationally.</p>
+				<p class="tl-desc">Competed in 3 US Cyber Challenge competitions. Ranked 42nd internationally most recently. <a href="https://www.uscyberchallenge.org/" target="_blank" rel="noopener noreferrer">USCC Website</a></p>
 			</Card>
 		</div>
 		<div class="tl-dot"></div>
@@ -361,6 +361,11 @@ import Tag from '../ui/Tag.astro';
 		color: var(--color-muted);
 	}
 
+	.tl-lightbox-desc a:hover {
+		text-decoration: underline;
+		color: var(--color-accent);
+	}
+
 	@media (min-width: 768px) {
 		/* Cards fill their fixed-height row — no alignment shift needed */
 		.tl-entry:nth-child(odd) .tl-card {
@@ -470,7 +475,7 @@ import Tag from '../ui/Tag.astro';
 		left: string;
 		right: string;
 		width: string;
-		paddingRight: string;
+		overflow: string;
 	} | null = null;
 
 	const syncTimelineRailToDots = () => {
@@ -526,7 +531,6 @@ import Tag from '../ui/Tag.astro';
 		if (bodyStyleSnapshot) return;
 
 		scrollYBeforeLock = window.scrollY;
-		const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
 		bodyStyleSnapshot = {
 			position: body.style.position,
@@ -534,7 +538,7 @@ import Tag from '../ui/Tag.astro';
 			left: body.style.left,
 			right: body.style.right,
 			width: body.style.width,
-			paddingRight: body.style.paddingRight
+			overflow: body.style.overflow
 		};
 
 		body.style.position = 'fixed';
@@ -542,7 +546,7 @@ import Tag from '../ui/Tag.astro';
 		body.style.left = '0';
 		body.style.right = '0';
 		body.style.width = '100%';
-		body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : bodyStyleSnapshot.paddingRight;
+		body.style.overflow = 'hidden';
 	};
 
 	const unlockBodyScroll = () => {
@@ -554,7 +558,7 @@ import Tag from '../ui/Tag.astro';
 		body.style.left = bodyStyleSnapshot.left;
 		body.style.right = bodyStyleSnapshot.right;
 		body.style.width = bodyStyleSnapshot.width;
-		body.style.paddingRight = bodyStyleSnapshot.paddingRight;
+		body.style.overflow = bodyStyleSnapshot.overflow;
 
 		bodyStyleSnapshot = null;
 		window.scrollTo(0, scrollYBeforeLock);
@@ -582,12 +586,12 @@ import Tag from '../ui/Tag.astro';
 		const date = card.querySelector('.ui-tag')?.textContent?.trim() ?? '';
 		const title = card.querySelector('.tl-title')?.textContent?.trim() ?? '';
 		const org = card.querySelector('.tl-org')?.textContent?.trim() ?? '';
-		const desc = card.querySelector('.tl-desc')?.textContent?.trim() ?? '';
+		const descHtml = card.querySelector('.tl-desc')?.innerHTML?.trim() ?? '';
 
 		if (lightboxDate instanceof HTMLElement) lightboxDate.textContent = date;
 		if (lightboxTitle instanceof HTMLElement) lightboxTitle.textContent = title;
 		if (lightboxOrg instanceof HTMLElement) lightboxOrg.textContent = org;
-		if (lightboxDesc instanceof HTMLElement) lightboxDesc.textContent = desc;
+		if (lightboxDesc instanceof HTMLElement) lightboxDesc.innerHTML = descHtml;
 
 		lastTrigger = card;
 		lightbox.hidden = false;
