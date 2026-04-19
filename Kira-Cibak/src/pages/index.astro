@@ -3,39 +3,29 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import HomeHero from '../components/pages/HomeHero.astro';
-import HomeCta from '../components/pages/HomeCta.astro';
 
 export const prerender = true;
 
-const dotColorMap: Record<string, string> = {
-	blue: 'var(--color-accent)',
-	warm: 'var(--color-accent-warm)',
-	teal: 'var(--color-accent-2)',
-};
-
 const howIWork = [
 	{
-		dot: 'blue',
-		heading: 'Secure Systems',
-		statement: 'Zero Trust architecture, compliance artifacts, and enterprise design.',
-		shortStatement: 'Zero Trust, enterprise design, compliance.'
+		title: 'Secure Systems',
+		copy: 'I build with Zero Trust principles and keep security and compliance in mind.',
+		shape: 'triangle'
 	},
 	{
-		dot: 'warm',
-		heading: 'Web & Product',
-		statement: 'React + TypeScript platforms, owned from requirements to release.',
-		shortStatement: 'React + TypeScript, requirement to release.'
+		title: 'Web + Product',
+		copy: 'I take features + requirements from concept to working product.',
+		shape: 'diamond'
 	},
 	{
-		dot: 'teal',
-		heading: 'Clear Thinking',
-		statement: 'Translating complex problems into clean, documented solutions.',
-		shortStatement: 'Complex problems, clean solutions.'
+		title: 'Always Adapting',
+		copy: 'I pick up new tools fast and stay current on where things are heading.',
+		shape: 'circle'
 	}
 ];
 ---
 
-<MainLayout title="Kira | CS · Systems · Builder">
+<MainLayout title="Kira Cibak" mainClass="home-main">
 	<Section class="section section-hero">
 		<Container>
 			<HomeHero />
@@ -43,283 +33,235 @@ const howIWork = [
 	</Section>
 
 	<Section class="section section-bottom" padding="compact">
-		<Container>
-			<div class="landing-bottom">
-				<div class="landing-work">
-					<div class="work-heading">
-						<span class="work-eyebrow">Things I Do</span>
+		<section class="shape-row" aria-label="Core strengths" data-reveal>
+			{howIWork.map((item) => (
+				<article class:list={['shape-item', `shape-item--${item.shape}`]}>
+					<div class:list={['shape-figure', `shape-figure--${item.shape}`]}>
+						<div class="shape-figure-inner">
+							<h3>{item.title}</h3>
+							<p>{item.copy}</p>
+						</div>
 					</div>
-					<div class="work-list">
-						{howIWork.map((item, i) => (
-							<article class="work-pod" style={`--item-accent: ${dotColorMap[item.dot]}`}>
-								<div class="work-node">
-									<p class="work-item-heading">{item.heading}</p>
-									<p class="work-item-body">{item.shortStatement}</p>
-								</div>
-							</article>
-						))}
-					</div>
-				</div>
-
-				<div class="landing-cta">
-					<HomeCta />
-				</div>
-			</div>
-	</Container>
+				</article>
+			))}
+		</section>
 	</Section>
 </MainLayout>
 
 <style>
-	/* ── Tighten bottom section for above-fold fit ── */
+	:global(.home-main) {
+		min-height: calc(100svh - 96px);
+		padding-bottom: 1.35rem;
+		display: flex;
+		flex-direction: column;
+	}
+
 	:global(.section-hero.layout-section) {
-		padding-bottom: clamp(0.18rem, 0.5vw, 0.4rem) !important;
+		padding-bottom: clamp(0.12rem, 0.4vw, 0.35rem) !important;
 	}
 
 	:global(.section-bottom.layout-section) {
-		padding-top: clamp(0.25rem, 0.6vw, 0.55rem) !important;
-		padding-bottom: 0.65rem !important;
+		padding-top: clamp(0.12rem, 0.5vw, 0.4rem) !important;
+		padding-bottom: clamp(1.25rem, 3vh, 2.15rem) !important;
 	}
 
-	/* ── Bottom split row ── */
-	.landing-bottom {
+	.shape-row {
+		--shape-size: clamp(11.85rem, 13.8vw, 13.85rem);
+		--shape-triangle-start: color-mix(in srgb, rgb(156 230 246) 44%, var(--color-card));
+		--shape-triangle-end: color-mix(in srgb, rgb(75 190 218) 18%, var(--color-card));
+		--shape-triangle-border: color-mix(in srgb, rgb(75 190 218) 17%, var(--color-border));
+		--shape-diamond-start: color-mix(in srgb, rgb(38 177 196) 18%, var(--color-card));
+		--shape-diamond-end: color-mix(in srgb, rgb(88 214 220) 18%, var(--color-card));
+		--shape-diamond-border: color-mix(in srgb, rgb(38 177 196) 16%, var(--color-border));
+		--shape-circle-start: color-mix(in srgb, rgb(88 196 234) 40%, var(--color-card));
+		--shape-circle-end: color-mix(in srgb, rgb(4 96 168) 28%, var(--color-card));
+		--shape-circle-border: color-mix(in srgb, rgb(4 96 168) 26%, var(--color-border));
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-		column-gap: clamp(1.5rem, 2.2vw, 2.25rem);
-		align-items: stretch;
-		min-height: 0; /* prevent grid blowout */
-	}
-
-	/* ── Left column: How I Work ── */
-	.landing-work {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
-		gap: 0.55rem;
-	}
-
-	.work-heading {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: end;
+		justify-items: center;
 		width: 100%;
-		margin: 0;
+		gap: clamp(1rem, 3vw, 3rem);
+	}
+
+	.shape-item {
 		display: flex;
-		align-items: center;
-		gap: 0.6rem;
-	}
-
-	.work-heading::after {
-		content: '';
-		height: 1px;
-		flex: 1;
-		background: color-mix(in srgb, var(--color-accent) 28%, transparent);
-	}
-
-	.work-eyebrow {
-		font-family: 'IBM Plex Mono', ui-monospace, monospace;
-		font-size: 1.08rem;
-		font-weight: 600;
-		letter-spacing: 0.2em;
-		text-transform: uppercase;
-		color: var(--color-accent);
-		white-space: nowrap;
-	}
-
-	.work-list {
-		display: grid;
-		grid-template-columns: repeat(3, max-content);
-		justify-content: start;
-		column-gap: clamp(0.55rem, 1.2vw, 0.9rem);
-		row-gap: 0.34rem;
-		padding-right: 0;
-	}
-
-	.work-pod {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.28rem;
-	}
-
-	.work-pod:nth-child(1) {
-		grid-column: 1;
-	}
-
-	.work-pod:nth-child(2) {
-		grid-column: 2;
-	}
-
-	.work-pod:nth-child(3) {
-		grid-column: 3;
-	}
-
-	.work-node {
-		width: clamp(152px, 11.4vw, 178px);
-		aspect-ratio: 1 / 1;
-		border-radius: 50%;
-		border: 1px solid color-mix(in srgb, var(--color-accent) 24%, var(--color-border));
-		background: radial-gradient(
-			circle at 34% 20%,
-			color-mix(in srgb, var(--color-accent-2) 34%, var(--color-card)) 0%,
-			color-mix(in srgb, var(--color-accent) 26%, var(--color-card)) 50%,
-			color-mix(in srgb, var(--color-accent-warm) 18%, var(--color-card)) 100%
-		);
-		box-shadow: 0 2px 10px -7px color-mix(in srgb, var(--color-accent) 28%, transparent);
-		padding: 0.52rem 0.58rem;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
 		justify-content: center;
-		align-items: center;
-		text-align: center;
-		gap: 0.22rem;
+		align-items: end;
+		min-height: calc(var(--shape-size) + 0.35rem);
 	}
 
-	.work-pod:nth-child(2) .work-node {
-		background: radial-gradient(
-			circle at 32% 18%,
-			color-mix(in srgb, var(--color-accent-2) 38%, var(--color-card)) 0%,
-			color-mix(in srgb, var(--color-accent) 28%, var(--color-card)) 52%,
-			color-mix(in srgb, var(--color-accent-warm) 20%, var(--color-card)) 100%
-		);
+	.shape-item--triangle {
+		min-height: calc((var(--shape-size) * 1.18 * 0.8660254) + 0.35rem);
 	}
 
-	.work-pod:nth-child(3) .work-node {
-		background: radial-gradient(
-			circle at 35% 22%,
-			color-mix(in srgb, var(--color-accent-2) 30%, var(--color-card)) 0%,
-			color-mix(in srgb, var(--color-accent) 24%, var(--color-card)) 48%,
-			color-mix(in srgb, var(--color-accent-warm) 16%, var(--color-card)) 100%
-		);
-	}
-
-	:global(html.dark) .work-node {
-		background: radial-gradient(
-			circle at 34% 20%,
-			color-mix(in srgb, var(--color-accent-2) 28%, var(--color-card)) 0%,
-			color-mix(in srgb, var(--color-accent) 22%, var(--color-card)) 52%,
-			color-mix(in srgb, var(--color-accent-warm) 14%, var(--color-card)) 100%
-		);
-	}
-
-	:global(html.dark) .work-pod:nth-child(2) .work-node {
-		background: radial-gradient(
-			circle at 32% 18%,
-			color-mix(in srgb, var(--color-accent-2) 32%, var(--color-card)) 0%,
-			color-mix(in srgb, var(--color-accent) 24%, var(--color-card)) 50%,
-			color-mix(in srgb, var(--color-accent-warm) 16%, var(--color-card)) 100%
-		);
-	}
-
-	:global(html.dark) .work-pod:nth-child(3) .work-node {
-		background: radial-gradient(
-			circle at 35% 22%,
-			color-mix(in srgb, var(--color-accent-2) 26%, var(--color-card)) 0%,
-			color-mix(in srgb, var(--color-accent) 20%, var(--color-card)) 48%,
-			color-mix(in srgb, var(--color-accent-warm) 12%, var(--color-card)) 100%
-		);
-	}
-
-	.work-item-heading {
-		margin: 0;
-		font-size: 1.35rem;
-		font-weight: 700;
-		line-height: 1.2;
+	.shape-figure {
+		--shape-content-width: 15.5ch;
+		--shape-content-y: 0rem;
+		--shape-padding-inline: 1rem;
+		--shape-title-width: 8ch;
+		--shape-copy-width: 15.5ch;
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: 100%;
+		max-width: var(--shape-size);
 		color: var(--color-ink);
-		max-width: 9ch;
+	}
+
+	.shape-figure-inner {
+		box-sizing: border-box;
+		display: grid;
+		place-items: center;
+		gap: 0.28rem;
+		width: min(var(--shape-content-width), calc(100% - (var(--shape-padding-inline) * 2)));
+		text-align: center;
+		transform: translateY(var(--shape-content-y));
+	}
+
+	.shape-figure h3 {
+		margin: 0;
+		font-size: clamp(1rem, 1.05vw, 1.14rem);
+		line-height: 1.06;
+		max-width: var(--shape-title-width);
 		text-wrap: balance;
 	}
 
-	.work-item-body {
-		font-size: var(--type-size-small);
-		color: var(--color-muted);
-		line-height: 1.32;
+	.shape-figure p {
 		margin: 0;
-		max-width: 15ch;
-		text-align: center;
+		font-size: clamp(0.78rem, 0.82vw, 0.88rem);
+		line-height: 1.28;
+		color: color-mix(in srgb, var(--color-ink) 72%, white);
+		max-width: var(--shape-copy-width);
 		text-wrap: pretty;
 	}
 
-	/* ── Right column: CTA ── */
-	.landing-cta {
-		display: flex;
-		align-items: stretch;
-		padding-top: 0;
-		height: 100%;
+	.shape-figure--triangle {
+		--triangle-size: calc(var(--shape-size) * 1.18);
+		--shape-content-width: 13.2ch;
+		--shape-content-y: 2.12rem;
+		--shape-padding-inline: 2.6rem;
+		--shape-title-width: 7.4ch;
+		--shape-copy-width: 13.2ch;
+		position: relative;
+		width: var(--triangle-size);
+		max-width: var(--triangle-size);
+		aspect-ratio: 1 / 0.8660254;
+		clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+		background: linear-gradient(
+			180deg,
+			var(--shape-triangle-start) 0%,
+			var(--shape-triangle-end) 100%
+		);
 	}
 
-	:global(.landing-cta .cta-panel) {
-		height: 100%;
-		justify-content: space-between;
-		padding-top: clamp(0.7rem, 0.9vw, 0.95rem);
-		padding-bottom: clamp(0.7rem, 0.9vw, 0.95rem);
+	.shape-figure--triangle::before {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+		background: var(--shape-triangle-border);
+		z-index: -1;
 	}
 
-	@media (max-width: 1024px) {
-		.landing-bottom {
+	.shape-figure--diamond {
+		--shape-content-width: 18ch;
+		--shape-content-y: -0.08rem;
+		--shape-padding-inline: 0.45rem;
+		--shape-title-width: 10ch;
+		--shape-copy-width: 18ch;
+		width: var(--shape-size);
+		height: var(--shape-size);
+		background: linear-gradient(
+			160deg,
+			var(--shape-diamond-start) 0%,
+			var(--shape-diamond-end) 100%
+		);
+		border: 1px solid var(--shape-diamond-border);
+		border-radius: calc(var(--radius) * 0.9);
+	}
+
+	.shape-figure--circle {
+		--shape-content-width: 16.5ch;
+		--shape-content-y: -0.04rem;
+		--shape-padding-inline: 0.75rem;
+		--shape-title-width: 9ch;
+		--shape-copy-width: 16.5ch;
+		width: var(--shape-size);
+		height: var(--shape-size);
+		border-radius: 50%;
+		background: radial-gradient(
+			circle at 30% 30%,
+			var(--shape-circle-start) 0%,
+			var(--shape-circle-end) 100%
+		);
+		border: 1px solid var(--shape-circle-border);
+	}
+
+	:global(html.dark) .shape-row {
+		--shape-triangle-start: color-mix(in srgb, rgb(125 222 242) 32%, var(--color-card));
+		--shape-triangle-end: color-mix(in srgb, rgb(45 169 202) 16%, var(--color-card));
+		--shape-triangle-border: color-mix(in srgb, rgb(125 222 242) 24%, var(--color-border));
+		--shape-diamond-start: color-mix(in srgb, rgb(36 160 184) 18%, var(--color-card));
+		--shape-diamond-end: color-mix(in srgb, rgb(82 204 214) 14%, var(--color-card));
+		--shape-diamond-border: color-mix(in srgb, rgb(82 204 214) 17%, var(--color-border));
+		--shape-circle-start: color-mix(in srgb, rgb(82 188 228) 34%, var(--color-card));
+		--shape-circle-end: color-mix(in srgb, rgb(5 88 158) 34%, var(--color-card));
+		--shape-circle-border: color-mix(in srgb, rgb(82 188 228) 26%, var(--color-border));
+	}
+
+	@media (max-width: 1080px) {
+		:global(.home-main) {
+			min-height: auto;
+		}
+	}
+
+	@media (max-width: 820px) {
+		.shape-row {
 			grid-template-columns: 1fr;
-			row-gap: 0.9rem;
+			justify-items: center;
+			gap: 1.25rem;
 		}
 
-		.landing-work {
-			gap: 0.56rem;
-		}
-
-		.work-heading {
+		.shape-item {
+			min-height: auto;
 			width: 100%;
-			margin: 0;
-		}
-
-		.work-list {
-			display: flex;
-			flex-direction: column;
-			gap: 0.8rem;
-			padding-right: 0;
-		}
-
-		.work-pod {
-			align-items: flex-start;
-		}
-
-		.work-node {
-			width: 100%;
-			max-width: none;
-			aspect-ratio: auto;
-			min-height: 0;
-			border-radius: calc(var(--radius) * 1.15);
-			padding: 0.62rem 0.82rem;
-			align-items: flex-start;
-			text-align: left;
-			box-shadow: none;
-			gap: 0.16rem;
-		}
-
-		.work-item-heading {
-			max-width: none;
-			text-wrap: pretty;
-		}
-
-		.work-item-body {
-			text-align: left;
-			max-width: 37ch;
-		}
-
-		.landing-cta {
-			padding-top: 0;
-			height: auto;
-		}
-
-		:global(.landing-cta .cta-panel) {
-			height: auto;
-			justify-content: flex-start;
 		}
 	}
 
-	@media (max-height: 900px) and (min-width: 1025px) {
-		:global(.section-bottom.layout-section) {
-			padding-bottom: 0.45rem !important;
+	@media (max-width: 640px) {
+		:global(.home-main) {
+			padding-bottom: 1.25rem;
 		}
 
-		.work-node {
-			width: clamp(142px, 10.5vw, 168px);
+		:global(.section-hero.layout-section) {
+			padding-bottom: 0.3rem !important;
+		}
+
+		:global(.section-bottom.layout-section) {
+			padding-top: 0.35rem !important;
+			padding-bottom: 1.5rem !important;
+		}
+
+		.shape-row {
+			--shape-size: min(calc(100vw - 2rem), 12.25rem);
+			gap: 1rem;
+		}
+
+		.shape-figure {
+			max-width: var(--shape-size);
+		}
+
+		.shape-figure--triangle {
+			--triangle-size: min(calc(var(--shape-size) * 1.18), calc(100vw - 2rem));
+			width: var(--triangle-size);
+			max-width: var(--triangle-size);
+		}
+
+		.shape-figure--diamond,
+		.shape-figure--circle {
+			width: var(--shape-size);
+			height: var(--shape-size);
 		}
 	}
 </style>
