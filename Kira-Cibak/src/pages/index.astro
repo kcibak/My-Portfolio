@@ -25,7 +25,7 @@ const howIWork = [
 ];
 ---
 
-<MainLayout title="Kira Cibak" mainClass="home-main">
+<MainLayout title="Kira Cibak" htmlClass="home-page-root" bodyClass="home-page" mainClass="home-main">
 	<Section class="section section-hero">
 		<Container>
 			<HomeHero />
@@ -210,7 +210,41 @@ const howIWork = [
 		--shape-circle-border: color-mix(in srgb, rgb(82 188 228) 26%, var(--color-border));
 	}
 
-	@media (max-width: 1080px) {
+	@media (min-width: 1024px) {
+		:global(html.home-page-root) {
+			height: 100svh;
+			overflow-y: hidden;
+		}
+
+		:global(body.home-page) {
+			height: 100svh;
+			overflow: hidden;
+		}
+
+		:global(body.home-page .home-main) {
+			height: calc(100svh - 96px);
+			min-height: 0;
+			overflow: hidden;
+			padding-top: clamp(3.85rem, 8vh, 5.2rem);
+			padding-bottom: clamp(0.75rem, 1.8vh, 1.35rem);
+		}
+
+		:global(body.home-page .section-hero.layout-section) {
+			padding-top: clamp(0.45rem, 1vh, 0.9rem) !important;
+			padding-bottom: clamp(0.05rem, 0.28vw, 0.25rem) !important;
+		}
+
+		:global(body.home-page .section-bottom.layout-section) {
+			padding-top: clamp(0.05rem, 0.28vw, 0.25rem) !important;
+			padding-bottom: clamp(0.55rem, 1.3vh, 1.15rem) !important;
+		}
+
+		:global(body.home-page) .shape-row {
+			--shape-size: clamp(10.6rem, 12.4vw, 13.1rem);
+		}
+	}
+
+	@media (max-width: 1023px) {
 		:global(.home-main) {
 			min-height: auto;
 		}
