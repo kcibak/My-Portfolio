@@ -34,8 +34,8 @@ const howIWork = [
 
 	<Section class="section section-bottom" padding="compact">
 		<section class="shape-row" aria-label="Core strengths" data-reveal>
-			{howIWork.map((item) => (
-				<article class:list={['shape-item', `shape-item--${item.shape}`]}>
+			{howIWork.map((item, index) => (
+				<article id={`strength-${index + 1}`} class:list={['shape-item', `shape-item--${item.shape}`]}>
 					<div class:list={['shape-figure', `shape-figure--${item.shape}`]}>
 						<div class="shape-figure-inner">
 							<h3>{item.title}</h3>
@@ -45,6 +45,11 @@ const howIWork = [
 				</article>
 			))}
 		</section>
+		<nav class="shape-progress" aria-label="Core strengths slides">
+			{howIWork.map((item, index) => (
+				<a href={`#strength-${index + 1}`} aria-label={`View ${item.title}`}></a>
+			))}
+		</nav>
 	</Section>
 </MainLayout>
 
@@ -82,6 +87,10 @@ const howIWork = [
 		justify-items: center;
 		width: 100%;
 		gap: clamp(1rem, 3vw, 3rem);
+	}
+
+	.shape-progress {
+		display: none;
 	}
 
 	.shape-item {
@@ -265,21 +274,48 @@ const howIWork = [
 
 	@media (max-width: 640px) {
 		:global(.home-main) {
-			padding-bottom: 1.25rem;
+			padding-bottom: 1rem;
 		}
 
 		:global(.section-hero.layout-section) {
-			padding-bottom: 0.3rem !important;
+			padding-bottom: 0.08rem !important;
 		}
 
 		:global(.section-bottom.layout-section) {
-			padding-top: 0.35rem !important;
-			padding-bottom: 1.5rem !important;
+			padding-top: 0.18rem !important;
+			padding-bottom: 1.25rem !important;
 		}
 
 		.shape-row {
-			--shape-size: min(calc(100vw - 2rem), 12.25rem);
-			gap: 1rem;
+			--shape-size: min(68vw, 13rem);
+			display: flex;
+			grid-template-columns: none;
+			align-items: stretch;
+			justify-items: stretch;
+			gap: 0;
+			overflow-x: auto;
+			overscroll-behavior-x: contain;
+			scroll-padding-inline: 0;
+			scroll-snap-type: x mandatory;
+			scrollbar-width: none;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.shape-row::-webkit-scrollbar {
+			display: none;
+		}
+
+		.shape-item {
+			flex: 0 0 100%;
+			width: 100%;
+			min-height: calc((var(--shape-size) * 1.18 * 0.8660254) + 0.35rem);
+			align-items: center;
+			scroll-snap-align: center;
+			scroll-snap-stop: always;
+		}
+
+		.shape-item--triangle {
+			min-height: calc((var(--shape-size) * 1.18 * 0.8660254) + 0.35rem);
 		}
 
 		.shape-figure {
@@ -296,6 +332,31 @@ const howIWork = [
 		.shape-figure--circle {
 			width: var(--shape-size);
 			height: var(--shape-size);
+		}
+
+		.shape-progress {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			padding-top: 0.72rem;
+		}
+
+		.shape-progress a {
+			width: 0.56rem;
+			height: 0.56rem;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-accent) 42%, var(--color-border));
+			border: 1px solid color-mix(in srgb, var(--color-accent) 46%, var(--color-border));
+			box-shadow: 0 0 0 0.22rem color-mix(in srgb, var(--color-card) 74%, transparent);
+			transition: transform 160ms ease, background-color 160ms ease;
+		}
+
+		.shape-progress a:hover,
+		.shape-progress a:focus-visible {
+			background: var(--color-accent);
+			transform: scale(1.18);
+			outline: none;
 		}
 	}
 </style>
