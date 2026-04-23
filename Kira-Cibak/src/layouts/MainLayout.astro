@@ -7,7 +7,7 @@ import { themeBootScript } from '../lib/theme';
 const {
 	title = 'Kira Cibak | Web Developer',
 	description = 'Front-end developer crafting fast, mobile-first experiences.',
-	ogImage = '/og-default.jpg',
+	ogImage,
 	centered = false,
 	htmlClass = '',
 	bodyClass = '',
@@ -18,6 +18,10 @@ const {
 const canonical = Astro.site
 	? new URL(Astro.url.pathname, Astro.site).href
 	: Astro.url.href;
+
+const resolvedOgImage = ogImage
+	? (Astro.site ? new URL(ogImage, Astro.site).href : ogImage)
+	: (Astro.site ? new URL('/pfp.jpeg', Astro.site).href : '/pfp.jpeg');
 ---
 
 <!doctype html>
@@ -44,11 +48,11 @@ const canonical = Astro.site
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />
-		<meta property="og:image" content={ogImage} />
+		<meta property="og:image" content={resolvedOgImage} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image" content={resolvedOgImage} />
 	</head>
 	<body class={bodyClass}>
 		<a href="#main" class="skip-link">
