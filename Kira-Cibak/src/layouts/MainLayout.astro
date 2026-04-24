@@ -7,7 +7,6 @@ import { themeBootScript } from '../lib/theme';
 const {
 	title = 'Kira Cibak – Portfolio',
 	description = 'I build digital products that help achieve goals.',
-	ogImage,
 	centered = false,
 	htmlClass = '',
 	bodyClass = '',
@@ -18,12 +17,6 @@ const {
 const canonical = Astro.site
 	? new URL(Astro.url.pathname, Astro.site).href
 	: Astro.url.href;
-
-const resolvedOgImage = ogImage
-	? (Astro.site ? new URL(ogImage, Astro.site).href : ogImage)
-	: (Astro.site
-		? new URL('/pfp-og.jpg?v=2026-04-24-1', Astro.site).href
-		: new URL('/pfp-og.jpg?v=2026-04-24-1', Astro.url).href);
 ---
 
 <!doctype html>
@@ -46,15 +39,16 @@ const resolvedOgImage = ogImage
 			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
+		<meta property="og:title" content="Kira Cibak – Portfolio" />
+		<meta property="og:description" content="I build digital products that help achieve goals." />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonical} />
-		<meta property="og:image" content={resolvedOgImage} />
-		<meta property="og:image:secure_url" content={resolvedOgImage} />
+		<meta property="og:url" content="https://kiracibak.codes/?v=2" />
+		<meta property="og:image" content="https://kiracibak.codes/pfp-og.jpg?v=2" />
 		<meta property="og:image:type" content="image/jpeg" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="https://kiracibak.codes/pfp-og.jpg?v=2" />
 	</head>
 	<body class={bodyClass}>
 		<a href="#main" class="skip-link">
