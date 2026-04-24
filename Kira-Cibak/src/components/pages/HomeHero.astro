@@ -1,6 +1,10 @@
 ---
 import Button from '../ui/Button.astro';
-import { Image } from 'astro:assets';
+import { netlifyImageSrcSet, netlifyImageUrl } from '../../lib/netlify-image';
+
+const profileImage = '/pfp.jpeg';
+const profileImageWidths = [180, 280, 420, 560, 720];
+const profileImageSizes = '(max-width: 640px) 38vw, (max-width: 960px) 23.3rem, 23.3rem';
 ---
 
 <section class="hero-shell" data-reveal>
@@ -14,7 +18,7 @@ import { Image } from 'astro:assets';
 			</span>
 		</h1>
 		<p class="hero-summary">
-			A Computer Science graduate focused on building practical solutions and staying sharp on what's current.
+			A Computer Science graduate focused on building solutions and staying sharp on what's current.
 		</p>
 		<div class="hero-actions">
 			<Button variant="secondary" href="/about">Who I am</Button>
@@ -25,13 +29,17 @@ import { Image } from 'astro:assets';
 	<div class="hero-visual">
 		<div class="hero-photo-frame">
 			<div class="hero-photo-wrap">
-				<Image
-					src="/pfp.jpeg"
+				<img
+					src={netlifyImageUrl({ src: profileImage, width: 560, quality: 82 })}
+					srcset={netlifyImageSrcSet(profileImage, profileImageWidths, 82)}
+					sizes={profileImageSizes}
 					alt="Kira Cibak"
 					class="hero-photo"
 					width={520}
 					height={520}
 					loading="eager"
+					decoding="async"
+					fetchpriority="high"
 				/>
 			</div>
 		</div>

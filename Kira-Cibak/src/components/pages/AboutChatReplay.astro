@@ -1,12 +1,18 @@
 ---
 import Card from '../ui/Card.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
+import { netlifyImageSrcSet, netlifyImageUrl } from '../../lib/netlify-image';
 
-const baseUrl = import.meta.env.BASE_URL;
-const chatreplay3Lightbox = `${baseUrl}chatreplay3%20copy.png`;
-const chatreplay4Lightbox = `${baseUrl}chatreplay4%20copy.png`;
-const chatreplay5Lightbox = `${baseUrl}chatreplay5%20copy.png`;
-const chatreplay6Lightbox = `${baseUrl}chatreplay6%20copy.png`;
+const chatreplay3 = '/chatreplay3 copy.png';
+const chatreplay4 = '/chatreplay4 copy.png';
+const chatreplay5 = '/chatreplay5 copy.png';
+const chatreplay6 = '/chatreplay6 copy.png';
+const chatreplay3Lightbox = netlifyImageUrl({ src: chatreplay3, width: 1600, quality: 80 });
+const chatreplay4Lightbox = netlifyImageUrl({ src: chatreplay4, width: 1200, quality: 80 });
+const chatreplay5Lightbox = netlifyImageUrl({ src: chatreplay5, width: 1200, quality: 80 });
+const chatreplay6Lightbox = netlifyImageUrl({ src: chatreplay6, width: 1600, quality: 80 });
+const reviewImageWidths = [360, 640, 900, 1200];
+const archetypeImageWidths = [280, 420, 640, 900];
 const reviewImageSizes = '(max-width: 767px) 100vw, 50vw';
 const archetypeImageSizes = '(max-width: 767px) 50vw, 360px';
 ---
@@ -30,10 +36,13 @@ const archetypeImageSizes = '(max-width: 767px) 50vw, 360px';
         aria-label="Open image: A Year Worth Celebrating"
       >
         <img
-          src="/chatreplay3 copy.png"
+          src={netlifyImageUrl({ src: chatreplay3, width: 640, quality: 80 })}
+          srcset={netlifyImageSrcSet(chatreplay3, reviewImageWidths, 80)}
+          sizes={reviewImageSizes}
           alt="ChatGPT 2025 — If 2025 gave out awards"
           class="chat-img"
           loading="lazy"
+          decoding="async"
           width={1687}
           height={1299}
         />
@@ -53,10 +62,13 @@ const archetypeImageSizes = '(max-width: 767px) 50vw, 360px';
         aria-label="Open image: My Year Painted in Pixels"
       >
         <img
-          src="/chatreplay6 copy.png"
+          src={netlifyImageUrl({ src: chatreplay6, width: 640, quality: 80 })}
+          srcset={netlifyImageSrcSet(chatreplay6, reviewImageWidths, 80)}
+          sizes={reviewImageSizes}
           alt="ChatGPT 2025 — My year painted in pixels"
           class="chat-img"
           loading="lazy"
+          decoding="async"
           width={1697}
           height={1359}
         />
@@ -82,10 +94,13 @@ const archetypeImageSizes = '(max-width: 767px) 50vw, 360px';
         aria-label="Open image: AI Archetype card front"
       >
         <img
-          src="/chatreplay4 copy.png"
+          src={netlifyImageUrl({ src: chatreplay4, width: 420, quality: 80 })}
+          srcset={netlifyImageSrcSet(chatreplay4, archetypeImageWidths, 80)}
+          sizes={archetypeImageSizes}
           alt="AI Archetype card — front"
           class="chat-img"
           loading="lazy"
+          decoding="async"
           width={1047}
           height={1412}
         />
@@ -101,10 +116,13 @@ const archetypeImageSizes = '(max-width: 767px) 50vw, 360px';
         aria-label="Open image: AI Archetype card back"
       >
         <img
-          src="/chatreplay5 copy.png"
+          src={netlifyImageUrl({ src: chatreplay5, width: 420, quality: 80 })}
+          srcset={netlifyImageSrcSet(chatreplay5, archetypeImageWidths, 80)}
+          sizes={archetypeImageSizes}
           alt="AI Archetype card — back"
           class="chat-img"
           loading="lazy"
+          decoding="async"
           width={1008}
           height={1368}
         />
