@@ -21,7 +21,7 @@ const canonical = Astro.site
 
 const resolvedOgImage = ogImage
 	? (Astro.site ? new URL(ogImage, Astro.site).href : ogImage)
-	: (Astro.site ? new URL('/og-preview.jpg', Astro.site).href : new URL('/og-preview.jpg', Astro.url).href);
+	: (Astro.site ? new URL('/pfp-og.jpg', Astro.site).href : new URL('/pfp-og.jpg', Astro.url).href);
 ---
 
 <!doctype html>
@@ -49,6 +49,8 @@ const resolvedOgImage = ogImage
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={resolvedOgImage} />
+		<meta property="og:image:secure_url" content={resolvedOgImage} />
+		<meta property="og:image:type" content="image/jpeg" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 	</head>
