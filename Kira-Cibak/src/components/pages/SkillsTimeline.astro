@@ -578,18 +578,23 @@ import Tag from '../ui/Tag.astro';
 		});
 	};
 
-	const openLightbox = (card: HTMLElement) => {
-		if (!(lightbox instanceof HTMLElement)) return;
+		const openLightbox = (card: HTMLElement) => {
+			if (!(lightbox instanceof HTMLElement)) return;
 
-		const date = card.querySelector('.ui-tag')?.textContent?.trim() ?? '';
-		const title = card.querySelector('.tl-title')?.textContent?.trim() ?? '';
-		const org = card.querySelector('.tl-org')?.textContent?.trim() ?? '';
-		const descHtml = card.querySelector('.tl-desc')?.innerHTML?.trim() ?? '';
+			const date = card.querySelector('.ui-tag')?.textContent?.trim() ?? '';
+			const title = card.querySelector('.tl-title')?.textContent?.trim() ?? '';
+			const org = card.querySelector('.tl-org')?.textContent?.trim() ?? '';
+			const descSource = card.querySelector('.tl-desc');
 
-		if (lightboxDate instanceof HTMLElement) lightboxDate.textContent = date;
-		if (lightboxTitle instanceof HTMLElement) lightboxTitle.textContent = title;
-		if (lightboxOrg instanceof HTMLElement) lightboxOrg.textContent = org;
-		if (lightboxDesc instanceof HTMLElement) lightboxDesc.innerHTML = descHtml;
+			if (lightboxDate instanceof HTMLElement) lightboxDate.textContent = date;
+			if (lightboxTitle instanceof HTMLElement) lightboxTitle.textContent = title;
+			if (lightboxOrg instanceof HTMLElement) lightboxOrg.textContent = org;
+			if (lightboxDesc instanceof HTMLElement) {
+				lightboxDesc.replaceChildren();
+				if (descSource instanceof HTMLElement) {
+					lightboxDesc.append(...Array.from(descSource.childNodes).map((node) => node.cloneNode(true)));
+				}
+			}
 
 		lastTrigger = card;
 		lightbox.hidden = false;

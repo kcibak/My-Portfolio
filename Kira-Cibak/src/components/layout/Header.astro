@@ -1,5 +1,6 @@
 ---
 import ThemeToggleButton from '../ui/ThemeToggleButton.astro';
+import { sanitizeHref } from '../../lib/url';
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
@@ -18,6 +19,8 @@ const socials = [
 ];
 
 const emailAddress = 'kiracibakcodes@gmail.com';
+const safeResumeHref = sanitizeHref(resumeHref);
+const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.href) }));
 ---
 
 	<header class="dome-header" id="site-header">
@@ -40,8 +43,8 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 	</button>
 	<div class="nav-shell">
 		<div class="social-bar">
-			{socials.map((link) => (
-				<a class="social-icon" href={link.href} aria-label={link.label} target="_blank" rel="noreferrer">
+				{safeSocials.map((link) => (
+					<a class="social-icon" href={link.href} aria-label={link.label} target="_blank" rel="noopener noreferrer">
 					{link.icon === 'linkedin' ? (
 						<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
 							<path d="M6.94 9.75V18" />
@@ -57,7 +60,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			))}
 			<a
 				class="social-icon resume-link"
-				href={resumeHref}
+					href={safeResumeHref}
 				aria-label="View Resume"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -125,8 +128,8 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 		</nav>
 
 		<div class="mobile-menu__socials">
-			{socials.map((link) => (
-				<a class="social-icon" href={link.href} aria-label={link.label} target="_blank" rel="noreferrer">
+				{safeSocials.map((link) => (
+					<a class="social-icon" href={link.href} aria-label={link.label} target="_blank" rel="noopener noreferrer">
 					{link.icon === 'linkedin' ? (
 						<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
 							<path d="M6.94 9.75V18" />
@@ -142,7 +145,7 @@ const emailAddress = 'kiracibakcodes@gmail.com';
 			))}
 			<a
 				class="social-icon"
-				href={resumeHref}
+					href={safeResumeHref}
 				aria-label="View Resume"
 				target="_blank"
 				rel="noopener noreferrer"

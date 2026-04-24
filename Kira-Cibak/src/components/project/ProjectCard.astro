@@ -2,6 +2,7 @@
 import Button from '../ui/Button.astro';
 import Card from '../ui/Card.astro';
 import Tag from '../ui/Tag.astro';
+import { isExternalHref, sanitizeHref } from '../../lib/url';
 
 type Props = {
 	title: string;
@@ -25,10 +26,10 @@ const {
 	liveUrl
 } = Astro.props as Props;
 
-const projectUrl = liveUrl ?? link;
-const isExternalProjectLink = projectUrl.startsWith('https://') || projectUrl.startsWith('http://');
-const githubUrl = repoUrl && repoUrl !== projectUrl ? repoUrl : undefined;
-const isExternalGithubLink = githubUrl ? githubUrl.startsWith('https://') || githubUrl.startsWith('http://') : false;
+const projectUrl = sanitizeHref(liveUrl ?? link);
+const isExternalProjectLink = isExternalHref(projectUrl);
+const githubUrl = repoUrl && repoUrl !== projectUrl ? sanitizeHref(repoUrl) : undefined;
+const isExternalGithubLink = githubUrl ? isExternalHref(githubUrl) : false;
 ---
 
 <Card as="article" hover={false} class:list={['project-card', { 'card-glow': featured }]} padding="compact">
@@ -47,21 +48,21 @@ const isExternalGithubLink = githubUrl ? githubUrl.startsWith('https://') || git
 		))}
 	</div>
 	<div class="action-row">
-		<Button
-			variant="secondary"
-			href={projectUrl}
-			target={isExternalProjectLink ? '_blank' : undefined}
-			rel={isExternalProjectLink ? 'noreferrer' : undefined}
-		>
-			View Project
-		</Button>
-		{githubUrl ? (
 			<Button
 				variant="secondary"
-				href={githubUrl}
-				target={isExternalGithubLink ? '_blank' : undefined}
-				rel={isExternalGithubLink ? 'noreferrer' : undefined}
+				href={projectUrl}
+				target={isExternalProjectLink ? '_blank' : undefined}
+				rel={isExternalProjectLink ? 'noopener noreferrer' : undefined}
 			>
+				View Project
+			</Button>
+		{githubUrl ? (
+				<Button
+					variant="secondary"
+					href={githubUrl}
+					target={isExternalGithubLink ? '_blank' : undefined}
+					rel={isExternalGithubLink ? 'noopener noreferrer' : undefined}
+				>
 				View on GitHub
 			</Button>
 		) : null}

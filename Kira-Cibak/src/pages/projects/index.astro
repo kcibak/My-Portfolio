@@ -7,14 +7,15 @@ import Card from '../../components/ui/Card.astro';
 import Button from '../../components/ui/Button.astro';
 import Tag from '../../components/ui/Tag.astro';
 import { projects } from '../../data/projects';
+import { isExternalHref, sanitizeHref } from '../../lib/url';
 
 export const prerender = true;
 
 const portfolioProjectTitle = 'This Portfolio Site';
 const portfolioProject = projects.find((project) => project.title === portfolioProjectTitle);
 const showcasedProjects = projects.filter((project) => project.title !== portfolioProjectTitle);
-const portfolioProjectUrl = portfolioProject?.repoUrl ?? portfolioProject?.link;
-const isExternalPortfolioLink = portfolioProjectUrl ? portfolioProjectUrl.startsWith('https://') || portfolioProjectUrl.startsWith('http://') : false;
+const portfolioProjectUrl = portfolioProject ? sanitizeHref(portfolioProject.repoUrl ?? portfolioProject.link) : undefined;
+const isExternalPortfolioLink = portfolioProjectUrl ? isExternalHref(portfolioProjectUrl) : false;
 ---
 
 <MainLayout title="Projects | Kira Cibak" description="A collection of web projects and technical builds by Kira Cibak.">
@@ -53,12 +54,12 @@ const isExternalPortfolioLink = portfolioProjectUrl ? portfolioProjectUrl.starts
 								</div>
 							</div>
 							<div class="action-row project-card-cta-actions">
-								<Button
-									variant="secondary"
-									href={portfolioProjectUrl}
-									target={isExternalPortfolioLink ? '_blank' : undefined}
-									rel={isExternalPortfolioLink ? 'noreferrer' : undefined}
-								>
+									<Button
+										variant="secondary"
+										href={portfolioProjectUrl}
+										target={isExternalPortfolioLink ? '_blank' : undefined}
+										rel={isExternalPortfolioLink ? 'noopener noreferrer' : undefined}
+									>
 									View Project
 								</Button>
 							</div>
