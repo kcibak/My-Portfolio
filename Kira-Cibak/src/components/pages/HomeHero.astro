@@ -30,8 +30,8 @@ const profileImageSizes = '(max-width: 640px) 38vw, (max-width: 960px) 23.3rem, 
 		<div class="hero-photo-frame">
 			<div class="hero-photo-wrap">
 				<img
-					src={netlifyImageUrl({ src: profileImage, width: 560, quality: 82 })}
-					srcset={netlifyImageSrcSet(profileImage, profileImageWidths, 82)}
+					src={netlifyImageUrl({ src: profileImage, width: 560 })}
+					srcset={netlifyImageSrcSet(profileImage, profileImageWidths)}
 					sizes={profileImageSizes}
 					alt="Kira Cibak"
 					class="hero-photo"
