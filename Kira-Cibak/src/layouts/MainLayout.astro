@@ -7,24 +7,30 @@ import { themeBootScript } from '../lib/theme';
 const {
 	title = 'Kira Cibak – Portfolio',
 	description = 'I build digital products that help achieve goals.',
+	image = 'https://kiracibak.codes/pfp-og.jpg',
 	centered = false,
 	htmlClass = '',
 	bodyClass = '',
 	mainClass = ''
 } = Astro.props;
 
-
-const canonical = Astro.site
-	? new URL(Astro.url.pathname, Astro.site).href
-	: Astro.url.href;
+const canonical = `https://kiracibak.codes${Astro.url.pathname}`;
+const ogUrl = `https://kiracibak.codes${Astro.url.pathname}`;
 ---
 
 <!doctype html>
 <html lang="en" class:list={['scroll-smooth', htmlClass]}>
 	<head>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta property="og:url" content={ogUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:secure_url" content="https://kiracibak.codes/pfp-og.jpg" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script is:inline set:html={themeBootScript}></script>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -39,18 +45,11 @@ const canonical = Astro.site
 			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
-		<meta property="og:title" content="Kira Cibak – Portfolio" />
-		<meta property="og:description" content="I build digital products that help achieve goals." />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://kiracibak.codes/?v=2" />
-		<meta property="og:image" content="https://kiracibak.codes/pfp-og.jpg?v=2" />
-		<meta property="og:image:type" content="image/jpeg" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content="https://kiracibak.codes/pfp-og.jpg?v=2" />
+		<meta name="twitter:image" content={image} />
 	</head>
 	<body class={bodyClass}>
+		<script is:inline set:html={themeBootScript}></script>
 		<a href="#main" class="skip-link">
 			Skip to content
 		</a>
