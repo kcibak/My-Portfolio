@@ -9,6 +9,16 @@ for = "/optimized/*"
 Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+for = "/pfp-og.jpg"
+[headers.values]
+Cache-Control = "public, max-age=3600"
+
+[[headers]]
+for = "/og-preview.jpg"
+[headers.values]
+Cache-Control = "public, max-age=3600"
+
+[[headers]]
 for = "/*.png"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"

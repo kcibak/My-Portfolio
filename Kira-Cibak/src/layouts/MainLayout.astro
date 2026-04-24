@@ -21,7 +21,9 @@ const canonical = Astro.site
 
 const resolvedOgImage = ogImage
 	? (Astro.site ? new URL(ogImage, Astro.site).href : ogImage)
-	: (Astro.site ? new URL('/pfp-og.jpg', Astro.site).href : new URL('/pfp-og.jpg', Astro.url).href);
+	: (Astro.site
+		? new URL('/pfp-og.jpg?v=2026-04-24-1', Astro.site).href
+		: new URL('/pfp-og.jpg?v=2026-04-24-1', Astro.url).href);
 ---
 
 <!doctype html>
