@@ -2,7 +2,7 @@
 
 This repository contains the source for my personal site: a fast, static-first Astro build with a custom visual system, thoughtful motion, and focused project storytelling.
 
-## What This Codebase Showsw
+## What This Codebase Shows
 - Product-minded frontend engineering, not just page styling
 - Reusable UI primitives and page-level composition in Astro
 - Light and dark mode with persisted user preference
