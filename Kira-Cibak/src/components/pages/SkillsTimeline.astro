@@ -1,7 +1,76 @@
 ---
 import Card from '../ui/Card.astro';
 import Tag from '../ui/Tag.astro';
----
+
+type TimelineItem = {
+	date: string;
+	title: string;
+	org: string;
+	description: string;
+};
+
+type ProofItem = {
+	tag: string;
+	title: string;
+	org: string;
+	description: string;
+	href?: string;
+	linkLabel?: string;
+};
+
+const timelineItems: TimelineItem[] = [
+	{
+		date: 'Feb – May 2026',
+		title: 'Cybersecurity & Architecture Consultant',
+		org: 'Trace Systems Inc.',
+		description:
+			'Supported enterprise architecture with Zero Trust, secure system design, and workflow artifacts for DoW-aligned evaluations.'
+	},
+	{
+		date: 'Aug 2025 – Present',
+		title: 'Lead Web Developer',
+		org: 'SCx CMC Solutions',
+		description: 'Led delivery of 5 client platforms across pharma and nonprofit — architecture, Stripe, deployments.'
+	},
+	{
+		date: 'Dec 2025',
+		title: 'B.S. in Computer Science',
+		org: 'University of South Florida',
+		description: 'Graduated from the engineering school with a focus on computer science and software engineering.'
+	},
+	{
+		date: 'May – Aug 2025',
+		title: 'Software Engineer Intern',
+		org: 'Martinrea International',
+		description: 'Replatformed a SaaS license system to React + TypeScript, cutting DB complexity ~25%.'
+	}
+];
+
+const proofItems: ProofItem[] = [
+	{
+		tag: 'In Progress',
+		title: 'Certified CMMC Professional (CCP)',
+		org: 'The Cyber AB',
+		description: 'Studying CMMC model requirements, assessment processes, security control scoping, evidence collection, and compliance implementation.'
+	},
+	{
+		tag: 'Microsoft Azure',
+		title: 'MS Certified: Azure Fundamentals',
+		org: 'Microsoft',
+		description: 'Cloud services, security & identity. 44 MS Learn badges, 11 trophies.'
+	},
+	{
+		tag: 'Cybersecurity',
+		title: 'Cyber Quests',
+		org: 'US Cyber Challenge',
+		description: 'Competed in 3 US Cyber Challenge competitions. Ranked 42nd internationally most recently.',
+		href: 'https://www.uscyberchallenge.org/',
+		linkLabel: 'USCC Website'
+	}
+];
+
+/*
+Old hard-coded timeline markup kept for reference:
 
 <div class="timeline">
 	<!-- Entry 1 — bottom (even) -->
@@ -10,7 +79,7 @@ import Tag from '../ui/Tag.astro';
 		<div class="tl-dot"></div>
 		<div class="tl-card" data-tl-open>
 			<Card as="article" padding="compact">
-				<Tag>Feb 2026 – Present</Tag>
+				<Tag>Feb – May 2026</Tag>
 				<h3 class="tl-title">Cybersecurity & Architecture Consultant</h3>
 				<p class="tl-org">Trace Systems Inc.</p>
 				<p class="tl-desc">Supported enterprise architecture with Zero Trust, secure system design, and workflow artifacts for DoW-aligned evaluations.</p>
@@ -88,6 +157,112 @@ import Tag from '../ui/Tag.astro';
 		<div class="tl-pad"></div>
 	</div>
 </div>
+*/
+
+/*
+Old proof-tree markup kept for reference:
+
+<div class="proof-tree" aria-label="Certifications and challenges">
+	{
+		proofItems.map((item, index) => {
+			const side = index % 2 === 0 ? 'left' : 'right';
+
+			return (
+				<div class="proof-entry" data-side={side}>
+					<div class="proof-card-wrap">
+						<Card as="article" padding="compact" class="proof-card">
+							<Tag>{item.tag}</Tag>
+							<h3 class="proof-title">{item.title}</h3>
+							<p class="proof-org">{item.org}</p>
+							<p class="proof-desc">
+								{item.description}
+								{item.href && item.linkLabel ? (
+									<>
+										{' '}
+										<a href={item.href} target="_blank" rel="noopener noreferrer">
+											{item.linkLabel}
+										</a>
+									</>
+								) : null}
+							</p>
+						</Card>
+					</div>
+					<div class="proof-node" aria-hidden="true"></div>
+					<div class="proof-pad"></div>
+				</div>
+			);
+		})
+	}
+</div>
+*/
+---
+
+<div class="timeline">
+	{
+		timelineItems.map((item, index) => {
+			const isTop = index % 2 === 1;
+
+			return (
+				<div class="tl-entry" data-placement={isTop ? 'top' : 'bottom'}>
+					{isTop ? (
+						<>
+							<div class="tl-card" data-tl-open>
+								<Card as="article" padding="compact">
+									<Tag>{item.date}</Tag>
+									<h3 class="tl-title">{item.title}</h3>
+									<p class="tl-org">{item.org}</p>
+									<p class="tl-desc">{item.description}</p>
+								</Card>
+							</div>
+							<div class="tl-dot"></div>
+							<div class="tl-pad"></div>
+						</>
+					) : (
+						<>
+							<div class="tl-pad"></div>
+							<div class="tl-dot"></div>
+							<div class="tl-card" data-tl-open>
+								<Card as="article" padding="compact">
+									<Tag>{item.date}</Tag>
+									<h3 class="tl-title">{item.title}</h3>
+									<p class="tl-org">{item.org}</p>
+									<p class="tl-desc">{item.description}</p>
+								</Card>
+							</div>
+						</>
+					)}
+				</div>
+			);
+		})
+	}
+</div>
+
+<div class="proof-list" aria-label="Certifications and challenges">
+	{
+		proofItems.map((item) => (
+			<Card as="article" padding="compact" class="proof-list-item">
+				<div class="proof-list-heading">
+					<Tag>{item.tag}</Tag>
+					<h3 class="proof-title">{item.title}</h3>
+				</div>
+				<div class="proof-list-copy">
+					<p class="proof-org">{item.org}</p>
+					<p class="proof-desc">
+						{item.description}
+						{item.href && item.linkLabel ? (
+							<>
+								{' '}
+								<a href={item.href} target="_blank" rel="noopener noreferrer">
+									{item.linkLabel}
+								</a>
+							</>
+						) : null}
+					</p>
+				</div>
+			</Card>
+		))
+	}
+</div>
 
 <div class="tl-lightbox" data-tl-lightbox hidden>
 	<button type="button" class="tl-lightbox-backdrop" data-tl-close aria-label="Close detail"></button>
@@ -162,6 +337,8 @@ import Tag from '../ui/Tag.astro';
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		position: relative;
 		gap: var(--tl-card-gap);
 		padding: var(--tl-card-padding);
 		overflow: hidden;
@@ -177,13 +354,16 @@ import Tag from '../ui/Tag.astro';
 		align-items: center;
 		justify-content: flex-start;
 		align-self: flex-start;
+		position: absolute;
+		top: 0.76rem;
+		left: 0.83rem;
 		width: fit-content;
 		padding: 0.3rem 0.9rem !important;
-		margin-inline-start: 0.08rem;
+		margin-inline-start: 0;
 		font-size: 0.82rem;
 		line-height: 1.2;
 		white-space: nowrap;
-		margin-bottom: 0.15rem;
+		margin-bottom: 0;
 		pointer-events: none;
 	}
 
@@ -265,6 +445,172 @@ import Tag from '../ui/Tag.astro';
 	/* Hide descriptions on timeline cards */
 	.tl-card .tl-desc {
 		display: none;
+	}
+
+	/*
+	Old proof-tree CSS kept for reference:
+	.proof-tree {
+		--proof-axis-left: 50%;
+		--proof-node-size: 9px;
+		position: relative;
+		display: grid;
+		gap: 0.55rem;
+		margin-top: 3.35rem;
+		padding: 0.2rem 0;
+	}
+
+	.proof-tree::before {
+		content: '';
+		position: absolute;
+		top: 0.45rem;
+		bottom: 0.45rem;
+		left: var(--proof-axis-left);
+		width: 1px;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-border) 72%, transparent);
+		transform: translateX(-50%);
+	}
+
+	.proof-entry {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 1rem minmax(0, 1fr);
+		align-items: center;
+		column-gap: 1.25rem;
+		min-height: 5.8rem;
+	}
+
+	.proof-entry[data-side='left'] .proof-card-wrap {
+		grid-column: 1;
+		justify-self: end;
+	}
+
+	.proof-entry[data-side='left'] .proof-node {
+		grid-column: 2;
+	}
+
+	.proof-entry[data-side='left'] .proof-pad {
+		grid-column: 3;
+	}
+
+	.proof-entry[data-side='right'] .proof-card-wrap {
+		grid-column: 3;
+		justify-self: start;
+	}
+
+	.proof-entry[data-side='right'] .proof-node {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.proof-entry[data-side='right'] .proof-pad {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.proof-card-wrap {
+		width: min(100%, 560px);
+	}
+
+	.proof-card-wrap :global(.proof-card) {
+		display: grid;
+		gap: 0.24rem;
+		padding: 0.78rem 0.95rem;
+		background: color-mix(in srgb, var(--color-card) 34%, transparent);
+		border-color: color-mix(in srgb, var(--color-border) 76%, transparent);
+		box-shadow: none;
+	}
+
+	.proof-card-wrap :global(.ui-tag) {
+		justify-self: start;
+		width: fit-content;
+		white-space: nowrap;
+		padding: 0.16rem 0.52rem;
+		font-size: 0.76rem;
+		background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+	}
+
+	.proof-node {
+		width: var(--proof-node-size);
+		height: var(--proof-node-size);
+		border-radius: 50%;
+		background: color-mix(in srgb, var(--color-accent) 78%, var(--color-bg));
+		border: 2px solid var(--color-bg);
+		justify-self: center;
+		z-index: 1;
+	}
+	*/
+
+	.proof-list {
+		display: grid;
+		gap: 1rem;
+		margin-top: 3.35rem;
+		padding-inline: var(--tl-side-gutter);
+		margin-inline: calc(var(--tl-side-gutter) * -1);
+	}
+
+	.proof-list :global(.proof-list-item) {
+		display: grid;
+		grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+		align-items: center;
+		gap: 0.85rem 1.4rem;
+		padding: 0.95rem 1.1rem;
+		background: color-mix(in srgb, var(--color-card) 32%, transparent);
+		border-color: color-mix(in srgb, var(--color-border) 78%, transparent);
+		box-shadow: none;
+	}
+
+	.proof-list-heading {
+		display: grid;
+		gap: 0.28rem;
+		align-content: start;
+	}
+
+	.proof-list-copy {
+		display: grid;
+		gap: 0.2rem;
+		min-width: 0;
+	}
+
+	.proof-list :global(.ui-tag) {
+		justify-self: start;
+		width: fit-content;
+		white-space: nowrap;
+		padding: 0.16rem 0.52rem;
+		font-size: 0.76rem;
+		background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+	}
+
+	.proof-title {
+		margin: 0;
+		font-size: var(--type-size-h4);
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.proof-org {
+		margin: 0;
+		font-size: var(--type-size-small);
+		font-weight: 500;
+		color: var(--color-muted);
+	}
+
+	.proof-desc {
+		margin: 0;
+		font-size: var(--type-size-small);
+		line-height: 1.45;
+		color: var(--color-muted);
+	}
+
+	.proof-desc a {
+		font: inherit;
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-thickness: 0.08em;
+		text-underline-offset: 0.18em;
+	}
+
+	.proof-desc a:hover {
+		color: var(--color-accent);
 	}
 
 	.tl-lightbox {
@@ -365,13 +711,26 @@ import Tag from '../ui/Tag.astro';
 	}
 
 	@media (min-width: 768px) {
-		/* Cards fill their fixed-height row — no alignment shift needed */
+		/*
+		Old stagger selectors kept for reference:
 		.tl-entry:nth-child(odd) .tl-card {
 			align-self: stretch;
 			padding-bottom: 0.25rem;
 		}
 
 		.tl-entry:nth-child(even) .tl-card {
+			align-self: stretch;
+			padding-top: 0.25rem;
+		}
+		*/
+
+		/* Cards fill their fixed-height row; placement is now derived from item index. */
+		.tl-entry[data-placement='bottom'] .tl-card {
+			align-self: stretch;
+			padding-bottom: 0.25rem;
+		}
+
+		.tl-entry[data-placement='top'] .tl-card {
 			align-self: stretch;
 			padding-top: 0.25rem;
 		}
@@ -410,6 +769,7 @@ import Tag from '../ui/Tag.astro';
 		}
 
 		.tl-card :global(.ui-card) {
+			justify-content: flex-start;
 			min-height: 0;
 			max-height: none;
 			padding: 0.9rem;
@@ -417,6 +777,7 @@ import Tag from '../ui/Tag.astro';
 		}
 
 		.tl-card :global(.ui-tag) {
+			position: static;
 			font-size: 0.74rem;
 			padding: 0.2rem 0.58rem !important;
 			margin-inline-start: 0;
@@ -450,6 +811,85 @@ import Tag from '../ui/Tag.astro';
 			mask-image: none;
 		}
 
+		/*
+		Old proof-tree mobile CSS kept for reference:
+		.proof-tree {
+			--proof-axis-left: 0.42rem;
+			gap: 0.7rem;
+			margin-top: 2rem;
+			padding-left: 0;
+		}
+
+		.proof-tree::before {
+			top: 0.35rem;
+			bottom: 0.35rem;
+		}
+
+		.proof-entry,
+		.proof-entry[data-side='left'],
+		.proof-entry[data-side='right'] {
+			grid-template-columns: 1rem minmax(0, 1fr);
+			column-gap: 0.72rem;
+			min-height: 0;
+		}
+
+		.proof-entry[data-side='left'] .proof-card-wrap,
+		.proof-entry[data-side='right'] .proof-card-wrap {
+			grid-column: 2;
+			grid-row: 1;
+			justify-self: stretch;
+			width: 100%;
+		}
+
+		.proof-entry[data-side='left'] .proof-node,
+		.proof-entry[data-side='right'] .proof-node {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.proof-pad {
+			display: none;
+		}
+
+		.proof-card-wrap :global(.proof-card) {
+			padding: 0.78rem 0.85rem;
+		}
+		*/
+
+		.proof-list {
+			gap: 0.8rem;
+			margin-top: 2rem;
+			padding-inline: 0;
+			margin-inline: 0;
+		}
+
+		.proof-list :global(.proof-list-item) {
+			grid-template-columns: 1fr;
+			gap: 0.55rem;
+			padding: 0.85rem;
+		}
+
+		.proof-list :global(.ui-tag) {
+			font-size: 0.74rem;
+			padding: 0.16rem 0.5rem;
+			white-space: normal;
+		}
+
+		.proof-title {
+			font-size: 1rem;
+			line-height: 1.28;
+		}
+
+		.proof-org {
+			font-size: 0.82rem;
+			line-height: 1.35;
+		}
+
+		.proof-desc {
+			font-size: 0.78rem;
+			line-height: 1.42;
+		}
+
 		.tl-lightbox-body {
 			width: min(520px, 96vw);
 			padding: 2.4rem 1.2rem 1.2rem;
@@ -466,15 +906,7 @@ import Tag from '../ui/Tag.astro';
 	const lightboxDesc = document.querySelector('[data-tl-desc]');
 	const lightboxBody = document.querySelector('[data-tl-body], .tl-lightbox-body');
 	let lastTrigger: HTMLElement | null = null;
-	let scrollYBeforeLock = 0;
-	let bodyStyleSnapshot: {
-		position: string;
-		top: string;
-		left: string;
-		right: string;
-		width: string;
-		overflow: string;
-	} | null = null;
+	let timelineModalOpen = false;
 
 	const syncTimelineRailToDots = () => {
 		if (!(timeline instanceof HTMLElement)) return;
@@ -525,41 +957,15 @@ import Tag from '../ui/Tag.astro';
 	};
 
 	const lockBodyScroll = () => {
-		const body = document.body;
-		if (bodyStyleSnapshot) return;
-
-		scrollYBeforeLock = window.scrollY;
-
-		bodyStyleSnapshot = {
-			position: body.style.position,
-			top: body.style.top,
-			left: body.style.left,
-			right: body.style.right,
-			width: body.style.width,
-			overflow: body.style.overflow
-		};
-
-		body.style.position = 'fixed';
-		body.style.top = `-${scrollYBeforeLock}px`;
-		body.style.left = '0';
-		body.style.right = '0';
-		body.style.width = '100%';
-		body.style.overflow = 'hidden';
+		if (timelineModalOpen) return;
+		timelineModalOpen = true;
+		document.documentElement.dataset.modalOpen = 'true';
 	};
 
 	const unlockBodyScroll = () => {
-		const body = document.body;
-		if (!bodyStyleSnapshot) return;
-
-		body.style.position = bodyStyleSnapshot.position;
-		body.style.top = bodyStyleSnapshot.top;
-		body.style.left = bodyStyleSnapshot.left;
-		body.style.right = bodyStyleSnapshot.right;
-		body.style.width = bodyStyleSnapshot.width;
-		body.style.overflow = bodyStyleSnapshot.overflow;
-
-		bodyStyleSnapshot = null;
-		window.scrollTo(0, scrollYBeforeLock);
+		if (!timelineModalOpen) return;
+		timelineModalOpen = false;
+		delete document.documentElement.dataset.modalOpen;
 	};
 
 	const isMobile = () => window.innerWidth < 768;
@@ -615,13 +1021,29 @@ import Tag from '../ui/Tag.astro';
 		unlockBodyScroll();
 
 		if (lastTrigger instanceof HTMLElement && lastTrigger.isConnected) {
-			lastTrigger.focus();
+			lastTrigger.focus({ preventScroll: true });
 		}
 		lastTrigger = null;
 	};
 
 	if (lightbox instanceof HTMLElement) {
 		lightbox.hidden = true;
+
+		lightbox.addEventListener(
+			'wheel',
+			(event) => {
+				if (!lightbox.hidden) event.preventDefault();
+			},
+			{ passive: false }
+		);
+
+		lightbox.addEventListener(
+			'touchmove',
+			(event) => {
+				if (!lightbox.hidden) event.preventDefault();
+			},
+			{ passive: false }
+		);
 	}
 
 	requestRailSync();
@@ -668,6 +1090,11 @@ import Tag from '../ui/Tag.astro';
 
 		if (event.key === 'Escape') {
 			closeLightbox();
+			return;
+		}
+
+		if (['PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+			event.preventDefault();
 			return;
 		}
 

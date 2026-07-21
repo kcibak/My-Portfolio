@@ -11,7 +11,7 @@ const links = [
 	{ href: '/contact', label: 'Contact' }
 ];
 
-const resumeHref = '/Kira%20Cibak_2025.pdf';
+const resumeHref = '/Kira%20Cibak_2026.pdf';
 
 const socials = [
 	{ href: 'https://www.linkedin.com/in/kira-cibak/', label: 'LinkedIn', icon: 'linkedin' },
@@ -797,6 +797,11 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 	};
 
 	const handleScroll = () => {
+		if (document.documentElement.dataset.modalOpen === 'true') {
+			lastScrollY = window.scrollY;
+			return;
+		}
+
 		const currentY = window.scrollY;
 		const delta = currentY - lastScrollY;
 		if (Math.abs(delta) < 8) return;
