@@ -20,6 +20,27 @@ type ProofItem = {
 
 const timelineItems: TimelineItem[] = [
 	{
+		date: 'Aug 2026 – Present',
+		title: 'CMMC Consultant',
+		org: 'Kieri Solutions',
+		description:
+			'Assisted in CMMC L2 assessment prep activities; created technical artifacts to support SSP development (network diagram, scope diagarm, workflow matrix, etc.).'
+	},
+	{
+		date: 'Aug 2026 – Present',
+		title: 'UAT Consultant',
+		org: 'Redwood Cyber Solutions',
+		description:
+			'Responsible for structured user testing and flaw remediation activities; assisted with UI/UX design and pilot deployment of the system.'
+	},
+	{
+		date: 'Mar 2026 – FOREVER',
+		title: 'Founder & Lead Consultant',
+		org: 'KC Codes',
+		description:
+			'Created my own LLC to continue taking on contract roles as I grow as a consultant in the cybersecurity/IT space, specifically in the government contracting industry.'
+	},
+	{
 		date: 'Feb – May 2026',
 		title: 'Cybersecurity & Architecture Consultant',
 		org: 'Trace Systems Inc.',
@@ -30,7 +51,7 @@ const timelineItems: TimelineItem[] = [
 		date: 'Aug 2025 – Present',
 		title: 'Lead Web Developer',
 		org: 'SCx CMC Solutions',
-		description: 'Led delivery of 5 client platforms across pharma and nonprofit — architecture, Stripe, deployments.'
+		description: 'Led development and delivery of 5 client platforms across pharma and nonprofit — architecture, Stripe, deployments.'
 	},
 	{
 		date: 'Dec 2025',
@@ -48,7 +69,13 @@ const timelineItems: TimelineItem[] = [
 
 const proofItems: ProofItem[] = [
 	{
-		tag: 'In Progress',
+		tag: 'Expected 10/2026',
+		title: 'Certified CMMC Assessor (CCA)',
+		org: 'The Cyber AB',
+		description: 'Studying CMMC model requirements, assessment processes, security control scoping, evidence collection, and compliance implementation.'
+	},
+	{
+		tag: 'Achieved 7/2026',
 		title: 'Certified CMMC Professional (CCP)',
 		org: 'The Cyber AB',
 		description: 'Studying CMMC model requirements, assessment processes, security control scoping, evidence collection, and compliance implementation.'
@@ -337,10 +364,10 @@ Old proof-tree markup kept for reference:
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
 		position: relative;
 		gap: var(--tl-card-gap);
-		padding: var(--tl-card-padding);
+		padding: 2.7rem 0.83rem 0.81rem;
 		overflow: hidden;
 		transition:
 			transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -355,12 +382,12 @@ Old proof-tree markup kept for reference:
 		justify-content: flex-start;
 		align-self: flex-start;
 		position: absolute;
-		top: 0.76rem;
-		left: 0.83rem;
+		top: 0.7rem;
+		left: 0.78rem;
 		width: fit-content;
-		padding: 0.3rem 0.9rem !important;
+		padding: 0.2rem 0.68rem !important;
 		margin-inline-start: 0;
-		font-size: 0.82rem;
+		font-size: 0.74rem;
 		line-height: 1.2;
 		white-space: nowrap;
 		margin-bottom: 0;
@@ -778,8 +805,8 @@ Old proof-tree markup kept for reference:
 
 		.tl-card :global(.ui-tag) {
 			position: static;
-			font-size: 0.74rem;
-			padding: 0.2rem 0.58rem !important;
+			font-size: 0.7rem;
+			padding: 0.18rem 0.52rem !important;
 			margin-inline-start: 0;
 			margin-bottom: 0.08rem;
 			white-space: normal;

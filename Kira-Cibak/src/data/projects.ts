@@ -23,7 +23,7 @@ export const projects: ProjectPreview[] = [
 	},
 	{
 		title: 'ContMFG Forum',
-		description: 'Informational conference site with event details, speakers, sponsors, and EventBrite registration.',
+		description: 'Informational conference site with event details, speakers, sponsors, and link to EventBrite registration.',
 		tags: ['TypeScript', 'React'],
 		category: 'Web App',
 		liveUrl: 'https://www.contmfg.com/',
@@ -31,11 +31,19 @@ export const projects: ProjectPreview[] = [
 	},
 	{
 		title: 'Compaction Simulation Forum',
-		description: 'Informational conference site with event details, speakers, sponsors, and EventBrite registration.',
+		description: 'Informational conference site with event details, speakers, sponsors, and link to EventBrite registration.',
 		tags: ['TypeScript', 'React'],
 		category: 'Web App',
 		liveUrl: 'https://www.compactionsimulation.com/',
 		link: 'https://www.compactionsimulation.com/'
+	},
+	{
+		title: 'ADDF',
+		description: 'Performed design updates on a WordPress site, ensuring the client is able to leverage reusable no-code components to make edits without me.',
+		tags: ['WordPress', 'BeBuilder', 'CSS'],
+		category: 'Web App',
+		liveUrl: 'https://advdrug.org/',
+		link: 'https://advdrug.org/'
 	},
 	{
 		title: 'SOPPhC',

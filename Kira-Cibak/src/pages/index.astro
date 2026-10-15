@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import HomeHero from '../components/pages/HomeHero.astro';
+import Testimonials from '../components/pages/Testimonials.astro';
 
 export const prerender = true;
 
@@ -30,6 +31,10 @@ const howIWork = [
 		<Container>
 			<HomeHero />
 		</Container>
+	</Section>
+
+	<Section class="section section-testimonials" padding="compact">
+		<Testimonials />
 	</Section>
 
 	<Section class="section section-bottom" padding="compact">
@@ -131,6 +136,11 @@ const howIWork = [
 	:global(.section-bottom.layout-section) {
 		padding-top: clamp(0.12rem, 0.5vw, 0.4rem) !important;
 		padding-bottom: clamp(1.25rem, 3vh, 2.15rem) !important;
+	}
+
+	:global(.section-testimonials.layout-section) {
+		padding-top: clamp(0.1rem, 0.25vw, 0.22rem) !important;
+		padding-bottom: clamp(0.1rem, 0.25vw, 0.22rem) !important;
 	}
 
 	.shape-row {
@@ -311,6 +321,11 @@ const howIWork = [
 			padding-bottom: clamp(0.55rem, 1.3vh, 1.15rem) !important;
 		}
 
+		:global(body.home-page .section-testimonials.layout-section) {
+			padding-top: 0 !important;
+			padding-bottom: clamp(0.08rem, 0.25vh, 0.2rem) !important;
+		}
+
 		:global(body.home-page) .shape-row {
 			--shape-size: clamp(10.6rem, 12.4vw, 13.1rem);
 		}
@@ -347,6 +362,11 @@ const howIWork = [
 		:global(.section-bottom.layout-section) {
 			padding-top: 0.18rem !important;
 			padding-bottom: 0.78rem !important;
+		}
+
+		:global(.section-testimonials.layout-section) {
+			padding-top: 0.1rem !important;
+			padding-bottom: 0.1rem !important;
 		}
 
 		.shape-row {

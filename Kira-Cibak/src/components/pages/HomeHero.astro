@@ -4,21 +4,21 @@ import { netlifyImageSrcSet, netlifyImageUrl } from '../../lib/netlify-image';
 
 const profileImage = '/pfp.jpeg';
 const profileImageWidths = [180, 280, 420, 560, 720];
-const profileImageSizes = '(max-width: 640px) 38vw, (max-width: 960px) 23.3rem, 23.3rem';
+const profileImageSizes = '(max-width: 640px) 30.4vw, (max-width: 960px) 18.64rem, 18.64rem';
 ---
 
 <section class="hero-shell" data-reveal>
 	<div class="hero-copy">
 		<h1 class="hero-title">
 			<span class="hero-title-line hero-title-line--intro">
-				I'm <span class="hero-accent gradient-text">Kira</span>.
+				I'm <span class="hero-accent gradient-text">Kira</span>
 			</span>
 			<span class="hero-title-line hero-title-line--promise">
-				I take ideas & make them <span class="hero-accent gradient-text">real</span>.
+				I bring ideas to <span class="hero-accent gradient-text">fruition</span>
 			</span>
 		</h1>
 		<p class="hero-summary">
-			A Computer Science graduate focused on building solutions and staying sharp on what's current.
+			A Computer Science graduate focused on solving whatever problem is presented & making clients happy
 		</p>
 		<div class="hero-actions">
 			<Button variant="secondary" href="/about">Who I am</Button>
@@ -57,7 +57,7 @@ const profileImageSizes = '(max-width: 640px) 38vw, (max-width: 960px) 23.3rem, 
 
 	.hero-copy {
 		display: grid;
-		gap: 0.58rem;
+		gap: clamp(0.86rem, 1.15vw, 1.08rem);
 		max-width: 100%;
 	}
 
@@ -108,7 +108,7 @@ const profileImageSizes = '(max-width: 640px) 38vw, (max-width: 960px) 23.3rem, 
 	}
 
 	.hero-photo-frame {
-		width: min(100%, 23.3rem);
+		width: min(100%, 18.64rem);
 		padding: 0.42rem;
 		border-radius: calc(var(--radius) * 1.65);
 		background: linear-gradient(
@@ -173,10 +173,11 @@ const profileImageSizes = '(max-width: 640px) 38vw, (max-width: 960px) 23.3rem, 
 				"title visual"
 				"summary summary"
 				"actions actions";
-			grid-template-columns: minmax(0, 1fr) clamp(8.4rem, 38vw, 10.9rem);
+			grid-template-columns: minmax(0, 1fr) clamp(6.72rem, 30.4vw, 8.72rem);
 			align-items: center;
 			column-gap: clamp(0.75rem, 4vw, 1.15rem);
-			row-gap: 0.68rem;
+			row-gap: 0.9rem;
+			margin-bottom: -0.22rem;
 			padding-top: 0.45rem;
 			padding-bottom: 0;
 		}
