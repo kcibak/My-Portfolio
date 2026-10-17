@@ -753,6 +753,7 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 
 		.mobile-menu {
 			display: flex;
+			touch-action: pan-y;
 		}
 	}
 </style>
@@ -931,6 +932,7 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 	const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
 	const mobileBackdrop = document.getElementById('mobile-backdrop') as HTMLElement | null;
 	const mobileCloseBtn = mobileMenu?.querySelector('[data-mobile-menu-close]') as HTMLButtonElement | null;
+	const mobileMenuQuery = window.matchMedia('(max-width: 720px)');
 
 	const main = document.getElementById('main') as HTMLElement | null;
 	const skipLink = document.querySelector('.skip-link') as HTMLElement | null;
@@ -942,6 +944,9 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 
 	let menuOpen = false;
 	let scrollYBeforeLock = 0;
+	let suppressNextMenuClick = false;
+	let swipeStartX: number | null = null;
+	let swipeStartY: number | null = null;
 
 	let bodyStyleSnapshot: {
 		position: string;
@@ -1113,7 +1118,11 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 
 	const setMenuOpen = (open: boolean) => {
 		if (!mobileToggle || !mobileMenu || !mobileBackdrop) return;
-		if (open === menuOpen) return;
+		if (open === menuOpen) {
+			setToggleUI(open);
+			setMenuUI(open);
+			return;
+		}
 
 		menuOpen = open;
 
@@ -1138,6 +1147,33 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 		}
 	};
 
+	const onMenuPointerDown = (e: PointerEvent) => {
+		if (!mobileMenuQuery.matches || !menuOpen || e.pointerType === 'mouse' || !e.isPrimary) return;
+		swipeStartX = e.clientX;
+		swipeStartY = e.clientY;
+		mobileMenu?.setPointerCapture(e.pointerId);
+	};
+
+	const onMenuPointerUp = (e: PointerEvent) => {
+		if (!mobileMenuQuery.matches || swipeStartX === null || swipeStartY === null) return;
+
+		const deltaX = e.clientX - swipeStartX;
+		const deltaY = e.clientY - swipeStartY;
+		swipeStartX = null;
+		swipeStartY = null;
+		if (mobileMenu?.hasPointerCapture(e.pointerId)) mobileMenu.releasePointerCapture(e.pointerId);
+
+		if (deltaX > 64 && Math.abs(deltaX) > Math.abs(deltaY)) {
+			suppressNextMenuClick = true;
+			setMenuOpen(false);
+		}
+	};
+
+	const resetMenuPointer = () => {
+		swipeStartX = null;
+		swipeStartY = null;
+	};
+
 	if (mobileToggle && mobileMenu && mobileBackdrop) {
 		portalMobileLayer();
 		setToggleUI(false);
@@ -1146,18 +1182,26 @@ const safeSocials = socials.map((link) => ({ ...link, href: sanitizeHref(link.hr
 		mobileToggle.addEventListener('click', () => setMenuOpen(!menuOpen));
 		mobileBackdrop.addEventListener('click', () => setMenuOpen(false));
 		mobileCloseBtn?.addEventListener('click', () => setMenuOpen(false));
+		mobileMenu.addEventListener('pointerdown', onMenuPointerDown);
+		mobileMenu.addEventListener('pointerup', onMenuPointerUp);
+		mobileMenu.addEventListener('pointercancel', resetMenuPointer);
 
 		mobileMenu.addEventListener('click', (e) => {
+			if (suppressNextMenuClick) {
+				suppressNextMenuClick = false;
+				e.preventDefault();
+				return;
+			}
+
 			const target = e.target as HTMLElement | null;
 			const navLink = target?.closest('.mobile-menu__nav a');
 			if (navLink) setMenuOpen(false);
 		});
 
-		const mq = window.matchMedia('(max-width: 720px)');
 		const onMQ = () => {
-			if (!mq.matches) setMenuOpen(false);
+			if (!mobileMenuQuery.matches) setMenuOpen(false);
 		};
-		mq.addEventListener('change', onMQ);
+		mobileMenuQuery.addEventListener('change', onMQ);
 	}
 
 	// Mobile email copy

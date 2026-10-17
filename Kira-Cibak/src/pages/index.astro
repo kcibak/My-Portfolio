@@ -64,10 +64,14 @@ const howIWork = [
 	const shapeDots = Array.from(document.querySelectorAll<HTMLAnchorElement>('.shape-progress a'));
 	const mobileShapeQuery = window.matchMedia('(max-width: 640px)');
 	let shapeScrollFrame = 0;
+	let shapeLoopReady = false;
+	let shapeSlideCount = shapeSlides.length;
+	let shapeScrollSettleTimer: number | undefined;
 
 	const setActiveShapeSlide = (activeIndex: number) => {
+		const normalizedIndex = (activeIndex + shapeSlideCount) % shapeSlideCount;
 		shapeDots.forEach((dot, index) => {
-			const isActive = index === activeIndex;
+			const isActive = index === normalizedIndex;
 			dot.classList.toggle('is-active', isActive);
 			if (isActive) {
 				dot.setAttribute('aria-current', 'true');
@@ -80,10 +84,8 @@ const howIWork = [
 	const getCurrentShapeSlide = () => {
 		if (!shapeRow || !shapeRow.clientWidth) return 0;
 
-		return Math.min(
-			shapeSlides.length - 1,
-			Math.max(0, Math.round(shapeRow.scrollLeft / shapeRow.clientWidth))
-		);
+		const rawIndex = Math.round(shapeRow.scrollLeft / shapeRow.clientWidth);
+		return shapeLoopReady ? rawIndex - 1 : rawIndex;
 	};
 
 	const updateShapeProgress = () => {
@@ -91,33 +93,73 @@ const howIWork = [
 		setActiveShapeSlide(getCurrentShapeSlide());
 	};
 
+	const scheduleShapeNormalization = () => {
+		if (shapeScrollSettleTimer) window.clearTimeout(shapeScrollSettleTimer);
+		shapeScrollSettleTimer = window.setTimeout(normalizeShapePosition, 120);
+	};
+
 	if (shapeRow && shapeSlides.length && shapeDots.length) {
+		const originalShapeSlides = [...shapeSlides];
+		const firstClone = originalShapeSlides[0].cloneNode(true) as HTMLElement;
+		const lastClone = originalShapeSlides[originalShapeSlides.length - 1].cloneNode(true) as HTMLElement;
+		firstClone.classList.add('is-shape-clone');
+		lastClone.classList.add('is-shape-clone');
+		firstClone.removeAttribute('id');
+		lastClone.removeAttribute('id');
+		shapeRow.prepend(lastClone);
+		shapeRow.append(firstClone);
+		shapeSlideCount = originalShapeSlides.length;
+		shapeLoopReady = true;
+
+		const normalizeShapePosition = () => {
+			if (!mobileShapeQuery.matches || !shapeRow) return;
+			const rawIndex = Math.round(shapeRow.scrollLeft / shapeRow.clientWidth);
+			if (rawIndex === 0) {
+				shapeRow.scrollTo({ left: shapeSlideCount * shapeRow.clientWidth, behavior: 'auto' });
+			} else if (rawIndex === shapeSlideCount + 1) {
+				shapeRow.scrollTo({ left: shapeRow.clientWidth, behavior: 'auto' });
+			}
+			setActiveShapeSlide(getCurrentShapeSlide());
+		};
+
+		if (mobileShapeQuery.matches) {
+			shapeRow.scrollLeft = shapeRow.clientWidth;
+		}
 		setActiveShapeSlide(getCurrentShapeSlide());
 
 		shapeRow.addEventListener(
 			'scroll',
 			() => {
-				if (!mobileShapeQuery.matches || shapeScrollFrame) return;
+				if (!mobileShapeQuery.matches) return;
+				scheduleShapeNormalization();
+				if (shapeScrollFrame) return;
 				shapeScrollFrame = window.requestAnimationFrame(updateShapeProgress);
 			},
 			{ passive: true }
 		);
+		shapeRow.addEventListener('scrollend', normalizeShapePosition);
 
 		shapeDots.forEach((dot, index) => {
 			dot.addEventListener('click', (event) => {
 				if (!mobileShapeQuery.matches) return;
 
 				event.preventDefault();
-				shapeSlides[index]?.scrollIntoView({
+				shapeRow.scrollTo({
+					left: (index + 1) * shapeRow.clientWidth,
 					behavior: 'smooth',
-					block: 'nearest',
-					inline: 'center'
 				});
 				setActiveShapeSlide(index);
 			});
 		});
 
-		mobileShapeQuery.addEventListener('change', updateShapeProgress);
+		mobileShapeQuery.addEventListener('change', () => {
+			if (mobileShapeQuery.matches) {
+				shapeRow.scrollTo({ left: shapeRow.clientWidth, behavior: 'auto' });
+			} else {
+				shapeRow.scrollTo({ left: 0, behavior: 'auto' });
+			}
+			updateShapeProgress();
+		});
 	}
 </script>
 
@@ -171,6 +213,10 @@ const howIWork = [
 		justify-content: center;
 		align-items: end;
 		min-height: calc(var(--shape-size) + 0.35rem);
+	}
+
+	.shape-item.is-shape-clone {
+		display: none;
 	}
 
 	.shape-item--triangle {
@@ -399,6 +445,12 @@ const howIWork = [
 			scroll-snap-align: center;
 			scroll-snap-stop: always;
 		}
+
+		.shape-item.is-shape-clone {
+			display: grid;
+		}
+
+
 
 		.shape-item--triangle {
 			min-height: calc((var(--shape-size) * 1.18 * 0.8660254) + 0.35rem);

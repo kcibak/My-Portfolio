@@ -10,7 +10,7 @@ const recommendationsUrl =
 	'https://www.linkedin.com/in/kiracibakcodes/details/recommendations';
 ---
 
-<section class="testimonials" aria-labelledby="testimonials-title" data-testimonials>
+<selction class="testimonials" aria-labelledby="testimonials-title" data-testimonials>
 	<div class="testimonials-heading">
 		<p class="testimonials-eyebrow">Receipts</p>
 		<h2 id="testimonials-title">Don't just take my word for it.</h2>
@@ -56,8 +56,11 @@ const recommendationsUrl =
 		document.querySelectorAll<HTMLButtonElement>('[data-testimonial-dot]')
 	);
 	const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+	const mobileTestimonialsQuery = window.matchMedia('(max-width: 640px)');
 	let testimonialIndex = 0;
 	let testimonialTimer: number | undefined;
+	let testimonialSwipeStartX: number | null = null;
+	let testimonialSwipeStartY: number | null = null;
 
 	const showTestimonial = (index: number) => {
 		testimonialIndex = (index + testimonialSlides.length) % testimonialSlides.length;
@@ -84,6 +87,37 @@ const recommendationsUrl =
 	};
 
 	if (testimonialRoot && testimonialSlides.length && testimonialDots.length) {
+		const onTestimonialPointerDown = (event: PointerEvent) => {
+			if (!mobileTestimonialsQuery.matches || event.pointerType === 'mouse' || !event.isPrimary) return;
+			testimonialSwipeStartX = event.clientX;
+			testimonialSwipeStartY = event.clientY;
+			testimonialRoot.setPointerCapture(event.pointerId);
+			stopTestimonialTimer();
+		};
+
+		const onTestimonialPointerUp = (event: PointerEvent) => {
+			if (testimonialSwipeStartX === null || testimonialSwipeStartY === null) return;
+
+			const deltaX = event.clientX - testimonialSwipeStartX;
+			const deltaY = event.clientY - testimonialSwipeStartY;
+			testimonialSwipeStartX = null;
+			testimonialSwipeStartY = null;
+			if (testimonialRoot.hasPointerCapture(event.pointerId)) {
+				testimonialRoot.releasePointerCapture(event.pointerId);
+			}
+
+			if (Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY)) {
+				showTestimonial(testimonialIndex + (deltaX < 0 ? 1 : -1));
+			}
+			startTestimonialTimer();
+		};
+
+		const resetTestimonialPointer = () => {
+			testimonialSwipeStartX = null;
+			testimonialSwipeStartY = null;
+			startTestimonialTimer();
+		};
+
 		testimonialDots.forEach((dot, index) => {
 			dot.addEventListener('click', () => {
 				showTestimonial(index);
@@ -96,6 +130,9 @@ const recommendationsUrl =
 		testimonialRoot.addEventListener('focusout', (event) => {
 			if (!testimonialRoot.contains(event.relatedTarget as Node | null)) startTestimonialTimer();
 		});
+		testimonialRoot.addEventListener('pointerdown', onTestimonialPointerDown);
+		testimonialRoot.addEventListener('pointerup', onTestimonialPointerUp);
+		testimonialRoot.addEventListener('pointercancel', resetTestimonialPointer);
 		reduceMotionQuery.addEventListener('change', startTestimonialTimer);
 		startTestimonialTimer();
 	}
@@ -254,6 +291,10 @@ const recommendationsUrl =
 		.testimonial-slide p {
 			font-size: 1rem;
 			line-height: 1.45;
+		}
+
+		.testimonials-slider {
+			touch-action: pan-y;
 		}
 
 		.testimonials-controls {
