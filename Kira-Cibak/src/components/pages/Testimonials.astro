@@ -8,7 +8,6 @@ const testimonials = [
 
 const recommendationsUrl =
 	'https://www.linkedin.com/in/kiracibakcodes/details/recommendations';
-const linkedinAppUrl = 'linkedin://in/kiracibakcodes/details/recommendations';
 ---
 
 <section class="testimonials" aria-labelledby="testimonials-title" data-testimonials>
@@ -40,9 +39,8 @@ const linkedinAppUrl = 'linkedin://in/kiracibakcodes/details/recommendations';
 		<a
 			class="testimonials-all-link"
 			href={recommendationsUrl}
-			data-linkedin-app-url={linkedinAppUrl}
 			target="_blank"
-			rel="noreferrer"
+			rel="noopener noreferrer"
 		>
 			View all recommendations <span aria-hidden="true">↗</span>
 		</a>
@@ -51,9 +49,6 @@ const linkedinAppUrl = 'linkedin://in/kiracibakcodes/details/recommendations';
 
 <script>
 	const testimonialRoot = document.querySelector<HTMLElement>('[data-testimonials]');
-	const recommendationsLink = document.querySelector<HTMLAnchorElement>(
-		'[data-linkedin-app-url]'
-	);
 	const testimonialSlides = Array.from(
 		document.querySelectorAll<HTMLElement>('[data-testimonial-slide]')
 	);
@@ -63,27 +58,6 @@ const linkedinAppUrl = 'linkedin://in/kiracibakcodes/details/recommendations';
 	const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 	let testimonialIndex = 0;
 	let testimonialTimer: number | undefined;
-
-	if (recommendationsLink) {
-		recommendationsLink.addEventListener('click', (event) => {
-			const isMobileDevice =
-				/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-				(navigator.maxTouchPoints > 1 && /Macintosh/i.test(navigator.userAgent));
-			if (!isMobileDevice) return;
-
-			event.preventDefault();
-			let appOpened = false;
-			const markAppOpened = () => {
-				appOpened = true;
-			};
-			document.addEventListener('visibilitychange', markAppOpened, { once: true });
-			window.location.href = recommendationsLink.dataset.linkedinAppUrl ?? '';
-			window.setTimeout(() => {
-				document.removeEventListener('visibilitychange', markAppOpened);
-				if (!appOpened) window.location.href = recommendationsLink.href;
-			}, 1200);
-		});
-	}
 
 	const showTestimonial = (index: number) => {
 		testimonialIndex = (index + testimonialSlides.length) % testimonialSlides.length;
