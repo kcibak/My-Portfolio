@@ -81,6 +81,6 @@ Run inside [Kira-Cibak](Kira-Cibak):
 
 ## Contact
 
-- LinkedIn: <https://www.linkedin.com/in/kira-cibak/>
+- LinkedIn: <https://www.linkedin.com/in/kiracibakcodes/>
 - GitHub: <https://github.com/kcibak>
 - Email: kiracibakcodes@gmail.com
